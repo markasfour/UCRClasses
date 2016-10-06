@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">UCR Classes</string>
+
+    <!--MainActivity strings-->
+    <string name="sign_in">Sign In</string>
+    <string name="guest_sign_in">Continue as Guest</string>
+
+    <!--SignInActivity strings-->
+    <string name="user_name">User Name:</string>
+    <string name="password">Password:</string>
 </resources>
