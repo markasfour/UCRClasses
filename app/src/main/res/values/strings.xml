@@ -4,8 +4,18 @@
     <!--MainActivity strings-->
     <string name="sign_in">Sign In</string>
     <string name="guest_sign_in">Continue as Guest</string>
+    <string name="register_user">Register</string>
 
     <!--SignInActivity strings-->
     <string name="user_name">User Name:</string>
     <string name="password">Password:</string>
+
+    <!--RegisterUserActivity strings-->
+    <string name="first_name">First Name:</string>
+    <string name="last_name">Last Name:</string>
+    <string name="ucr_email">UCR Email:</string>
+    <!-- Not 100% sure if we need another password string here. -->
+    <string name="confirm_password">Confirm Password:</string>
+
+
 </resources>

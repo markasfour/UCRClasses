@@ -18,4 +18,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SignInActivity.class);
         startActivity(intent);
     }
+
+    /** Called when the user clicks the Register button */
+    public void registerUser(View view) {
+        Intent intent = new Intent(this, RegisterUserActivity.class);
+        startActivity(intent);
+    }
 }
