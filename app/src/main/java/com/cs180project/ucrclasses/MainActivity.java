@@ -18,4 +18,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SignInActivity.class);
         startActivity(intent);
     }
+    public void continue_guest(View view) {
+        Intent intent = new Intent(this, DrawerActivity.class);
+        startActivity(intent);
+    }
+
 }
