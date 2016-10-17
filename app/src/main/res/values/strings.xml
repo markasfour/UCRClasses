@@ -1,16 +1,23 @@
 <resources>
     <string name="app_name">UCR Classes</string>
 
-    <!--MainActivity strings-->
+    <!--MainActivity  - general strings-->
     <string name="sign_in">Sign In</string>
     <string name="guest_sign_in">Continue as Guest</string>
     <string name="register_user">Register</string>
 
-    <!--SignInActivity strings-->
+    <!--SignInActivity - general strings-->
+    <string name="sign_in_title_text">Welcome!</string>
     <string name="user_name">User Name:</string>
     <string name="password">Password:</string>
 
-    <!--RegisterUserActivity strings-->
+    <!-- SignInActivity -> status strings -->
+    <string name="signed_out">Signed Out</string>
+    <string name="auth_failed">Authentication failed</string>
+
+    <string name="sign_in_success">Signed In!</string>
+
+    <!--RegisterUserActivity - general strings-->
     <string name="first_name">First Name:</string>
     <string name="last_name">Last Name:</string>
     <string name="ucr_email">UCR Email:</string>
