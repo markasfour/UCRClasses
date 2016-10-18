@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.EmailAuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -30,6 +29,10 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     private FirebaseAuth.AuthStateListener mAuthListener;
 
+    /** CODE I ADDED ----- */
+    //private boolean isNewUserAccount;
+    /** CODE I ADDED ----- */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +46,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
         //Buttons
         findViewById(R.id.sign_in_button).setOnClickListener(this);
+        findViewById(R.id.email_create_account_button).setOnClickListener(this);
+        findViewById(R.id.sign_out_button).setOnClickListener(this);
 
 
         /** In your sign-up activity's onCreate method, get the shared instance of the
@@ -58,12 +63,32 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user != null) {
-                    // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+
+                    /** CODE I ADDED ----- */
+                    // If a new user is created, send a verification email.
+                    /** if(isNewUserAccount) {
+                        Log.d(TAG, "NewUserAccount: entering email verification method ");
+                        firebaseAuth.getCurrentUser().sendEmailVerification()
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()) {
+                                            Log.d(TAG, "Email sent.");
+                                        }
+                                    }
+                                });
+                        if(firebaseAuth.getCurrentUser().isEmailVerified()) {
+                            Log.d(TAG, "Email verified");
+                        } else {
+                            Log.d(TAG, "Email NOT verified");
+                        }
+                    } */
+                    /** CODE I ADDED ^^^^^ */
                 } else {
-                    // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                    Log.d(TAG, "onAuthStateChanged:signed_out:");
                 }
+
             }
         };
     }
@@ -85,7 +110,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     /** Create a new account by passing the new user's email address and password to
      * createUserWithEmailAndPassword */
 
-    /** private void createAccount(String email, String password) {
+    private void createAccount(String email, String password) {
         Log.d(TAG, "createAccount:" + email);
         if(!validateForm()) {
             return;
@@ -94,7 +119,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         //showProgressDialog();
 
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new onCompleteListener<AuthResult>() {
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
@@ -106,11 +131,13 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                             Toast.makeText(SignInActivity.this, R.string.auth_failed,
                                     Toast.LENGTH_SHORT).show();
                         }
-
+                        /** Code I Added ------ */
+                        //isNewUserAccount = true;
+                        /** Code I Added ^^^^^ */
                         //hideProgressDialog();
                     }
                 });
-    } */
+    }
 
 
     private void signIn(String email, String password){
@@ -156,6 +183,10 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     private void signOut() {
         mAuth.signOut();
+        Toast.makeText(SignInActivity.this, R.string.signed_out,
+                Toast.LENGTH_SHORT).show();
+        mStatusTextView.setText(R.string.signed_out);
+        //updateUI(null);
     }
 
     private boolean validateForm() {
@@ -180,15 +211,24 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         return valid;
     }
 
+    /** private void updateUI(FirebaseUser user) {
+        //hideProgressDialog();
+        mStatusTextView.setText(getString(R.string.email_password_fmt, user.getEmail()));
+        mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
+
+        findViewById(R.id.em)
+    } */
 
     @Override
     public void onClick(View v) {
         int i = v.getId();
-        if(i == R.id.sign_in_button) {
+        if(i == R.id.email_create_account_button) {
+            createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
+        } else if (i == R.id.sign_in_button) {
             signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
-
+        } else if (i == R.id.sign_out_button) {
+            signOut();
         }
-        /** added sign out statement here */
     }
 
 

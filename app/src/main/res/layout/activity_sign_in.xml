@@ -78,4 +78,16 @@
         android:layout_height="wrap_content"
         android:id="@+id/sign_in_button" />
 
+    <Button
+        android:text="@string/email_create_account"
+        android:id="@+id/email_create_account_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/sign_out_button"
+        android:text="@string/sign_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>
