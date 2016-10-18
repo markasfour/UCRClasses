@@ -21,7 +21,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     private static final String TAG = "EmailPassword";
 
     private TextView mStatusTextView;
-    //private TextView mDetailTextView;
+    private TextView mDetailTextView;
     private EditText mEmailField;
     private EditText mPasswordField;
 
@@ -40,12 +40,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
         //Views
         mStatusTextView = (TextView) findViewById(R.id.status);
-        //mDetailTextView = (TextView) findViewById(R.id.detail);
+        mDetailTextView = (TextView) findViewById(R.id.detail);
         mEmailField = (EditText) findViewById(R.id.field_email);
         mPasswordField = (EditText) findViewById(R.id.field_password);
 
         //Buttons
-        findViewById(R.id.sign_in_button).setOnClickListener(this);
+        findViewById(R.id.email_sign_in_button).setOnClickListener(this);
         findViewById(R.id.email_create_account_button).setOnClickListener(this);
         findViewById(R.id.sign_out_button).setOnClickListener(this);
 
@@ -89,6 +89,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                     Log.d(TAG, "onAuthStateChanged:signed_out:");
                 }
 
+                updateUI(user);
             }
         };
     }
@@ -183,10 +184,10 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     private void signOut() {
         mAuth.signOut();
-        Toast.makeText(SignInActivity.this, R.string.signed_out,
+        /** Toast.makeText(SignInActivity.this, R.string.signed_out,
                 Toast.LENGTH_SHORT).show();
-        mStatusTextView.setText(R.string.signed_out);
-        //updateUI(null);
+        mStatusTextView.setText(R.string.signed_out); */
+        updateUI(null);
     }
 
     private boolean validateForm() {
@@ -211,20 +212,31 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         return valid;
     }
 
-    /** private void updateUI(FirebaseUser user) {
+    private void updateUI(FirebaseUser user) {
         //hideProgressDialog();
-        mStatusTextView.setText(getString(R.string.email_password_fmt, user.getEmail()));
-        mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
+        if(user != null) {
+            mStatusTextView.setText(getString(R.string.emailpassword_status_fmt, user.getEmail()));
+            mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
 
-        findViewById(R.id.em)
-    } */
+            findViewById(R.id.email_password_buttons).setVisibility(View.GONE);
+            findViewById(R.id.email_password_fields).setVisibility(View.GONE);
+            findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
+        } else {
+            mStatusTextView.setText(R.string.signed_out);
+            mDetailTextView.setText(null);
+
+            findViewById(R.id.email_password_buttons).setVisibility(View.VISIBLE);
+            findViewById(R.id.email_password_fields).setVisibility(View.VISIBLE);
+            findViewById(R.id.sign_out_button).setVisibility(View.GONE);
+        }
+    }
 
     @Override
     public void onClick(View v) {
         int i = v.getId();
         if(i == R.id.email_create_account_button) {
             createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
-        } else if (i == R.id.sign_in_button) {
+        } else if (i == R.id.email_sign_in_button) {
             signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
         } else if (i == R.id.sign_out_button) {
             signOut();
