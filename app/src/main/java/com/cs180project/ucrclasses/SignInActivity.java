@@ -59,7 +59,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     /** CODE I ADDED ----- */
-    //private boolean isNewUserAccount;
+    private boolean isNewUserAccount = false;
     /** CODE I ADDED ----- */
 
     @Override
@@ -92,11 +92,10 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user != null) {
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-
+                    Log.d(TAG, "onAuthStateChanged:signed_in: " + user.getUid());
                     /** CODE I ADDED ----- */
                     // If a new user is created, send a verification email.
-                    /** if(isNewUserAccount) {
+                    if(isNewUserAccount) {
                         Log.d(TAG, "NewUserAccount: entering email verification method ");
                         firebaseAuth.getCurrentUser().sendEmailVerification()
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -107,12 +106,14 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                                         }
                                     }
                                 });
-                        if(firebaseAuth.getCurrentUser().isEmailVerified()) {
-                            Log.d(TAG, "Email verified");
-                        } else {
-                            Log.d(TAG, "Email NOT verified");
-                        }
-                    } */
+                        isNewUserAccount = false;
+                    }
+
+                    if(firebaseAuth.getCurrentUser().isEmailVerified()) {
+                        Log.d(TAG, "Email verified");
+                    } else {
+                        Log.d(TAG, "Email NOT verified");
+                    }
                     /** CODE I ADDED ^^^^^ */
                 } else {
                     Log.d(TAG, "onAuthStateChanged:signed_out:");
@@ -141,7 +142,11 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
      * createUserWithEmailAndPassword */
 
     private void createAccount(String email, String password) {
-        Log.d(TAG, "createAccount:" + email);
+        /** Code I Added ------ */
+        isNewUserAccount = true;
+        /** Code I Added ^^^^^ */
+
+        Log.d(TAG, "createAccount: " + email);
         if(!validateForm()) {
             return;
         }
@@ -161,9 +166,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                             Toast.makeText(SignInActivity.this, R.string.auth_failed,
                                     Toast.LENGTH_SHORT).show();
                         }
-                        /** Code I Added ------ */
-                        //isNewUserAccount = true;
-                        /** Code I Added ^^^^^ */
+
                         hideProgressDialog();
                     }
                 });
