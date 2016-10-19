@@ -108,16 +108,18 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                                 });
                         isNewUserAccount = false;
                     }
-
-                    if(firebaseAuth.getCurrentUser().isEmailVerified()) {
-                        Log.d(TAG, "Email verified");
-                    } else {
-                        Log.d(TAG, "Email NOT verified");
-                    }
                     /** CODE I ADDED ^^^^^ */
                 } else {
                     Log.d(TAG, "onAuthStateChanged:signed_out:");
                 }
+
+                /** if(firebaseAuth.getCurrentUser().isEmailVerified()) {
+                    Log.d(TAG, "Email verified");
+                } else {
+                    Log.d(TAG, "Email NOT verified");
+                    Toast.makeText(SignInActivity.this, R.string.email_not_verified,
+                            Toast.LENGTH_SHORT).show();
+                } */
 
                 updateUI(user);
             }
@@ -181,11 +183,20 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
         showProgressDialog();
 
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
+
+                        /** CODE I ADDED */
+                        if(!mAuth.getCurrentUser().isEmailVerified()) {
+                            Toast.makeText(SignInActivity.this, R.string.email_not_verified,
+                                    Toast.LENGTH_SHORT).show();
+                            signOut();
+                        }
+                        /** CODE I ADDED */
 
                         // If sign in fails, display a message to the user.
                         // If sign in succeeds, the auth state listener will be notified and logic
