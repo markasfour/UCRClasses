@@ -168,15 +168,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                             mStatusTextView.setText(R.string.auth_failed);
                         }
                         //hideProgressDialog();
-
-                        if(task.isSuccessful()) {
-                            Toast.makeText(SignInActivity.this, R.string.sign_in_success,
-                                    Toast.LENGTH_SHORT).show();
-                        }
-
-                        if(task.isSuccessful()) {
-                            mStatusTextView.setText(R.string.sign_in_success);
-                        }
                     }
                 });
     }
@@ -184,9 +175,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     private void signOut() {
         mAuth.signOut();
-        /** Toast.makeText(SignInActivity.this, R.string.signed_out,
-                Toast.LENGTH_SHORT).show();
-        mStatusTextView.setText(R.string.signed_out); */
         updateUI(null);
     }
 
