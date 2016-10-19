@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.app.ProgressDialog;
+import android.support.annotation.VisibleForTesting;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -17,6 +19,33 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
+
+    /** Progress Dialog Implementation */
+    @VisibleForTesting
+    public ProgressDialog mProgressDialog;
+
+    public void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setMessage(getString(R.string.loading));
+            mProgressDialog.setIndeterminate(true);
+        }
+
+        mProgressDialog.show();
+    }
+
+    public void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+    }
+
+    /** @Override
+    public void onStop() {
+        super.onStop();
+        hideProgressDialog();
+    } */
+    /** Progress Dialog Implementation */
 
     private static final String TAG = "EmailPassword";
 
@@ -117,7 +146,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             return;
         }
 
-        //showProgressDialog();
+        showProgressDialog();
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -135,7 +164,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                         /** Code I Added ------ */
                         //isNewUserAccount = true;
                         /** Code I Added ^^^^^ */
-                        //hideProgressDialog();
+                        hideProgressDialog();
                     }
                 });
     }
@@ -147,7 +176,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             return;
         }
 
-        //showProgressDialog
+        showProgressDialog();
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -167,7 +196,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                         if(!task.isSuccessful()) {
                             mStatusTextView.setText(R.string.auth_failed);
                         }
-                        //hideProgressDialog();
+                        hideProgressDialog();
                     }
                 });
     }
@@ -201,7 +230,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void updateUI(FirebaseUser user) {
-        //hideProgressDialog();
+        hideProgressDialog();
         if(user != null) {
             mStatusTextView.setText(getString(R.string.emailpassword_status_fmt, user.getEmail()));
             mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
