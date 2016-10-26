@@ -12,15 +12,4 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-
-    /** Called when the user clicks the Send button */
-    public void sign_in(View view) {
-        Intent intent = new Intent(this, SignInActivity.class);
-        startActivity(intent);
-    }
-    public void continue_guest(View view) {
-        Intent intent = new Intent(this, DrawerActivity.class);
-        startActivity(intent);
-    }
-
 }

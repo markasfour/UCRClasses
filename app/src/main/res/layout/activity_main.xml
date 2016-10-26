@@ -20,4 +20,10 @@
         android:text="@string/guest_sign_in"
         android:onClick="continue_guest" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/register_user"
+        android:onClick="registerUser" />
+
 </LinearLayout>
