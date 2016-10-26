@@ -20,6 +20,7 @@
         <!-- INSERT UCR LOGO HERE -->
 
         <!-- Title: Welcome! -->
+
         <TextView
             android:id="@+id/title_text"
             android:layout_width="wrap_content"
@@ -36,6 +37,20 @@
             android:id="@+id/detail"
             style="@style/ThemeOverlay.MyTextDetail"
             tools:text="Firebase User ID: 123456789abc" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/email_text"
+            android:text="" />
+
+        <Button
+            android:text="Send Password Reset Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/password_email_button" />
 
     </LinearLayout>
 
@@ -87,7 +102,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/sign_in"
-                android:theme="@style/ThemeOverlay.MyDarkButton" />
+                android:theme="@style/ThemeOverlay.MyDarkButton"
+                android:onClick="sign_in_successful"/>
 
             <Button
                 android:id="@+id/email_create_account_button"

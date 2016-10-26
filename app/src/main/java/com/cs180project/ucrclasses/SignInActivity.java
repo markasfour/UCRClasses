@@ -1,11 +1,13 @@
 package com.cs180project.ucrclasses;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,6 +55,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     private TextView mDetailTextView;
     private EditText mEmailField;
     private EditText mPasswordField;
+    //peter
+    private EditText mResetEmailText;
 
     private FirebaseAuth mAuth;
 
@@ -72,11 +76,14 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         mDetailTextView = (TextView) findViewById(R.id.detail);
         mEmailField = (EditText) findViewById(R.id.field_email);
         mPasswordField = (EditText) findViewById(R.id.field_password);
+        //peter
+        mResetEmailText = (EditText) findViewById(R.id.email_text);
 
         //Buttons
         findViewById(R.id.email_sign_in_button).setOnClickListener(this);
         findViewById(R.id.email_create_account_button).setOnClickListener(this);
         findViewById(R.id.sign_out_button).setOnClickListener(this);
+        findViewById(R.id.password_email_button).setOnClickListener(this);
 
 
         /** In your sign-up activity's onCreate method, get the shared instance of the
@@ -203,6 +210,9 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                             Toast.makeText(SignInActivity.this, R.string.email_not_verified,
                                     Toast.LENGTH_SHORT).show();
                             signOut();
+                        } else {
+                            Intent intent = new Intent(SignInActivity.this, DrawerActivity.class);
+                            startActivity(intent);
                         }
 
                         hideProgressDialog();
@@ -238,6 +248,21 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         return valid;
     }
 
+    public void passwordReset(){
+        Log.d(TAG, "Called function");
+        String emailAddress = mResetEmailText.getText().toString();
+
+        mAuth.sendPasswordResetEmail(emailAddress)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "Email sent.");
+                        }
+                    }
+                });
+    }
+
     private void updateUI(FirebaseUser user) {
         hideProgressDialog();
         if(user != null) {
@@ -266,8 +291,10 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
         } else if (i == R.id.sign_out_button) {
             signOut();
+        } else if (i == R.id.password_email_button) {
+            Log.d(TAG, "Enter if statement");
+            passwordReset();
         }
     }
-
 
 }
