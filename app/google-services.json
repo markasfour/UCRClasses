@@ -50,7 +50,7 @@
         }
       }
     },
-    {
+/*    {
       "client_info": {
         "mobilesdk_app_id": "1:247494739618:android:3d11d6535d5ce5d0",
         "android_client_info": {
@@ -80,7 +80,7 @@
           "status": 2
         }
       }
-    }
+    }*/
   ],
   "configuration_version": "1"
 }
