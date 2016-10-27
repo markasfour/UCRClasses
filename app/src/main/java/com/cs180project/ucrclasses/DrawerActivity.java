@@ -1,5 +1,6 @@
 package com.cs180project.ucrclasses;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class DrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -86,7 +89,10 @@ public class DrawerActivity extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_signout_drawer) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new signout_drawer()).commit();
+            //fragmentManager.beginTransaction().replace(R.id.content_frame, new signout_drawer()).commit();
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(DrawerActivity.this, SignInActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
