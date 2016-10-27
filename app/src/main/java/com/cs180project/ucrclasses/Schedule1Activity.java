@@ -1,8 +1,11 @@
 package com.cs180project.ucrclasses;
 
 import android.app.Fragment;
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,9 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedSet;
@@ -34,11 +42,12 @@ public class Schedule1Activity extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.schedule1activity, container, false);
 
-//        Toolbar toolbar = (Toolbar) myView.findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference();
+
+        final ListView mListView = (ListView) myView.findViewById(R.id.class_list);
+        final ArrayAdapter<String> ladapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1);
+        mListView.setAdapter(ladapter);
 
         Spinner qdropdown = (Spinner)myView.findViewById(R.id.quarter_spinner);
         final ArrayAdapter<String> qadapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item);
@@ -56,8 +65,7 @@ public class Schedule1Activity extends Fragment{
         final ArrayAdapter<String> iadapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item);
         idropdown.setAdapter(iadapter);
 
-
-
+        //When they select a subject...
         sdropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
@@ -68,6 +76,8 @@ public class Schedule1Activity extends Fragment{
                 //Clear courses and instructors dropdowns
                 cadapter.clear();
                 iadapter.clear();
+                ladapter.clear();
+
                 SortedSet<String> courses = new TreeSet<String>();
                 SortedSet<String> profs = new TreeSet<String>();
                 for (Map.Entry<String, Map<String, Map<String, Map<String, String>>>> quarters : dat.entrySet()) {
@@ -76,6 +86,7 @@ public class Schedule1Activity extends Fragment{
                             for (Map.Entry<String, Map<String, String>> callNums : classes.getValue().entrySet()) {
                                 String course = callNums.getValue().get("CourseNum");// child("CourseNum").getValue();
                                 course = course.substring(0, 7);
+                                ladapter.add(course + " " + callNums.getValue().get("Lec_Dis"));
                                 courses.add(course);
                                 profs.add(callNums.getValue().get("Instructor"));
                             }
@@ -83,6 +94,12 @@ public class Schedule1Activity extends Fragment{
                     }
                 }
 
+                ladapter.sort(new Comparator<String>() {
+                    @Override
+                    public int compare(String lhs, String rhs) {
+                        return lhs.compareTo(rhs);
+                    }
+                });
                 cadapter.add("ALL"); iadapter.add("ALL");
                 for(String str : courses) cadapter.add(str);
                 for(String str : profs) iadapter.add(str);
@@ -91,6 +108,7 @@ public class Schedule1Activity extends Fragment{
             public void onNothingSelected(AdapterView<?> arg0) { }
         });
 
+        //When they select a course...
         cdropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
@@ -98,6 +116,7 @@ public class Schedule1Activity extends Fragment{
                 Toast.makeText(getActivity().getApplicationContext(), "selected "+ mselection, Toast.LENGTH_SHORT).show();
 
                 Log.d("TEST", mselection + " was selected!");
+                ladapter.clear();
                 iadapter.clear();
                 SortedSet<String> profs = new TreeSet<String>();
                 for (Map.Entry<String, Map<String, Map<String, Map<String, String>>>> quarters : dat.entrySet()) {
@@ -107,6 +126,7 @@ public class Schedule1Activity extends Fragment{
                                 String course = callNums.getValue().get("CourseNum");// child("CourseNum").getValue();
                                 course = course.substring(0, 7);
                                 if (mselection.equals("ALL") || course.equals(mselection)) {
+                                    ladapter.add(course + " " + callNums.getValue().get("Lec_Dis"));
                                     profs.add(callNums.getValue().get("Instructor"));
                                 }
                             }
@@ -114,6 +134,12 @@ public class Schedule1Activity extends Fragment{
                     }
                 }
 
+                ladapter.sort(new Comparator<String>() {
+                    @Override
+                    public int compare(String lhs, String rhs) {
+                        return lhs.compareTo(rhs);
+                    }
+                });
                 iadapter.add("ALL");
                 for(String str : profs) iadapter.add(str);
             }
@@ -121,7 +147,21 @@ public class Schedule1Activity extends Fragment{
             public void onNothingSelected(AdapterView<?> arg0) { }
         });
 
+
+        //When they click a course in the table..
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast toast = Toast.makeText(getActivity().getApplicationContext(), ((String)ladapter.getItem(position)) + " Clicked!", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+
+        });
+
         //fetch all the data and store it in a map for the duration of the program
+        //on actual devices this takes a bit of time unless the wifi is perfect, so
+        //TODO: run this during the app startup splash screen
+        //TODO: detach this hook after run so if the database is updated we don't care
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -168,6 +208,7 @@ public class Schedule1Activity extends Fragment{
             @Override
             public void onCancelled(DatabaseError firebaseError) { }
         });
+
 
         return myView;
     }

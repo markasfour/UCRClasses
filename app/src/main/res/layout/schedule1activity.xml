@@ -11,7 +11,13 @@ android:paddingRight="@dimen/activity_horizontal_margin"
 android:paddingTop="@dimen/activity_vertical_margin"
 app:layout_behavior="@string/appbar_scrolling_view_behavior"
 tools:context="com.cs180project.ucrclasses.DrawerActivity"
-tools:showIn="@layout/activity_main">
+    android:layout_alignParentBottom="false"
+    android:layout_alignParentEnd="false"
+    android:layout_alignParentLeft="false"
+    android:layout_alignParentRight="false"
+    android:layout_alignParentStart="false"
+    android:layout_alignParentTop="false"
+    android:layout_alignWithParentIfMissing="false">
 
 <TextView
     android:text="Quarter: "
@@ -30,51 +36,14 @@ tools:showIn="@layout/activity_main">
     android:layout_alignParentLeft="true"
     android:layout_alignParentStart="true" />
 
-<Spinner
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/instr_spinner"
-    android:layout_alignTop="@+id/textView6"
-    android:layout_toRightOf="@+id/textView5"
-    android:layout_toEndOf="@+id/textView5" />
-
-<TextView
-    android:text="Instructor:"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/textView6"
-    android:layout_marginTop="36dp"
-    android:layout_below="@+id/textView5"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true" />
-
-<TextView
-    android:text="Class Type:"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/textView5"
-    android:layout_marginTop="40dp"
-    android:layout_below="@+id/textView4"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true" />
-
-<TextView
-    android:text="Course:"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/textView4"
-    android:layout_marginTop="38dp"
-    android:layout_below="@+id/textView3"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true" />
-
-<Spinner
+    <Spinner
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/course_spinner"
     android:layout_alignTop="@+id/textView4"
     android:layout_toEndOf="@+id/textView5"
-    android:layout_toRightOf="@+id/textView5" />
+        android:layout_alignLeft="@+id/instr_spinner"
+        android:layout_alignStart="@+id/instr_spinner" />
 
 <TextView
     android:text="Subject:"
@@ -103,5 +72,78 @@ tools:showIn="@layout/activity_main">
     android:layout_alignParentTop="true"
     android:layout_toEndOf="@+id/textView6"
     android:layout_alignLeft="@+id/course_spinner"
-    android:layout_alignStart="@+id/course_spinner" />
+    android:layout_alignStart="@+id/course_spinner"
+    android:layout_toRightOf="@+id/textView6" />
+
+<TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0">
+        <TableRow
+            android:id="@+id/first_row"
+            android:background="@android:drawable/list_selector_background" >
+
+        </TableRow>
+    </TableLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/class_list"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@+id/textView2" />
+
+    <TextView
+    android:text="Course:"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/textView4"
+    android:layout_marginTop="16dp"
+        android:layout_below="@+id/subject_spinner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Instructor:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:layout_marginTop="16dp"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_below="@+id/course_spinner"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2" />
+
+    <TextView
+    android:text="Class Type:"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/textView6"
+    android:layout_marginTop="19dp"
+        android:layout_below="@+id/instr_spinner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/instr_spinner"
+        android:layout_alignTop="@+id/textView5"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/spinner"
+        android:layout_alignStart="@+id/spinner" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_alignTop="@+id/textView6"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/textView6"
+        android:layout_toEndOf="@+id/textView6" />
+
 </RelativeLayout>
