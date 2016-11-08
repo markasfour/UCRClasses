@@ -210,10 +210,10 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                             Toast.makeText(SignInActivity.this, R.string.email_not_verified,
                                     Toast.LENGTH_SHORT).show();
                             signOut();
-                        } else {
+                        } /* else {
                             Intent intent = new Intent(SignInActivity.this, DrawerActivity.class);
                             startActivity(intent);
-                        }
+                        } */
 
                         hideProgressDialog();
                     }
@@ -266,12 +266,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     private void updateUI(FirebaseUser user) {
         hideProgressDialog();
         if(user != null) {
-            mStatusTextView.setText(getString(R.string.emailpassword_status_fmt, user.getEmail()));
+            /* mStatusTextView.setText(getString(R.string.emailpassword_status_fmt, user.getEmail()));
             mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
 
             findViewById(R.id.email_password_buttons).setVisibility(View.GONE);
             findViewById(R.id.email_password_fields).setVisibility(View.GONE);
-            findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
+            findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE); */
         } else {
             mStatusTextView.setText(R.string.signed_out);
             mDetailTextView.setText(null);
@@ -289,6 +289,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
         } else if (i == R.id.email_sign_in_button) {
             signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
+            Intent intent = new Intent(SignInActivity.this, DrawerActivity.class);
+            startActivity(intent);
         } else if (i == R.id.sign_out_button) {
             signOut();
         } else if (i == R.id.password_email_button) {
