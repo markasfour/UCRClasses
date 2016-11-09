@@ -21,7 +21,7 @@
 
         <!-- Title: Welcome! -->
 
-        <TextView
+        <!-- <TextView
             android:id="@+id/title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
         <TextView
             android:id="@+id/status"
             style="@style/ThemeOverlay.MyTextDetail"
-            android:text="@string/signed_out" />
+            android:text="@string/signed_out" /> -->
 
         <TextView
             android:id="@+id/detail"
