@@ -3,14 +3,36 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
-        android:text="Signout Layout"
-        android:layout_width="wrap_content"
+        android:text="Are you sure you want to sign out?"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/textView7"
+        android:layout_weight="0.03"
+        android:textSize="30sp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="149dp"
-        android:layout_marginStart="149dp"
-        android:layout_marginTop="230dp"
-        android:id="@+id/textView2" />
+        android:layout_marginTop="24dp" />
+
+    <Button
+        android:text="Sign Out"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
+        android:layout_weight="0.03"
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/textView7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button3"
+        android:layout_weight="0.03"
+        android:layout_marginTop="14dp"
+        android:layout_below="@+id/button2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
