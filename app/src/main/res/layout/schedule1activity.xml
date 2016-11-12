@@ -86,15 +86,6 @@ tools:context="com.cs180project.ucrclasses.DrawerActivity"
         </TableRow>
     </TableLayout>
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/class_list"
-        android:background="@android:color/darker_gray"
-        android:layout_below="@+id/textView2" />
-
     <TextView
     android:text="Course:"
     android:layout_width="wrap_content"
@@ -145,5 +136,17 @@ tools:context="com.cs180project.ucrclasses.DrawerActivity"
         android:layout_alignParentEnd="true"
         android:layout_toRightOf="@+id/textView6"
         android:layout_toEndOf="@+id/textView6" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/class_list"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="15dp" />
 
 </RelativeLayout>

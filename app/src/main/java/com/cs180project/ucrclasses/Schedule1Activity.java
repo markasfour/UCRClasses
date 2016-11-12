@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +39,8 @@ public class Schedule1Activity extends Fragment{
         DatabaseReference ref = database.getReference();
 
         final ListView mListView = (ListView) myView.findViewById(R.id.class_list);
-        final ArrayAdapter<String> ladapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1);
+        //final ArrayAdapter<String> ladapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1);
+        final ClassListAdapter ladapter = new ClassListAdapter(getActivity().getApplicationContext(), new ArrayList<Map<String, String>>());
         mListView.setAdapter(ladapter);
 
         Spinner qdropdown = (Spinner)myView.findViewById(R.id.quarter_spinner);
@@ -78,7 +80,8 @@ public class Schedule1Activity extends Fragment{
                             for (Map.Entry<String, Map<String, String>> callNums : classes.getValue().entrySet()) {
                                 String course = callNums.getValue().get("CourseNum");// child("CourseNum").getValue();
                                 course = course.substring(0, 7);
-                                ladapter.add(course + " " + callNums.getValue().get("Lec_Dis"));
+                                //ladapter.add(course + " " + callNums.getValue().get("Lec_Dis"));
+                                ladapter.add(callNums.getValue());
                                 courses.add(course);
                                 profs.add(callNums.getValue().get("Instructor"));
                             }
@@ -86,12 +89,7 @@ public class Schedule1Activity extends Fragment{
                     }
                 }
 
-                ladapter.sort(new Comparator<String>() {
-                    @Override
-                    public int compare(String lhs, String rhs) {
-                        return lhs.compareTo(rhs);
-                    }
-                });
+                ladapter.sort();
                 cadapter.add("ALL"); iadapter.add("ALL");
                 for(String str : courses) cadapter.add(str);
                 for(String str : profs) iadapter.add(str);
@@ -118,7 +116,8 @@ public class Schedule1Activity extends Fragment{
                                 String course = callNums.getValue().get("CourseNum");// child("CourseNum").getValue();
                                 course = course.substring(0, 7);
                                 if (mselection.equals("ALL") || course.equals(mselection)) {
-                                    ladapter.add(course + " " + callNums.getValue().get("Lec_Dis"));
+                                    //ladapter.add(course + " " + callNums.getValue().get("Lec_Dis"));
+                                    ladapter.add(callNums.getValue());
                                     profs.add(callNums.getValue().get("Instructor"));
                                 }
                             }
@@ -126,12 +125,7 @@ public class Schedule1Activity extends Fragment{
                     }
                 }
 
-                ladapter.sort(new Comparator<String>() {
-                    @Override
-                    public int compare(String lhs, String rhs) {
-                        return lhs.compareTo(rhs);
-                    }
-                });
+                ladapter.sort();
                 iadapter.add("ALL");
                 for(String str : profs) iadapter.add(str);
             }
