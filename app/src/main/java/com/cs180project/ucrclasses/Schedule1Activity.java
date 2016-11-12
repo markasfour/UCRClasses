@@ -40,7 +40,7 @@ public class Schedule1Activity extends Fragment{
 
         final ListView mListView = (ListView) myView.findViewById(R.id.class_list);
         //final ArrayAdapter<String> ladapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1);
-        final ClassListAdapter ladapter = new ClassListAdapter(getActivity().getApplicationContext(), new ArrayList<Map<String, String>>());
+        final ClassListAdapter ladapter = new ClassListAdapter(getActivity().getApplicationContext(), new ArrayList<Map<String, String>>(), mListView);
         mListView.setAdapter(ladapter);
 
         Spinner qdropdown = (Spinner)myView.findViewById(R.id.quarter_spinner);

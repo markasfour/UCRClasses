@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,11 +23,13 @@ public class ClassListAdapter extends BaseAdapter {
     private Context mContext;
     private LayoutInflater mInflater;
     private ArrayList<Map<String, String>> mDataSource;
+    private ListView parentView;
 
-    public ClassListAdapter(Context context, ArrayList<Map<String, String>> items) {
+    public ClassListAdapter(Context context, ArrayList<Map<String, String>> items, ListView lv) {
         mContext = context;
         mDataSource = items;
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        parentView = lv;
     }
 
     @Override
@@ -67,6 +70,7 @@ public class ClassListAdapter extends BaseAdapter {
 
     public void clear() {
         mDataSource.clear();
+        parentView.invalidateViews();
     }
 
     public void sort() {
@@ -76,9 +80,11 @@ public class ClassListAdapter extends BaseAdapter {
                 return o1.get("CourseNum").compareTo(o2.get("CourseNum"));
             }
         });
+        parentView.invalidateViews();
     }
 
     public void add(Map<String, String> newclass) {
         mDataSource.add(newclass);
+        parentView.invalidateViews();
     }
 }
