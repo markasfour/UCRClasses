@@ -1,6 +1,7 @@
 package com.cs180project.ucrclasses;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,13 +50,17 @@ public class ClassListAdapter extends BaseAdapter {
         View rowView = mInflater.inflate(R.layout.list_item_class, parent, false);
 
         TextView titleTextView = (TextView) rowView.findViewById(R.id.class_list_title);
-        TextView subtitleTextView = (TextView) rowView.findViewById(R.id.class_list_subtitle);
-        TextView detailTextView = (TextView) rowView.findViewById(R.id.class_list_detail);
+        TextView timesTextView = (TextView) rowView.findViewById(R.id.class_list_times);
+        TextView seatsTextView = (TextView) rowView.findViewById(R.id.class_list_seats);
+        TextView lecdisTextView = (TextView) rowView.findViewById(R.id.class_list_lecdis);
+        TextView profTextView = (TextView) rowView.findViewById(R.id.class_list_prof);
 
         Map<String, String> myclass = (Map<String, String>) getItem(position);
-        titleTextView.setText(myclass.get("CourseNum"));
-        subtitleTextView.setText(myclass.get("CourseTitle"));
-        //detailTextView.setText(myclass.get("CatalogDescription"));
+        titleTextView.setText(myclass.get("CourseNum").trim());
+        timesTextView.setText(myclass.get("Days").trim() + ": " + myclass.get("Time").trim());
+        seatsTextView.setText(myclass.get("AvailableSeats") + "/" + myclass.get("MaxEnrollment"));
+        lecdisTextView.setText(myclass.get("Lec_Dis").trim());
+        profTextView.setText(myclass.get("Instructor"));
 
         return rowView;
     }

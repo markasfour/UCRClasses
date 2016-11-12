@@ -81,6 +81,7 @@ public class Schedule1Activity extends Fragment{
                                 String course = callNums.getValue().get("CourseNum");// child("CourseNum").getValue();
                                 course = course.substring(0, 7);
                                 //ladapter.add(course + " " + callNums.getValue().get("Lec_Dis"));
+                                callNums.getValue().put("Time", callNums.getValue().get("Time").replace(".", "")); //Change 12:30 a.m. to 12:30 am
                                 ladapter.add(callNums.getValue());
                                 courses.add(course);
                                 profs.add(callNums.getValue().get("Instructor"));

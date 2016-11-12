@@ -1,73 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-    <ImageView
-        android:id="@+id/recipe_list_thumbnail"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="6dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="6dp"
-        android:scaleType="centerInside"
-        tools:src="@mipmap/ic_launcher"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="4dp" />
-        <!-- android:contentDescription="@string/thumbnail"/> -->
-
-    <TextView
-        android:id="@+id/class_list_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="2dp"
-        android:maxLines="1"
-        android:paddingEnd="4dp"
-        android:textColor="#000000"
-        android:textSize="12sp"
-        tools:text="Detail"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="2dp"
-        android:paddingRight="4dp" />
-
-    <RelativeLayout
-        android:id="@+id/recipe_list_text_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/recipe_list_thumbnail"
-        android:layout_toEndOf="@+id/recipe_list_thumbnail">
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
         <TextView
             android:id="@+id/class_list_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:textSize="18sp"
+            android:textSize="16sp"
             tools:text="Title"
             />
 
+    </TableRow>
+
+    <!--
+<TextView
+    android:text="Ctrl-Shift-S"
+    android:gravity="right"
+    android:padding="3dip" />
+
+    android:stretchColumns="1">
+-->
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
         <TextView
-            android:id="@+id/class_list_subtitle"
-            android:layout_width="wrap_content"
+            android:id="@+id/class_list_lecdis"
+            android:layout_width="0px"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/class_list_title"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="2dp"
-            android:ellipsize="end"
-            android:maxLines="3"
-            android:textSize="16sp"
-            tools:text="Subtitle"
+            android:layout_weight=".08"
+            android:gravity="center"
+            android:textSize="12sp"
+            tools:text="LEC"
             />
 
-    </RelativeLayout>
-</RelativeLayout>
+        <TextView
+            android:id="@+id/class_list_times"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight=".45"
+            android:gravity="center"
+            android:textSize="12sp"
+            tools:text="TR: 03:40 p.m. - 5:00 p.m."
+            />
+
+        <TextView
+            android:id="@+id/class_list_seats"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight=".12"
+            android:gravity="center"
+            android:textSize="12sp"
+            tools:text="999/999"
+            />
+
+        <TextView
+            android:id="@+id/class_list_prof"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            android:gravity="center"
+            android:textSize="12sp"
+            tools:text="Miller Kris"
+            />
+
+    </TableRow>
+
+</TableLayout>
+
+<!--
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:text="Time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1" />
+
+        <TextClock
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textClock"
+            android:layout_column="2" />
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:text="First Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1" />
+
+        <EditText
+            android:width="200px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:text="Last Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1" />
+
+        <EditText
+            android:width="100px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ratingBar"
+            android:layout_column="2" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"/>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:id="@+id/button"
+            android:layout_column="2" />
+    </TableRow>
+
+</TableLayout>
+-->
