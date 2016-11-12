@@ -178,6 +178,7 @@ public class Schedule1Activity extends Fragment{
 
                             if(callNums.hasChildren()) {
                                 String course = (String) callNums.child("CourseNum").getValue();
+                                //Log.d("Breaking: ", "Quarter: " + quarters.getKey() + "\tSubject: " + classes.getKey() + "\tCall Num: " + callNums.getKey() + "\tCourse: " + course);
                                 courses.add(course.substring(0, 7));
                                 profs.add((String) callNums.child("Instructor").getValue());
 
