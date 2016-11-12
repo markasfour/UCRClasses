@@ -139,7 +139,7 @@ public class Schedule1Activity extends Fragment{
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast toast = Toast.makeText(getActivity().getApplicationContext(), ((String)ladapter.getItem(position)) + " Clicked!", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(getActivity().getApplicationContext(), ((Map<String, String>)ladapter.getItem(position)).get("CourseNum") + " Clicked!", Toast.LENGTH_SHORT);
                 toast.show();
             }
 
