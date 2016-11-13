@@ -2,9 +2,12 @@
     <string name="app_name">UCR Classes</string>
 
     <!--MainActivity  - general strings-->
+    <string name="click_to_continue">Click to Continue</string>
     <string name="sign_in">Sign In</string>
     <string name="guest_sign_in">Continue as Guest</string>
-    <string name="register_user">Register</string>
+    <string name="logo">Logo</string>
+    <string name="background_seal">Background Seal</string>
+
 
     <!--SignInActivity - general strings-->
     <string name="sign_in_title_text">Welcome!</string>
