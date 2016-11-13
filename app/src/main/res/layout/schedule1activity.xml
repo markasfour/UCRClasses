@@ -19,6 +19,8 @@ tools:context="com.cs180project.ucrclasses.DrawerActivity"
     android:layout_alignParentTop="false"
     android:layout_alignWithParentIfMissing="false">
 
+
+
 <TextView
     android:text="Quarter: "
     android:layout_width="wrap_content"
