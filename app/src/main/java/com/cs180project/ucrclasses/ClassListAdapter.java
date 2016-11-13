@@ -22,10 +22,10 @@ import java.util.Map;
 public class ClassListAdapter extends BaseAdapter {
     private Context mContext;
     private LayoutInflater mInflater;
-    private ArrayList<Map<String, String>> mDataSource;
+    private ArrayList<UCRCourse> mDataSource;
     private ListView parentView;
 
-    public ClassListAdapter(Context context, ArrayList<Map<String, String>> items, ListView lv) {
+    public ClassListAdapter(Context context, ArrayList<UCRCourse> items, ListView lv) {
         mContext = context;
         mDataSource = items;
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -58,12 +58,12 @@ public class ClassListAdapter extends BaseAdapter {
         TextView lecdisTextView = (TextView) rowView.findViewById(R.id.class_list_lecdis);
         TextView profTextView = (TextView) rowView.findViewById(R.id.class_list_prof);
 
-        Map<String, String> myclass = (Map<String, String>) getItem(position);
-        titleTextView.setText(myclass.get("CourseNum").trim());
-        timesTextView.setText(myclass.get("Days").trim() + ": " + myclass.get("Time").trim());
-        seatsTextView.setText(myclass.get("AvailableSeats") + "/" + myclass.get("MaxEnrollment"));
-        lecdisTextView.setText(myclass.get("Lec_Dis").trim());
-        profTextView.setText(myclass.get("Instructor"));
+        UCRCourse myclass = (UCRCourse) getItem(position);
+        titleTextView.setText(myclass.courseNum);
+        timesTextView.setText(myclass.days + ": " + myclass.time);
+        seatsTextView.setText(myclass.availableSeats + "/" + myclass.maxEnrollment);
+        lecdisTextView.setText(myclass.courseType);
+        profTextView.setText(myclass.instructor);
 
         return rowView;
     }
@@ -74,16 +74,16 @@ public class ClassListAdapter extends BaseAdapter {
     }
 
     public void sort() {
-        Collections.sort(mDataSource, new Comparator<Map<String, String>>() {
+        Collections.sort(mDataSource, new Comparator<UCRCourse>() {
             @Override
-            public int compare(Map<String, String> o1, Map<String, String> o2) {
-                return o1.get("CourseNum").compareTo(o2.get("CourseNum"));
+            public int compare(UCRCourse o1, UCRCourse o2) {
+                return o1.courseNum.compareTo(o2.courseNum);
             }
         });
         parentView.invalidateViews();
     }
 
-    public void add(Map<String, String> newclass) {
+    public void add(UCRCourse newclass) {
         mDataSource.add(newclass);
         parentView.invalidateViews();
     }
