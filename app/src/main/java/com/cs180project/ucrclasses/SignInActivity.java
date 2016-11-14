@@ -128,7 +128,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                             Toast.LENGTH_SHORT).show();
                 } */
 
-                updateUI(user);
+                //updateUI(user);
             }
         };
     }
@@ -223,7 +223,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     private void signOut() {
         mAuth.signOut();
-        updateUI(null);
+        //updateUI(null);
     }
 
     private boolean validateForm() {
@@ -263,7 +263,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 });
     }
 
-    private void updateUI(FirebaseUser user) {
+    /*private void updateUI(FirebaseUser user) {
         hideProgressDialog();
         if(user != null) {
             /* mStatusTextView.setText(getString(R.string.emailpassword_status_fmt, user.getEmail()));
@@ -280,7 +280,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             findViewById(R.id.email_password_fields).setVisibility(View.VISIBLE);
             findViewById(R.id.sign_out_button).setVisibility(View.GONE); */
         }
-    }
+    }*/
 
     @Override
     public void onClick(View v) {
