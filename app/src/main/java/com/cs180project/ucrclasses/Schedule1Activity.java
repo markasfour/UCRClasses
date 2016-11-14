@@ -188,7 +188,8 @@ public class Schedule1Activity extends Fragment{
                             if(callNums.hasChildren()) {
                                 String course = (String) callNums.child("CourseNum").getValue();
                                 //Log.d("Breaking: ", "Quarter: " + quarters.getKey() + "\tSubject: " + classes.getKey() + "\tCall Num: " + callNums.getKey() + "\tCourse: " + course);
-                                courses.add(course.substring(0, 7));
+                                if(course.indexOf('-') == -1) Log.d("ERROR", "Course with call num " + callNums.getKey() + " has no dash in CourseNum: " + course);
+                                courses.add(course.substring(0, course.indexOf('-')).trim());
                                 profs.add((String) callNums.child("Instructor").getValue());
 
                                 //Yank everything from the db and never have to deal with it again
