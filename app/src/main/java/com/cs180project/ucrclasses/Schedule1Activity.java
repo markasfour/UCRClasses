@@ -10,25 +10,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 public class Schedule1Activity extends Fragment{
     View myView;
-
-    final Map<String, Map<String, Map<String, UCRCourse>>> dat = new HashMap<String, Map<String, Map<String, UCRCourse>>>();
 
     //Setup dropdowns and their adapters
     ListView mListView;
@@ -56,9 +45,6 @@ public class Schedule1Activity extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.schedule1activity, container, false);
 
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference();
-
         //Setup dropdowns and their adapters
         mListView = (ListView) myView.findViewById(R.id.class_list);
         ladapter = new ClassListAdapter(getActivity().getApplicationContext(), new ArrayList<UCRCourse>(), mListView);
@@ -79,10 +65,10 @@ public class Schedule1Activity extends Fragment{
         tadapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item);
 
         mListView.setAdapter(ladapter);
-        qdropdown.setAdapter(qadapter);
-        sdropdown.setAdapter(sadapter);
-        cdropdown.setAdapter(cadapter);
-        idropdown.setAdapter(iadapter);
+        qdropdown.setAdapter(qadapter); qadapter.add("ALL");
+        sdropdown.setAdapter(sadapter); sadapter.add("ALL");
+        cdropdown.setAdapter(cadapter); cadapter.add("ALL");
+        idropdown.setAdapter(iadapter); iadapter.add("ALL");
 
         tdropdown.setAdapter(tadapter);
         tadapter.add("ALL"); //Populate the dropdown with all possible options
@@ -91,6 +77,14 @@ public class Schedule1Activity extends Fragment{
         tadapter.add("INT"); tadapter.add("IND"); tadapter.add("RES"); tadapter.add("COL");
         tadapter.add("PRC"); tadapter.add("FLD"); tadapter.add("CON"); tadapter.add("TUT");
         tadapter.add("CLN"); tadapter.add("ACT"); tadapter.add("LCA"); tadapter.add("WWK");
+
+        //Initialize the quarter and subject dropdowns. This only needs to happen once since they never change
+        for (Map.Entry<String, Map<String, Map<String, UCRCourse>>> quarters : Databaser.dat.entrySet()) { //Quarter Loop
+            qadapter.add(quarters.getKey());
+            for(Map.Entry<String, Map<String, UCRCourse>> classes : quarters.getValue().entrySet()) { //Subject Loop
+                sadapter.add(classes.getKey());
+            }
+        }
 
 
         //When they select a quarter...
@@ -163,78 +157,6 @@ public class Schedule1Activity extends Fragment{
 
         });
 
-        //fetch all the data and store it in a map for the duration of the program
-        //on actual devices this takes a bit of time unless the wifi is perfect, so
-        //TODO: run this during the app startup splash screen
-        //TODO: detach this hook after run so if the database is updated we don't care
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                dat.clear(); qadapter.clear(); sadapter.clear(); cadapter.clear(); iadapter.clear();
-                qadapter.add("ALL"); sadapter.add("ALL"); cadapter.add("ALL"); iadapter.add("ALL");
-                SortedSet<String> profs = new TreeSet<String>();
-                SortedSet<String> courses = new TreeSet<String>();
-
-                for (DataSnapshot quarters: dataSnapshot.getChildren()) {
-                    Map<String, Map<String, UCRCourse>> mclasses = new HashMap<String, Map<String, UCRCourse>>();
-                    qadapter.add(quarters.getKey());
-                    for(DataSnapshot classes: quarters.getChildren()) {
-
-
-                        Map<String, UCRCourse> mcourse_nums = new HashMap<String, UCRCourse>();
-                        sadapter.add(classes.getKey());
-                        for(DataSnapshot callNums: classes.getChildren()) {
-
-                            if(callNums.hasChildren()) {
-                                String course = (String) callNums.child("CourseNum").getValue();
-                                //Log.d("Breaking: ", "Quarter: " + quarters.getKey() + "\tSubject: " + classes.getKey() + "\tCall Num: " + callNums.getKey() + "\tCourse: " + course);
-                                if(course.indexOf('-') == -1) {
-                                    Log.d("ERROR", "Course with call num " + callNums.getKey() + " has no dash in CourseNum: " + course);
-                                    continue;
-                                }
-                                courses.add(course.substring(0, course.indexOf('-')).trim());
-                                profs.add((String) callNums.child("Instructor").getValue());
-
-                                //Yank everything from the db and never have to deal with it again
-                                mcourse_nums.put(callNums.getKey(), new UCRCourse(
-                                        callNums.child("AvailableSeats").getValue().toString(),
-                                        callNums.child("MaxEnrollment").getValue().toString(),
-                                        callNums.child("NumberonWaitList").getValue().toString(),
-                                        callNums.child("WaitListMax").getValue().toString(),
-                                        callNums.child("BuildingName").getValue().toString(),
-                                        callNums.child("CallNo").getValue().toString(),
-                                        callNums.child("CatalogDescription").getValue().toString(),
-                                        callNums.child("Co-requisites").getValue().toString(),
-                                        callNums.child("CourseNum").getValue().toString(),
-                                        callNums.child("CourseTitle").getValue().toString(),
-                                        callNums.child("Days").getValue().toString(),
-                                        callNums.child("FinalExamDate").getValue().toString(),
-                                        callNums.child("FinalExamTime").getValue().toString(),
-                                        callNums.child("Instructor").getValue().toString(),
-                                        callNums.child("Lec_Dis").getValue().toString(),
-                                        callNums.child("Prerequisites").getValue().toString(),
-                                        callNums.child("Restrictions").getValue().toString(),
-                                        callNums.child("RoomAbrv").getValue().toString(),
-                                        callNums.child("Subject").getValue().toString(),
-                                        callNums.child("Time").getValue().toString(),
-                                        callNums.child("Units").getValue().toString()));
-                            }
-
-                        }
-                        mclasses.put(classes.getKey(), mcourse_nums);
-                    }
-                    dat.put(quarters.getKey(), mclasses);
-                }
-
-                for(String str : courses) cadapter.add(str);
-                for(String str : profs) iadapter.add(str);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError firebaseError) { }
-        });
-
-
         return myView;
     }
 
@@ -257,7 +179,7 @@ public class Schedule1Activity extends Fragment{
 
         SortedSet<String> courses = new TreeSet<String>();
         SortedSet<String> profs = new TreeSet<String>();
-        for (Map.Entry<String, Map<String, Map<String, UCRCourse>>> quarters : dat.entrySet()) { //Quarter Loop
+        for (Map.Entry<String, Map<String, Map<String, UCRCourse>>> quarters : Databaser.dat.entrySet()) { //Quarter Loop
             if(!quarter.equals("ALL") && !quarter.equals(quarters.getKey())) continue; //Check our quarter choice
             for(Map.Entry<String, Map<String, UCRCourse>> classes : quarters.getValue().entrySet()) { //Subject Loop
                 if(!subject.equals("ALL") && !subject.equals(classes.getKey())) continue; //Check subject choice
