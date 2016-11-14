@@ -167,7 +167,7 @@ public class Schedule1Activity extends Fragment{
         //on actual devices this takes a bit of time unless the wifi is perfect, so
         //TODO: run this during the app startup splash screen
         //TODO: detach this hook after run so if the database is updated we don't care
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 dat.clear(); qadapter.clear(); sadapter.clear(); cadapter.clear(); iadapter.clear();
@@ -263,7 +263,11 @@ public class Schedule1Activity extends Fragment{
                 if(!subject.equals("ALL") && !subject.equals(classes.getKey())) continue; //Check subject choice
                 for (Map.Entry<String, UCRCourse> callNums : classes.getValue().entrySet()) { //Call nums loop (courses)
                     String course = callNums.getValue().courseNum;
-                    course = course.substring(0, 7);
+                    if(course.indexOf('-') == -1) {
+                        Log.d("ERROR", "Course with call num " + callNums.getKey() + " has no dash in CourseNum: " + course);
+                        continue;
+                    }
+                    courses.add(course.substring(0, course.indexOf('-')).trim());
                     courses.add(course);
                     if(!courseNum.equals("ALL") && !courseNum.equals(course)) continue; //Check course number choice
                     profs.add(callNums.getValue().instructor);
