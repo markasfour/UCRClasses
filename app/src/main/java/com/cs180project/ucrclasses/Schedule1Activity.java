@@ -1,6 +1,8 @@
 package com.cs180project.ucrclasses;
 
+import android.app.Dialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,8 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -43,6 +49,7 @@ public class Schedule1Activity extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        final ViewGroup fcontainer = container;
         myView = inflater.inflate(R.layout.schedule1activity, container, false);
 
         //Setup dropdowns and their adapters
@@ -78,13 +85,15 @@ public class Schedule1Activity extends Fragment{
         tadapter.add("PRC"); tadapter.add("FLD"); tadapter.add("CON"); tadapter.add("TUT");
         tadapter.add("CLN"); tadapter.add("ACT"); tadapter.add("LCA"); tadapter.add("WWK");
 
+        SortedSet<String> subjects = new TreeSet<String>();
         //Initialize the quarter and subject dropdowns. This only needs to happen once since they never change
         for (Map.Entry<String, Map<String, Map<String, UCRCourse>>> quarters : Databaser.dat.entrySet()) { //Quarter Loop
             qadapter.add(quarters.getKey());
             for(Map.Entry<String, Map<String, UCRCourse>> classes : quarters.getValue().entrySet()) { //Subject Loop
-                sadapter.add(classes.getKey());
+                subjects.add(classes.getKey());
             }
         }
+        for(String str : subjects) sadapter.add(str); //Make sure the subjects are in alph order
 
 
         //When they select a quarter...
@@ -151,8 +160,49 @@ public class Schedule1Activity extends Fragment{
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Toast toast = Toast.makeText(getActivity().getApplicationContext(), ((Map<String, String>)ladapter.getItem(position)).get("CourseNum") + " Clicked!", Toast.LENGTH_SHORT);
-                //toast.show();
+                // custom dialog
+                final Dialog dialog = new Dialog(fcontainer.getContext());
+                dialog.setContentView(R.layout.class_popup);
+                dialog.setTitle(((UCRCourse)ladapter.getItem(position)).courseNum);
+
+                // set the custom dialog components - text, image and button
+                //TextView titleText = (TextView) dialog.findViewById(R.id.popup_title);
+                //titleText.setText();
+                TextView callnoText = (TextView) dialog.findViewById(R.id.popup_callno);
+                callnoText.setText(((UCRCourse)ladapter.getItem(position)).callNum);
+
+                TextView typeText = (TextView) dialog.findViewById(R.id.popup_classtype);
+                typeText.setText(((UCRCourse)ladapter.getItem(position)).courseType);
+
+
+                TextView timesText = (TextView) dialog.findViewById(R.id.popup_times);
+                timesText.setText(((UCRCourse)ladapter.getItem(position)).time);
+
+                TextView instrText = (TextView) dialog.findViewById(R.id.popup_instr);
+                instrText.setText(((UCRCourse)ladapter.getItem(position)).instructor);
+
+                TextView seatsText = (TextView) dialog.findViewById(R.id.popup_seats);
+                seatsText.setText(((UCRCourse)ladapter.getItem(position)).availableSeats + "/" + ((UCRCourse)ladapter.getItem(position)).maxEnrollment);
+
+                TextView waitlistText = (TextView) dialog.findViewById(R.id.popup_waitlist);
+                waitlistText.setText(((UCRCourse)ladapter.getItem(position)).numOnWaitlist + "/" + ((UCRCourse)ladapter.getItem(position)).maxWaitlist);
+
+                TextView descText = (TextView) dialog.findViewById(R.id.popup_description);
+                descText.setText(((UCRCourse)ladapter.getItem(position)).catalogDescription);
+                //ImageView image = (ImageView) dialog.findViewById(R.id.image);
+                //image.setImageResource(R.drawable.smaller_ucr_seal_white);
+
+                Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+                // if button is clicked, close the custom dialog
+                if(dialogButton == null) Log.d("Uh oh", "So dialog button was null??");
+                dialogButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
             }
 
         });
