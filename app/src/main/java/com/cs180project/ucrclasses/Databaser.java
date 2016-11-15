@@ -17,7 +17,9 @@ import java.util.Map;
 
 public final class Databaser {
     public static final Map<String, Map<String, Map<String, UCRCourse>>> dat = new HashMap<String, Map<String, Map<String, UCRCourse>>>();
+
     private static ValueEventListener fetcher = new ValueEventListener() {
+
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             fetching = true;

@@ -85,11 +85,11 @@ public class DrawerActivity extends AppCompatActivity
 
         if (id == R.id.nav_search) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Schedule1Activity()).commit();
-        } else if (id == R.id.nav_schedule1) {
+        } else if (id == R.id.nav_calendar1) {
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new CalendarSelectActivity()).commit();
+        } else if (id == R.id.nav_calendar2) {
 
         } else if (id == R.id.nav_schedule2) {
-
-        } else if (id == R.id.nav_schedule3) {
 
         } else if (id == R.id.nav_signout_drawer) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new signout_drawer()).commit();
