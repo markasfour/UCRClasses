@@ -90,7 +90,7 @@ public class Schedule1Activity extends Fragment{
         for (Map.Entry<String, Map<String, Map<String, UCRCourse>>> quarters : Databaser.dat.entrySet()) { //Quarter Loop
             qadapter.add(quarters.getKey());
             for(Map.Entry<String, Map<String, UCRCourse>> classes : quarters.getValue().entrySet()) { //Subject Loop
-                subjects.add(classes.getKey());
+                subjects.add(classes.getKey().trim());
             }
         }
         for(String str : subjects) sadapter.add(str); //Make sure the subjects are in alph order
@@ -232,7 +232,7 @@ public class Schedule1Activity extends Fragment{
         for (Map.Entry<String, Map<String, Map<String, UCRCourse>>> quarters : Databaser.dat.entrySet()) { //Quarter Loop
             if(!quarter.equals("ALL") && !quarter.equals(quarters.getKey())) continue; //Check our quarter choice
             for(Map.Entry<String, Map<String, UCRCourse>> classes : quarters.getValue().entrySet()) { //Subject Loop
-                if(!subject.equals("ALL") && !subject.equals(classes.getKey())) continue; //Check subject choice
+                if(!subject.equals("ALL") && !subject.equals(classes.getKey().trim())) continue; //Check subject choice
                 for (Map.Entry<String, UCRCourse> callNums : classes.getValue().entrySet()) { //Call nums loop (courses)
                     String course = callNums.getValue().courseNum;
                     if(course.indexOf('-') == -1) {
