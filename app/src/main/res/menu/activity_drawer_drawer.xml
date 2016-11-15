@@ -8,16 +8,16 @@
             android:title="Schedule 1"
             android:checked="true"/>
         <item
-            android:id="@+id/nav_schedule1"
+            android:id="@+id/nav_calendar1"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Schedule 2" />
+            android:title="Calendar 1" />
         <item
-            android:id="@+id/nav_schedule2"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Schedule 3" />
+            android:id="@+id/nav_calendar2"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Calendar 2" />
         <items
-            android:id="@+id/nav_schedule3"
-            android:icon="@drawable/ic_menu_manage"
+            android:id="@+id/nav_schedule2"
+            android:icon="@drawable/ic_menu_gallery"
             android:title="Schedule 4" />
     </group>
 
