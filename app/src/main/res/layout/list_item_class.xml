@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
@@ -13,8 +12,7 @@
             android:id="@+id/class_list_title"
             android:layout_marginLeft="8dp"
             android:textSize="16sp"
-            tools:text="Title"
-            />
+            tools:text="Title" />
 
     </TableRow>
 
@@ -38,8 +36,7 @@
             android:layout_weight=".08"
             android:gravity="center"
             android:textSize="12sp"
-            tools:text="LEC"
-            />
+            tools:text="LEC" />
 
         <TextView
             android:id="@+id/class_list_times"
@@ -48,8 +45,7 @@
             android:layout_weight=".45"
             android:gravity="center"
             android:textSize="12sp"
-            tools:text="TR: 03:40 p.m. - 5:00 p.m."
-            />
+            tools:text="TR: 03:40 p.m. - 5:00 p.m." />
 
         <TextView
             android:id="@+id/class_list_seats"
@@ -58,8 +54,7 @@
             android:layout_weight=".12"
             android:gravity="center"
             android:textSize="12sp"
-            tools:text="999/999"
-            />
+            tools:text="999/999" />
 
         <TextView
             android:id="@+id/class_list_prof"
@@ -68,8 +63,7 @@
             android:layout_weight=".2"
             android:gravity="center"
             android:textSize="12sp"
-            tools:text="Miller Kris"
-            />
+            tools:text="Miller Kris" />
 
     </TableRow>
 

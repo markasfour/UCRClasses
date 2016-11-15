@@ -1,6 +1,8 @@
 package com.cs180project.ucrclasses;
 
+import android.app.Dialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,27 +10,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 public class Schedule1Activity extends Fragment{
     View myView;
-
-    final Map<String, Map<String, Map<String, UCRCourse>>> dat = new HashMap<String, Map<String, Map<String, UCRCourse>>>();
 
     //Setup dropdowns and their adapters
     ListView mListView;
@@ -54,10 +49,8 @@ public class Schedule1Activity extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        final ViewGroup fcontainer = container;
         myView = inflater.inflate(R.layout.schedule1activity, container, false);
-
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference();
 
         //Setup dropdowns and their adapters
         mListView = (ListView) myView.findViewById(R.id.class_list);
@@ -79,10 +72,10 @@ public class Schedule1Activity extends Fragment{
         tadapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item);
 
         mListView.setAdapter(ladapter);
-        qdropdown.setAdapter(qadapter);
-        sdropdown.setAdapter(sadapter);
-        cdropdown.setAdapter(cadapter);
-        idropdown.setAdapter(iadapter);
+        qdropdown.setAdapter(qadapter); qadapter.add("ALL");
+        sdropdown.setAdapter(sadapter); sadapter.add("ALL");
+        cdropdown.setAdapter(cadapter); cadapter.add("ALL");
+        idropdown.setAdapter(iadapter); iadapter.add("ALL");
 
         tdropdown.setAdapter(tadapter);
         tadapter.add("ALL"); //Populate the dropdown with all possible options
@@ -91,6 +84,16 @@ public class Schedule1Activity extends Fragment{
         tadapter.add("INT"); tadapter.add("IND"); tadapter.add("RES"); tadapter.add("COL");
         tadapter.add("PRC"); tadapter.add("FLD"); tadapter.add("CON"); tadapter.add("TUT");
         tadapter.add("CLN"); tadapter.add("ACT"); tadapter.add("LCA"); tadapter.add("WWK");
+
+        SortedSet<String> subjects = new TreeSet<String>();
+        //Initialize the quarter and subject dropdowns. This only needs to happen once since they never change
+        for (Map.Entry<String, Map<String, Map<String, UCRCourse>>> quarters : Databaser.dat.entrySet()) { //Quarter Loop
+            qadapter.add(quarters.getKey());
+            for(Map.Entry<String, Map<String, UCRCourse>> classes : quarters.getValue().entrySet()) { //Subject Loop
+                subjects.add(classes.getKey());
+            }
+        }
+        for(String str : subjects) sadapter.add(str); //Make sure the subjects are in alph order
 
 
         //When they select a quarter...
@@ -157,79 +160,52 @@ public class Schedule1Activity extends Fragment{
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Toast toast = Toast.makeText(getActivity().getApplicationContext(), ((Map<String, String>)ladapter.getItem(position)).get("CourseNum") + " Clicked!", Toast.LENGTH_SHORT);
-                //toast.show();
-            }
+                // custom dialog
+                final Dialog dialog = new Dialog(fcontainer.getContext());
+                dialog.setContentView(R.layout.class_popup);
+                dialog.setTitle(((UCRCourse)ladapter.getItem(position)).courseNum);
 
-        });
+                // set the custom dialog components - text, image and button
+                //TextView titleText = (TextView) dialog.findViewById(R.id.popup_title);
+                //titleText.setText();
+                TextView callnoText = (TextView) dialog.findViewById(R.id.popup_callno);
+                callnoText.setText(((UCRCourse)ladapter.getItem(position)).callNum);
 
-        //fetch all the data and store it in a map for the duration of the program
-        //on actual devices this takes a bit of time unless the wifi is perfect, so
-        //TODO: run this during the app startup splash screen
-        //TODO: detach this hook after run so if the database is updated we don't care
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                dat.clear(); qadapter.clear(); sadapter.clear(); cadapter.clear(); iadapter.clear();
-                qadapter.add("ALL"); sadapter.add("ALL"); cadapter.add("ALL"); iadapter.add("ALL");
-                SortedSet<String> profs = new TreeSet<String>();
-                SortedSet<String> courses = new TreeSet<String>();
-
-                for (DataSnapshot quarters: dataSnapshot.getChildren()) {
-                    Map<String, Map<String, UCRCourse>> mclasses = new HashMap<String, Map<String, UCRCourse>>();
-                    qadapter.add(quarters.getKey());
-                    for(DataSnapshot classes: quarters.getChildren()) {
+                TextView typeText = (TextView) dialog.findViewById(R.id.popup_classtype);
+                typeText.setText(((UCRCourse)ladapter.getItem(position)).courseType);
 
 
-                        Map<String, UCRCourse> mcourse_nums = new HashMap<String, UCRCourse>();
-                        sadapter.add(classes.getKey());
-                        for(DataSnapshot callNums: classes.getChildren()) {
+                TextView timesText = (TextView) dialog.findViewById(R.id.popup_times);
+                timesText.setText(((UCRCourse)ladapter.getItem(position)).time);
 
-                            if(callNums.hasChildren()) {
-                                String course = (String) callNums.child("CourseNum").getValue();
-                                //Log.d("Breaking: ", "Quarter: " + quarters.getKey() + "\tSubject: " + classes.getKey() + "\tCall Num: " + callNums.getKey() + "\tCourse: " + course);
-                                courses.add(course.substring(0, 7));
-                                profs.add((String) callNums.child("Instructor").getValue());
+                TextView instrText = (TextView) dialog.findViewById(R.id.popup_instr);
+                instrText.setText(((UCRCourse)ladapter.getItem(position)).instructor);
 
-                                //Yank everything from the db and never have to deal with it again
-                                mcourse_nums.put(callNums.getKey(), new UCRCourse(
-                                        callNums.child("AvailableSeats").getValue().toString(),
-                                        callNums.child("MaxEnrollment").getValue().toString(),
-                                        callNums.child("NumberonWaitList").getValue().toString(),
-                                        callNums.child("WaitListMax").getValue().toString(),
-                                        callNums.child("BuildingName").getValue().toString(),
-                                        callNums.child("CallNo").getValue().toString(),
-                                        callNums.child("CatalogDescription").getValue().toString(),
-                                        callNums.child("Co-requisites").getValue().toString(),
-                                        callNums.child("CourseNum").getValue().toString(),
-                                        callNums.child("CourseTitle").getValue().toString(),
-                                        callNums.child("Days").getValue().toString(),
-                                        callNums.child("FinalExamDate").getValue().toString(),
-                                        callNums.child("FinalExamTime").getValue().toString(),
-                                        callNums.child("Instructor").getValue().toString(),
-                                        callNums.child("Lec_Dis").getValue().toString(),
-                                        callNums.child("Prerequisites").getValue().toString(),
-                                        callNums.child("Restrictions").getValue().toString(),
-                                        callNums.child("RoomAbrv").getValue().toString(),
-                                        callNums.child("Subject").getValue().toString(),
-                                        callNums.child("Time").getValue().toString(),
-                                        callNums.child("Units").getValue().toString()));
-                            }
+                TextView seatsText = (TextView) dialog.findViewById(R.id.popup_seats);
+                seatsText.setText(((UCRCourse)ladapter.getItem(position)).availableSeats + "/" + ((UCRCourse)ladapter.getItem(position)).maxEnrollment);
 
-                        }
-                        mclasses.put(classes.getKey(), mcourse_nums);
+                TextView waitlistText = (TextView) dialog.findViewById(R.id.popup_waitlist);
+                waitlistText.setText(((UCRCourse)ladapter.getItem(position)).numOnWaitlist + "/" + ((UCRCourse)ladapter.getItem(position)).maxWaitlist);
+
+                TextView descText = (TextView) dialog.findViewById(R.id.popup_description);
+                descText.setText(((UCRCourse)ladapter.getItem(position)).catalogDescription);
+                //ImageView image = (ImageView) dialog.findViewById(R.id.image);
+                //image.setImageResource(R.drawable.smaller_ucr_seal_white);
+
+                Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+                // if button is clicked, close the custom dialog
+                if(dialogButton == null) Log.d("Uh oh", "So dialog button was null??");
+                dialogButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
                     }
-                    dat.put(quarters.getKey(), mclasses);
-                }
+                });
 
-                for(String str : courses) cadapter.add(str);
-                for(String str : profs) iadapter.add(str);
+                dialog.show();
             }
 
-            @Override
-            public void onCancelled(DatabaseError firebaseError) { }
         });
-
 
         return myView;
     }
@@ -253,13 +229,17 @@ public class Schedule1Activity extends Fragment{
 
         SortedSet<String> courses = new TreeSet<String>();
         SortedSet<String> profs = new TreeSet<String>();
-        for (Map.Entry<String, Map<String, Map<String, UCRCourse>>> quarters : dat.entrySet()) { //Quarter Loop
+        for (Map.Entry<String, Map<String, Map<String, UCRCourse>>> quarters : Databaser.dat.entrySet()) { //Quarter Loop
             if(!quarter.equals("ALL") && !quarter.equals(quarters.getKey())) continue; //Check our quarter choice
             for(Map.Entry<String, Map<String, UCRCourse>> classes : quarters.getValue().entrySet()) { //Subject Loop
                 if(!subject.equals("ALL") && !subject.equals(classes.getKey())) continue; //Check subject choice
                 for (Map.Entry<String, UCRCourse> callNums : classes.getValue().entrySet()) { //Call nums loop (courses)
                     String course = callNums.getValue().courseNum;
-                    course = course.substring(0, 7);
+                    if(course.indexOf('-') == -1) {
+                        Log.d("ERROR", "Course with call num " + callNums.getKey() + " has no dash in CourseNum: " + course);
+                        continue;
+                    }
+                    courses.add(course.substring(0, course.indexOf('-')).trim());
                     courses.add(course);
                     if(!courseNum.equals("ALL") && !courseNum.equals(course)) continue; //Check course number choice
                     profs.add(callNums.getValue().instructor);
