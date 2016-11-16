@@ -10,15 +10,7 @@
         <item
             android:id="@+id/nav_calendar1"
             android:icon="@drawable/ic_calendar"
-            android:title="Calendar 1" />
-        <item
-            android:id="@+id/nav_calendar2"
-            android:icon="@drawable/ic_calendar"
-            android:title="Calendar 2" />
-        <items
-            android:id="@+id/nav_schedule2"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Schedule 4" />
+            android:title="@string/view_calendars" />
     </group>
 
     <item android:title="Account">
