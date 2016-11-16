@@ -1,5 +1,8 @@
 package com.cs180project.ucrclasses;
 
+import android.os.Bundle;
+import android.view.View;
+
 import com.alamkanak.weekview.WeekViewEvent;
 
 import java.util.ArrayList;

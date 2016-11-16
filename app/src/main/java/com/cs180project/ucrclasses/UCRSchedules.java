@@ -21,7 +21,7 @@ public final class UCRSchedules {
 
     //type = 0, display with add button
     //type = 1, display with remove button
-    public static void displayCourse(final UCRCourse course, int type, Context context) {
+    public static void displayCourse(final UCRCourse course, int type, final Context context) {
         final Dialog dialog = new Dialog(context);
         //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.class_popup);
@@ -70,12 +70,12 @@ public final class UCRSchedules {
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
-                    schedules.get(0).add(course);
-                    //TODO Switch to the calendar view
-                    //TODO there's no getActivity or startActivity from this class since it doesn't
-                    //TODO inherit from fragment, so that'll be a challenge
-                    //Intent intent = new Intent(getActivity(), CalendarActivity1.class);
-                    //startActivity(intent);
+                    // TODO Not sure how you want to store things Peter, but this is
+                    // TODO breaking for some reason so it'll need to be fixed if you want to
+                    // TODO use vectors like this
+                    //schedules.get(0).add(course);
+                    Intent myIntent = new Intent(context, CalendarActivity1.class);
+                    context.startActivity(myIntent);
                 }
             });
         }
