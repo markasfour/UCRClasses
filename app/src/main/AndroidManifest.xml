@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_scheduler"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -27,6 +27,11 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
         </activity>
+
+        <activity android:name=".CalendarActivity1"></activity>
+        <activity android:name=".CalendarActivity2"></activity>
+        <activity android:name=".CalendarActivity3"></activity>
+
 
     </application>
 
