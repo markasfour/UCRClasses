@@ -3,11 +3,13 @@ package com.cs180project.ucrclasses;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -160,14 +162,20 @@ public class Schedule1Activity extends Fragment{
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // custom dialog
-                final Dialog dialog = new Dialog(fcontainer.getContext());
+
+                UCRSchedules.displayCourse(((UCRCourse)ladapter.getItem(position)), 0, fcontainer.getContext());
+
+                // unneeded now that we have a function for this!
+                /*final Dialog dialog = new Dialog(fcontainer.getContext());
+                //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.class_popup);
-                dialog.setTitle(((UCRCourse)ladapter.getItem(position)).courseNum);
+                //dialog.setTitle(((UCRCourse)ladapter.getItem(position)).courseNum);
 
                 // set the custom dialog components - text, image and button
-                //TextView titleText = (TextView) dialog.findViewById(R.id.popup_title);
-                //titleText.setText();
+                TextView titleText = (TextView) dialog.findViewById(R.id.popup_title);
+                titleText.setText(((UCRCourse)ladapter.getItem(position)).courseNum);
+
+
                 TextView callnoText = (TextView) dialog.findViewById(R.id.popup_callno);
                 callnoText.setText(((UCRCourse)ladapter.getItem(position)).callNum);
 
@@ -176,7 +184,7 @@ public class Schedule1Activity extends Fragment{
 
 
                 TextView timesText = (TextView) dialog.findViewById(R.id.popup_times);
-                timesText.setText(((UCRCourse)ladapter.getItem(position)).time);
+                timesText.setText(((UCRCourse)ladapter.getItem(position)).days + ": " + ((UCRCourse)ladapter.getItem(position)).time);
 
                 TextView instrText = (TextView) dialog.findViewById(R.id.popup_instr);
                 instrText.setText(((UCRCourse)ladapter.getItem(position)).instructor);
@@ -189,20 +197,29 @@ public class Schedule1Activity extends Fragment{
 
                 TextView descText = (TextView) dialog.findViewById(R.id.popup_description);
                 descText.setText(((UCRCourse)ladapter.getItem(position)).catalogDescription);
-                //ImageView image = (ImageView) dialog.findViewById(R.id.image);
-                //image.setImageResource(R.drawable.smaller_ucr_seal_white);
 
-                Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+
+                Button addButton = (Button) dialog.findViewById(R.id.dialogButtonADD);
+                addButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //TOOD: Connect to Peter's code here!!
+                        dialog.dismiss();
+                        Intent intent = new Intent(getActivity(), CalendarActivity1.class);
+                        startActivity(intent);
+                    }
+                });
+
                 // if button is clicked, close the custom dialog
-                if(dialogButton == null) Log.d("Uh oh", "So dialog button was null??");
-                dialogButton.setOnClickListener(new View.OnClickListener() {
+                Button closeButton = (Button) dialog.findViewById(R.id.dialogButtonCLOSE);
+                closeButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
                     }
                 });
 
-                dialog.show();
+                dialog.show();*/
             }
 
         });

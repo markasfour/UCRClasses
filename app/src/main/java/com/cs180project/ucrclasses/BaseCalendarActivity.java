@@ -111,6 +111,8 @@ public abstract class BaseCalendarActivity extends AppCompatActivity implements 
 
     @Override
     public void onEventClick(WeekViewEvent event, RectF eventRect) {
+        //TODO call UCRSchedules.displayCourse(course, 1, context)
+        //TODO Challenges here are finding the course and the context
         Toast.makeText(this, "Clicked " + event.getName(), Toast.LENGTH_SHORT).show();
     }
 

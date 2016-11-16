@@ -9,6 +9,18 @@
         android:layout_height="fill_parent">
 
         <TextView
+            android:id="@+id/popup_title"
+            android:layout_marginLeft="15dp"
+            android:textSize="26sp"
+            android:text="CLASS001 - 999"/>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
             android:layout_width="0dp"
             android:layout_weight=".4"
             android:layout_marginLeft="8dp"
@@ -159,14 +171,29 @@
 
     </TableRow>
 
-    <Button
-        android:id="@+id/dialogButtonOK"
-        android:layout_width="100px"
-        android:layout_height="wrap_content"
-        android:text=" Ok "
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_below="@+id/image"
-        />
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <Button
+            android:id="@+id/dialogButtonCLOSE"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:layout_height="wrap_content"
+            android:text=" Close "
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            />
+
+        <Button
+            android:id="@+id/dialogButtonADD"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:layout_height="wrap_content"
+            android:text=" Add to Scheudle "
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            />
+
+    </TableRow>
 
 </TableLayout>
