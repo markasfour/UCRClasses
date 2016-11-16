@@ -1,8 +1,13 @@
 package com.cs180project.ucrclasses;
 
+import android.app.ActionBar;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
 import android.widget.Toast;
 
 import com.alamkanak.weekview.DateTimeInterpreter;
@@ -21,6 +26,7 @@ public abstract class BaseCalendarActivity extends AppCompatActivity implements 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.base_calendar);
         Calendar cal = Calendar.getInstance();
 
@@ -42,6 +48,19 @@ public abstract class BaseCalendarActivity extends AppCompatActivity implements 
         mWeekView.setEventLongPressListener(this);
 
         setupDateTimeInterpreter(true);
+
+
+//        getActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        if(item.getItemId() == android.R.id.home)
+        {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -86,7 +105,7 @@ public abstract class BaseCalendarActivity extends AppCompatActivity implements 
                 // Details: http://stackoverflow.com/questions/16959502/get-one-letter-abbreviation-of-week-day-of-a-date-in-java#answer-16959657
                 if (shortDate)
                     weekday = String.valueOf(weekday.charAt(0));
-                return weekday.toUpperCase() + format.format(date.getTime());
+                return weekday.toUpperCase();// + format.format(date.getTime());
             }
 
             @Override
