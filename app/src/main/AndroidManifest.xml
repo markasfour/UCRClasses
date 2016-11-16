@@ -10,29 +10,24 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".SignInActivity">
-        </activity>
-
+        <activity android:name=".SignInActivity" />
         <activity
             android:name=".DrawerActivity"
             android:label="@string/title_activity_drawer"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
-        </activity>
-
-        <activity android:name=".CalendarActivity1"></activity>
-        <activity android:name=".CalendarActivity2"></activity>
-        <activity android:name=".CalendarActivity3"></activity>
-
-
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".CalendarActivity1" />
+        <activity android:name=".CalendarActivity2" />
+        <activity android:name=".CalendarActivity3" />
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>

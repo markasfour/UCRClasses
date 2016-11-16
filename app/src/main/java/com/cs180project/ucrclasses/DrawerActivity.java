@@ -87,6 +87,9 @@ public class DrawerActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Schedule1Activity()).commit();
         } else if (id == R.id.nav_calendar1) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new CalendarSelectActivity()).commit();
+        } else if (id == R.id.settings_button) {
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new SettingsActivity()).commit();
+
         } else if (id == R.id.nav_signout_drawer) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new signout_drawer()).commit();
         }
