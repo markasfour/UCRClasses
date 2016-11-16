@@ -41,4 +41,7 @@
 
     <!-- SignOut Activity String(s)-->
     <string name="sure_sign_out">Are you sure you want to sign out?</string>
+
+    <!-- Drawer Activity Strings -->
+    <string name="account_settings">Settings</string>
 </resources>
