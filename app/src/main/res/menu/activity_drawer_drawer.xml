@@ -4,8 +4,8 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_search"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Schedule 1"
+            android:icon="@drawable/ic_search"
+            android:title="@string/search_classes"
             android:checked="true"/>
         <item
             android:id="@+id/nav_calendar1"

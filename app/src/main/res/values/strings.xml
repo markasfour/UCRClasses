@@ -44,4 +44,5 @@
 
     <!-- Drawer Activity Strings -->
     <string name="account_settings">Settings</string>
+    <string name="search_classes">Search Classes</string>
 </resources>
