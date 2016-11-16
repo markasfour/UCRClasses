@@ -33,11 +33,6 @@
             style="@style/ThemeOverlay.MyTextDetail"
             android:text="@string/signed_out" /> -->
 
-        <TextView
-            android:id="@+id/detail"
-            style="@style/ThemeOverlay.MyTextDetail"
-            tools:text="Firebase User ID: 123456789abc" />
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
