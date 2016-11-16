@@ -39,7 +39,6 @@
     <string name="email_not_verified">Please verify your email address</string>
 
 
-    <!-- SignOut Activity-->
+    <!-- SignOut Activity String(s)-->
     <string name="sure_sign_out">Are you sure you want to sign out?</string>
-
 </resources>
