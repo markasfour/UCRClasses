@@ -41,6 +41,7 @@ public final class Databaser {
 
                             //Yank everything from the db and never have to deal with it again
                             mcourse_nums.put(callNums.getKey(), new UCRCourse(
+                                    quarters.getKey(),
                                     callNums.child("AvailableSeats").getValue().toString(),
                                     callNums.child("MaxEnrollment").getValue().toString(),
                                     callNums.child("NumberonWaitList").getValue().toString(),

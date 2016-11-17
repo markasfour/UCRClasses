@@ -19,11 +19,10 @@ public final class UCRSchedules {
 
     private final static Vector<Vector<UCRCourse>> schedules = new Vector<Vector<UCRCourse>>();
 
-
     private UCRSchedules() { }
 
     private static int initRun = 0;
-    public static void scheduleInit() {
+    public static void scheduleInit(){
         if(initRun == 0) {
             Vector<UCRCourse> temp = new Vector<UCRCourse>(0);
             schedules.add(temp);
@@ -43,7 +42,6 @@ public final class UCRSchedules {
         if(schedules.elementAt(schedNum).contains(course)) {
             schedules.elementAt(schedNum).remove(course);
         }
-        //TODO Refresh the calendar view
     }
 
     public static boolean isEmpty(int schedNum){
@@ -175,9 +173,6 @@ public final class UCRSchedules {
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
-                    // TODO Not sure how you want to store things Peter, but this is
-                    // TODO breaking for some reason so it'll need to be fixed if you want to
-                    // TODO use vectors like this
                     addCourse(course, schedNum);
                     Intent myIntent = new Intent(context, CalendarActivity1.class);
                     context.startActivity(myIntent);

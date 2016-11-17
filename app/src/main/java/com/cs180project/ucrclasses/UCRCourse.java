@@ -5,6 +5,7 @@ package com.cs180project.ucrclasses;
  */
 
 public class UCRCourse {
+    public String quarter;
     public String availableSeats;
     public String maxEnrollment;
     public String numOnWaitlist;
@@ -27,9 +28,10 @@ public class UCRCourse {
     public String time;
     public String units;
 
-    public UCRCourse(String as, String me, String nowl, String mwl, String bn, String calln, String cd,
+    public UCRCourse(String q, String as, String me, String nowl, String mwl, String bn, String calln, String cd,
                      String cr, String coursen, String ctitle, String d, String fed, String fet,
                      String i, String ctype, String pr, String restr, String ro, String sub, String t, String u) {
+        quarter = q;
         availableSeats = as;
         maxEnrollment = me;
         numOnWaitlist = nowl;
