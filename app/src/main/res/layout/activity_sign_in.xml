@@ -33,7 +33,7 @@
             style="@style/ThemeOverlay.MyTextDetail"
             android:text="@string/signed_out" /> -->
 
-        <EditText
+        <!--<EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
@@ -45,7 +45,7 @@
             android:text="Send Password Reset Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/password_email_button" />
+            android:id="@+id/password_email_button" /> -->
 
     </LinearLayout>
 
@@ -118,6 +118,18 @@
             android:text="@string/sign_out"
             android:theme="@style/ThemeOverlay.MyDarkButton"
             android:visibility="gone"/>
+
+        <TextView
+            android:text="@string/reset_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="29dp"
+            android:layout_marginEnd="29dp"
+            android:id="@+id/password_email_button"
+            android:layout_below="@+id/email_password_buttons"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="@drawable/reset_password_text_hover" />
 
     </RelativeLayout>
 </LinearLayout>

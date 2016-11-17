@@ -76,15 +76,23 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         //mDetailTextView = (TextView) findViewById(R.id.detail);
         mEmailField = (EditText) findViewById(R.id.field_email);
         mPasswordField = (EditText) findViewById(R.id.field_password);
+
         //peter
-        mResetEmailText = (EditText) findViewById(R.id.email_text);
+        //mResetEmailText = (EditText) findViewById(R.id.email_text);
 
         //Buttons
         findViewById(R.id.email_sign_in_button).setOnClickListener(this);
         findViewById(R.id.email_create_account_button).setOnClickListener(this);
         findViewById(R.id.sign_out_button).setOnClickListener(this);
-        findViewById(R.id.password_email_button).setOnClickListener(this);
 
+
+        //findViewById(R.id.password_email_button).setOnClickListener(this);
+        findViewById(R.id.password_email_button).setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent(SignInActivity.this, PasswordResetActivity.class);
+                startActivity(intent);
+            }
+        });
 
         /** In your sign-up activity's onCreate method, get the shared instance of the
          *  FirebaseAuth object*/
@@ -293,10 +301,10 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             startActivity(intent);
         } else if (i == R.id.sign_out_button) {
             signOut();
-        } else if (i == R.id.password_email_button) {
+        }/* else if (i == R.id.password_email_button) {
             Log.d(TAG, "Enter if statement");
             passwordReset();
-        }
+        }*/
     }
 
 }

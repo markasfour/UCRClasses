@@ -31,6 +31,8 @@
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
 
+    <string name="reset_password">Forgot your password?</string>
+
     <!-- SignInActivity -> status strings -->
     <string name="signed_out">Signed Out</string>
     <string name="auth_failed">Authentication failed</string>
@@ -114,7 +116,6 @@
 
 
     <!--  -->
-
 
 
     <!-- Example settings for Data & Sync -->
