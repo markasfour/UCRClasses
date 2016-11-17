@@ -59,6 +59,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         public boolean onPreferenceChange(Preference preference, Object value) {
             String stringValue = value.toString();
 
+            //Databaser.defaultQuarter = stringValue;
+            //Log.d(TAG, "defaultQuarter: " + Databaser.defaultQuarter);
+
             if (preference instanceof ListPreference) {
                 // For list preferences, look up the correct display value in
                 // the preference's 'entries' list.

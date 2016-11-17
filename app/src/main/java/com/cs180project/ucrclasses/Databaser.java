@@ -17,6 +17,7 @@ import java.util.Map;
 
 public final class Databaser {
     public static final Map<String, Map<String, Map<String, UCRCourse>>> dat = new HashMap<String, Map<String, Map<String, UCRCourse>>>();
+    //public static String defaultQuarter = null;
 
     private static ValueEventListener fetcher = new ValueEventListener() {
 
