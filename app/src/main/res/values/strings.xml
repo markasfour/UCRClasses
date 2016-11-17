@@ -168,5 +168,7 @@
     <string name="pref_title_vibrate">Vibrate</string>
 
 
-    <!-- My Settings Strings -->
+    <!-- PasswordResetActivity Strings -->
+    <string name="password_reset_fail">Enter a valid email address</string>
+    <string name="password_reset_success">Password reset email sent!</string>
 </resources>

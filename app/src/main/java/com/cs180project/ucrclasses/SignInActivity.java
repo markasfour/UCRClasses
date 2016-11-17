@@ -256,20 +256,26 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         return valid;
     }
 
-    public void passwordReset(){
-        Log.d(TAG, "Called function");
-        String emailAddress = mResetEmailText.getText().toString();
 
-        mAuth.sendPasswordResetEmail(emailAddress)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "Email sent.");
-                        }
-                    }
-                });
-    }
+
+//    public void passwordReset(){
+//        Log.d(TAG, "Called function");
+//        Intent intent = new Intent();
+//        setResult(2, intent);
+//        String emailAddress = mResetEmailText.getText().toString();
+//
+//        mAuth.sendPasswordResetEmail(emailAddress)
+//                .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        if (task.isSuccessful()) {
+//                            Log.d(TAG, "Email sent.");
+//                        }
+//                    }
+//                });
+//
+//        finish();
+//    }
 
     /*private void updateUI(FirebaseUser user) {
         hideProgressDialog();
