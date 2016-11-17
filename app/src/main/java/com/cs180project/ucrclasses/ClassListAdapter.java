@@ -60,7 +60,10 @@ public class ClassListAdapter extends BaseAdapter {
 
         UCRCourse myclass = (UCRCourse) getItem(position);
         titleTextView.setText(myclass.courseNum);
-        timesTextView.setText(myclass.days + ": " + myclass.time);
+        if(myclass.days.equals("") || myclass.time.equals(""))
+            timesTextView.setText("n/a");
+        else
+            timesTextView.setText(myclass.days  + ": " + myclass.time);
         seatsTextView.setText(myclass.availableSeats + "/" + myclass.maxEnrollment);
         lecdisTextView.setText(myclass.courseType);
         profTextView.setText(myclass.instructor);
