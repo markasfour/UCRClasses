@@ -74,7 +74,7 @@ public class Schedule1Activity extends Fragment{
         tadapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item);
 
         mListView.setAdapter(ladapter);
-        qdropdown.setAdapter(qadapter); qadapter.add("ALL");
+        qdropdown.setAdapter(qadapter); //qadapter.add("ALL"); All is not an option for quarters
         sdropdown.setAdapter(sadapter); sadapter.add("ALL");
         cdropdown.setAdapter(cadapter); cadapter.add("ALL");
         idropdown.setAdapter(iadapter); iadapter.add("ALL");
