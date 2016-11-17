@@ -59,7 +59,9 @@
         based on your message history
     </string>
 
-    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_title_display_name">Change Display Name</string>
+    <string name="pref_title_change_display_name">Enter a new display name</string>
+
     <string name="pref_default_display_name">John Smith</string>
 
     <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
@@ -120,4 +122,9 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
+
+
+    <!-- My Settings Strings -->
+    <string name="update_password">Change Password</string>
+    <string name="update_password_title">Enter Your Email Address</string>
 </resources>
