@@ -40,7 +40,7 @@
 
     <ImageView
         android:layout_height="200dp"
-        app:srcCompat="@drawable/Calendar_Icon"
+        app:srcCompat="@drawable/calendar_icon"
         android:id="@+id/imageView6"
         android:scaleType="fitCenter"
         android:layout_width="200dp"
