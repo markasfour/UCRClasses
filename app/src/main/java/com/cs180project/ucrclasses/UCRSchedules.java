@@ -31,7 +31,6 @@ public final class UCRSchedules {
 
     public static void addCourse(UCRCourse course, int schedNum) {
         if(!schedules.elementAt(schedNum).contains(course)) {
-            Log.d("NOTHING", "Adding");
             schedules.elementAt(schedNum).add(course);
         }
     }
