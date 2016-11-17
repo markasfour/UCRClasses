@@ -18,19 +18,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".SignInActivity"></activity>
-
+        <activity android:name=".SignInActivity" />
         <activity
             android:name=".DrawerActivity"
             android:label="@string/title_activity_drawer"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity android:name=".CalendarActivity1">
             <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.cs180project.ucrclasses.DrawerActivity" />
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cs180project.ucrclasses.DrawerActivity" />
         </activity>
         <activity android:name=".CalendarActivity2">
             <meta-data
@@ -42,7 +39,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cs180project.ucrclasses.DrawerActivity" />
         </activity>
-
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
     </application>
 
 </manifest>
