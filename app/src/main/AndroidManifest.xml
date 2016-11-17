@@ -42,7 +42,10 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
-        <activity android:name=".PasswordResetActivity"></activity>
+        <activity android:name=".PasswordResetActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cs180project.ucrclasses.SignInActivity"></meta-data>
+        </activity>
     </application>
 
 </manifest>
