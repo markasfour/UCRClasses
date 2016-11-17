@@ -25,11 +25,34 @@
         android:positiveButtonText="@null"
         android:title="@string/pref_title_add_friends_to_messages" /> -->
 
-   <EditTextPreference
-        android:defaultValue="Default value"
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="Undeclared"
+        android:inputType="textCapWords"
+        android:key="program_name"
+        android:maxLines="1"
         android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:title="@string/update_password"
-        android:dialogTitle="@string/update_password_title"
-        android:key="change_password" />
+        android:title="@string/pref_title_program_name"
+        android:dialogTitle="@string/dialog_title_program_name"/>
+
+
+    <ListPreference
+        android:defaultValue="-1"
+        android:entries="@array/pref_title_list_academic_levels"
+        android:entryValues="@array/pref_title_list_academic_values"
+        android:key="academic_levels"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_academic_level"/>
+
+
+    <ListPreference
+        android:defaultValue="-1"
+        android:entries="@array/pref_title_list_quarters"
+        android:entryValues="@array/pref_title_list_quarter_values"
+        android:key="quarters"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/dialog_title_quarter" />
+
 </PreferenceScreen>
