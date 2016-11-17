@@ -51,8 +51,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     private static final String TAG = "EmailPassword";
 
-    private TextView mStatusTextView;
-    private TextView mDetailTextView;
+    //private TextView mStatusTextView;
+    //private TextView mDetailTextView;
     private EditText mEmailField;
     private EditText mPasswordField;
     //peter
@@ -213,15 +213,15 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                             Log.w(TAG, "signInWithEmail:failed", task.getException());
                             Toast.makeText(SignInActivity.this, R.string.auth_failed,
                                     Toast.LENGTH_SHORT).show();
-                            mStatusTextView.setText(R.string.auth_failed);
+                            //mStatusTextView.setText(R.string.auth_failed);
                         } else if(!mAuth.getCurrentUser().isEmailVerified()) {
                             Toast.makeText(SignInActivity.this, R.string.email_not_verified,
                                     Toast.LENGTH_SHORT).show();
                             signOut();
-                        } /* else {
+                        } else {
                             Intent intent = new Intent(SignInActivity.this, DrawerActivity.class);
                             startActivity(intent);
-                        } */
+                        }
 
                         hideProgressDialog();
                     }
@@ -303,8 +303,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
         } else if (i == R.id.email_sign_in_button) {
             signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
-            Intent intent = new Intent(SignInActivity.this, DrawerActivity.class);
-            startActivity(intent);
         } else if (i == R.id.sign_out_button) {
             signOut();
         }/* else if (i == R.id.password_email_button) {
