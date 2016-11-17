@@ -21,12 +21,15 @@ public final class UCRSchedules {
 
     private UCRSchedules() { }
 
+    private static int initRun = 0;
     public static void scheduleInit(){
-        Vector<UCRCourse> temp = new Vector<UCRCourse>(0);
-        schedules.add(temp);
-        schedules.add(temp);
-        schedules.add(temp);
-        //TODO set a flag so this isnt run twice
+        if(initRun == 0) {
+            Vector<UCRCourse> temp = new Vector<UCRCourse>(0);
+            schedules.add(temp);
+            schedules.add(temp);
+            schedules.add(temp);
+            initRun = 1;
+        }
     }
 
     public static void addCourse(UCRCourse course, int schedNum) {
@@ -129,7 +132,10 @@ public final class UCRSchedules {
 
 
         TextView timesText = (TextView) dialog.findViewById(R.id.popup_times);
-        timesText.setText(course.days + ": " + course.time);
+        if(course.days.equals("") || course.time.equals(""))
+            timesText.setText("n/a");
+        else
+            timesText.setText(course.days  + ": " + course.time);
 
         TextView instrText = (TextView) dialog.findViewById(R.id.popup_instr);
         instrText.setText(course.instructor);

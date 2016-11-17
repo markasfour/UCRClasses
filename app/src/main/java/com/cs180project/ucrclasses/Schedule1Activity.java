@@ -252,7 +252,7 @@ public class Schedule1Activity extends Fragment{
                         Log.d("ERROR", "Course with call num " + callNums.getKey() + " has no dash in CourseNum: " + course);
                         continue;
                     }
-                    courses.add(course.substring(0, course.indexOf('-')).trim());
+                    course = course.substring(0, course.indexOf('-')).trim();
                     courses.add(course);
                     if(!courseNum.equals("ALL") && !courseNum.equals(course)) continue; //Check course number choice
                     profs.add(callNums.getValue().instructor);
