@@ -43,8 +43,6 @@
                 android:value="com.cs180project.ucrclasses.DrawerActivity" />
         </activity>
 
-        <activity android:name=".SettingsActivity"></activity>
-
     </application>
 
 </manifest>
