@@ -3,6 +3,7 @@ package com.cs180project.ucrclasses;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,12 +17,21 @@ import java.util.Vector;
 
 public final class UCRSchedules {
 
-    private final static Vector<Vector<UCRCourse>> schedules = new Vector<Vector<UCRCourse>>(3);
+    private final static Vector<Vector<UCRCourse>> schedules = new Vector<Vector<UCRCourse>>();
 
     private UCRSchedules() { }
 
+    public static void scheduleInit(){
+        Vector<UCRCourse> temp = new Vector<UCRCourse>(0);
+        schedules.add(temp);
+        schedules.add(temp);
+        schedules.add(temp);
+        //TODO set a flag so this isnt run twice
+    }
+
     public static void addCourse(UCRCourse course, int schedNum) {
         if(!schedules.elementAt(schedNum).contains(course)) {
+            Log.d("NOTHING", "Adding");
             schedules.elementAt(schedNum).add(course);
         }
     }
@@ -59,35 +69,43 @@ public final class UCRSchedules {
     public static int getStartHour(int schedNum, int classNum){
         String time = schedules.elementAt(schedNum).elementAt(classNum).time;
         int itime = 0;
-        if(time.charAt(6) == 'A'){
-            itime = Integer.parseInt(time.substring(0, 1));
+        //Log.d("CHAR", "char = " + time.charAt(6));
+        if(time.charAt(6) == 'a'){
+            Log.d("START HOUR", time.substring(0,2));
+            itime = Integer.parseInt(time.substring(0, 2));
         }
-        else if(time.charAt(6) == 'P'){
-            itime =  Integer.parseInt(time.substring(0, 1)) + 12;
+        else if(time.charAt(6) == 'p'){
+            Log.d("START HOUR", time.substring(0,2));
+            itime =  Integer.parseInt(time.substring(0, 2)) + 12;
         }
         return itime;
     }
 
     public static int getStartMin(int schedNum, int classNum){
         String time = schedules.elementAt(schedNum).elementAt(classNum).time;
-        return Integer.parseInt(time.substring(3, 4));
+        Log.d("START MIN", time.substring(3,5));
+        return Integer.parseInt(time.substring(3, 5));
     }
 
     public static int getEndHour(int schedNum, int classNum){
         String time = schedules.elementAt(schedNum).elementAt(classNum).time;
         int itime = 0;
-        if(time.charAt(17) == 'A' || (time.substring(11, 12) == "12") ) {
-            itime = Integer.parseInt(time.substring(11, 12));
+        Log.d("CHAR", time.substring(13,15));
+        if(time.charAt(19) == 'a' || (time.substring(13, 15) == "12") ) {
+            Log.d("END HOUR", time.substring(13,15));
+            itime = Integer.parseInt(time.substring(13, 15));
         }
-        else if(time.charAt(17) == 'P'){
-            itime =  Integer.parseInt(time.substring(11, 12)) + 12;
+        else if(time.charAt(19) == 'p'){
+            Log.d("END HOUR", time.substring(13,15));
+            itime =  Integer.parseInt(time.substring(13, 15)) + 12;
         }
         return itime;
     }
 
     public static int getEndMin(int schedNum, int classNum){
         String time = schedules.elementAt(schedNum).elementAt(classNum).time;
-        return Integer.parseInt(time.substring(14, 15));
+        Log.d("END MIN", time.substring(16,18));
+        return Integer.parseInt(time.substring(16, 18));
     }
 
     //type = 0, display with add button

@@ -21,6 +21,8 @@ public class CalendarActivity1 extends BaseCalendarActivity {
         WeekViewEvent event;
 
         if(!UCRSchedules.isEmpty(0)) {
+//            Log.d("NOTHING", "Not Empty");
+//            Log.d("NOTHING", "Schedule Size = " + Integer.toString(UCRSchedules.getSize(0)));
             for (int i = 0; i < UCRSchedules.getSize(0); i++) {
                 for (int j = 0; j < UCRSchedules.getDays(1, i).length(); j++) {
                     startTime = Calendar.getInstance();
@@ -28,6 +30,10 @@ public class CalendarActivity1 extends BaseCalendarActivity {
                     startTime.set(Calendar.MINUTE, UCRSchedules.getStartMin(0, i));
                     startTime.set(Calendar.MONTH, newMonth - 1);    //keep the same or will schedule multiple times
 
+//                    Log.d("NOTHING", "Hour start = " + Integer.toString(UCRSchedules.getStartHour(0, i)));
+//                    Log.d("NOTHING", "Minute start = " + Integer.toString(UCRSchedules.getStartMin(0, i)));
+
+                    Log.d("NOTHING", UCRSchedules.getDays(0, i));
                     if (UCRSchedules.getDays(0, i).charAt(j) == 'M')
                         startTime.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
                     else if (UCRSchedules.getDays(0, i).charAt(j) == 'T')
@@ -44,10 +50,11 @@ public class CalendarActivity1 extends BaseCalendarActivity {
                     }
 
                     endTime = (Calendar) startTime.clone();
-                    endTime.add(Calendar.HOUR_OF_DAY, UCRSchedules.getEndHour(0, i) - UCRSchedules.getStartHour(0, i));
+                    endTime.add(Calendar.HOUR_OF_DAY, (UCRSchedules.getEndHour(0, i) - UCRSchedules.getStartHour(0, i)) );
                     endTime.add(Calendar.MINUTE, UCRSchedules.getEndMin(0, i) - UCRSchedules.getStartMin(0, i));
                     endTime.set(Calendar.MONTH, newMonth - 1);  //keep the same or will schedule multiple times
 
+                    Log.d("NOTHING", UCRSchedules.getCourseNum(0, i) +" "+ UCRSchedules.getCourseType(0, i));
                     event = new WeekViewEvent(i, UCRSchedules.getCourseNum(0, i) + " " + UCRSchedules.getCourseType(0, i), startTime, endTime);
                     event.setColor(getResources().getColor(R.color.event_color_03));
                     events.add(event);
