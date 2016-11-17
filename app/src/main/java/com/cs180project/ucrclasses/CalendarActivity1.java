@@ -1,6 +1,7 @@
 package com.cs180project.ucrclasses;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.alamkanak.weekview.WeekViewEvent;
@@ -16,42 +17,79 @@ public class CalendarActivity1 extends BaseCalendarActivity {
         List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
 
         Calendar startTime = Calendar.getInstance();
+        Calendar endTime = (Calendar) startTime.clone();
+        WeekViewEvent event;
+
+        if(!UCRSchedules.isEmpty(0)) {
+//            Log.d("NOTHING", "Not Empty");
+//            Log.d("NOTHING", "Schedule Size = " + Integer.toString(UCRSchedules.getSize(0)));
+            for (int i = 0; i < UCRSchedules.getSize(0); i++) {
+                for (int j = 0; j < UCRSchedules.getDays(1, i).length(); j++) {
+                    startTime = Calendar.getInstance();
+                    startTime.set(Calendar.HOUR_OF_DAY, UCRSchedules.getStartHour(0, i));
+                    startTime.set(Calendar.MINUTE, UCRSchedules.getStartMin(0, i));
+                    startTime.set(Calendar.MONTH, newMonth - 1);    //keep the same or will schedule multiple times
+
+//                    Log.d("NOTHING", "Hour start = " + Integer.toString(UCRSchedules.getStartHour(0, i)));
+//                    Log.d("NOTHING", "Minute start = " + Integer.toString(UCRSchedules.getStartMin(0, i)));
+
+                    Log.d("NOTHING", UCRSchedules.getDays(0, i));
+                    if (UCRSchedules.getDays(0, i).charAt(j) == 'M')
+                        startTime.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+                    else if (UCRSchedules.getDays(0, i).charAt(j) == 'T')
+                        startTime.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
+                    else if (UCRSchedules.getDays(0, i).charAt(j) == 'W')
+                        startTime.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
+                    else if (UCRSchedules.getDays(0, i).charAt(j) == 'R')
+                        startTime.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
+                    else if (UCRSchedules.getDays(0, i).charAt(j) == 'F')
+                        startTime.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
+                    else {
+                        Log.d("ERROR", "Invalid day: " + UCRSchedules.getDays(0, i).charAt(j) + " for call number: " + UCRSchedules.getCallNum(0, i));
+                        startTime.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+                    }
+
+                    endTime = (Calendar) startTime.clone();
+                    endTime.add(Calendar.HOUR_OF_DAY, (UCRSchedules.getEndHour(0, i) - UCRSchedules.getStartHour(0, i)) );
+                    endTime.add(Calendar.MINUTE, UCRSchedules.getEndMin(0, i) - UCRSchedules.getStartMin(0, i));
+                    endTime.set(Calendar.MONTH, newMonth - 1);  //keep the same or will schedule multiple times
+
+                    Log.d("NOTHING", UCRSchedules.getCourseNum(0, i) +" "+ UCRSchedules.getCourseType(0, i));
+                    event = new WeekViewEvent(i, UCRSchedules.getCourseNum(0, i) + " " + UCRSchedules.getCourseType(0, i), startTime, endTime);
+                    event.setColor(getResources().getColor(R.color.event_color_03));
+                    events.add(event);
+                }
+            }
+        }
+
+
+        /* //example runs
+        startTime = Calendar.getInstance();
         startTime.set(Calendar.HOUR_OF_DAY, 8);
-        startTime.set(Calendar.MINUTE, 0);
+        startTime.set(Calendar.MINUTE, 10);
         startTime.set(Calendar.MONTH, newMonth - 1);
         startTime.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
-        Calendar endTime = (Calendar) startTime.clone();
-        endTime.add(Calendar.HOUR, 1);
+        endTime = (Calendar) startTime.clone();
+        endTime.add(Calendar.HOUR_OF_DAY, 1);
+        endTime.add(Calendar.MINUTE, -10);
         endTime.set(Calendar.MONTH, newMonth - 1);
-        WeekViewEvent event = new WeekViewEvent(1, "CS170", startTime, endTime);
+        event = new WeekViewEvent(1, "CS170", startTime, endTime);
         event.setColor(getResources().getColor(R.color.event_color_01));
         events.add(event);
 
         startTime = Calendar.getInstance();
-        startTime.set(Calendar.HOUR_OF_DAY, 10);
-        startTime.set(Calendar.MINUTE, 0);
-        startTime.set(Calendar.MONTH, newMonth - 1);
-        startTime.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-        endTime = (Calendar) startTime.clone();
-        endTime.add(Calendar.HOUR_OF_DAY, 4);
-        endTime.set(Calendar.MONTH, newMonth - 1);
-        event = new WeekViewEvent(3, "CS 180", startTime, endTime);
-        event.setColor(getResources().getColor(R.color.event_color_03));
-        events.add(event);
-
-        startTime = Calendar.getInstance();
         startTime.set(Calendar.HOUR_OF_DAY, 11);
-        startTime.set(Calendar.MINUTE, 0);
+        startTime.set(Calendar.MINUTE, 10);
         startTime.set(Calendar.MONTH, newMonth - 1);
         startTime.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
         endTime = (Calendar) startTime.clone();
         endTime.add(Calendar.HOUR_OF_DAY, 1);
-        endTime.add(Calendar.MINUTE, 40);
+        endTime.add(Calendar.MINUTE, 20);
         endTime.set(Calendar.MONTH, newMonth - 1);
         event = new WeekViewEvent(3, "CS 180", startTime, endTime);
         event.setColor(getResources().getColor(R.color.event_color_02));
         events.add(event);
-
+*/
         return events;
     }
 

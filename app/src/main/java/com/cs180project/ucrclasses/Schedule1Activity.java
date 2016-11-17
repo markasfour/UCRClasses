@@ -163,7 +163,8 @@ public class Schedule1Activity extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                UCRSchedules.displayCourse(((UCRCourse)ladapter.getItem(position)), 0, fcontainer.getContext());
+                //TODO Push to the correct schedule
+                UCRSchedules.displayCourse(((UCRCourse)ladapter.getItem(position)), 0, fcontainer.getContext(), 0);
 
                 // unneeded now that we have a function for this!
                 /*final Dialog dialog = new Dialog(fcontainer.getContext());

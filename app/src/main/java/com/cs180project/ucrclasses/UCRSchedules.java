@@ -3,10 +3,12 @@ package com.cs180project.ucrclasses;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Set;
 import java.util.Vector;
 
 /**
@@ -15,13 +17,100 @@ import java.util.Vector;
 
 public final class UCRSchedules {
 
-    private final static Vector<Vector<UCRCourse>> schedules = new Vector<Vector<UCRCourse>>(1);
+    private final static Vector<Vector<UCRCourse>> schedules = new Vector<Vector<UCRCourse>>();
 
     private UCRSchedules() { }
 
+    public static void scheduleInit(){
+        Vector<UCRCourse> temp = new Vector<UCRCourse>(0);
+        schedules.add(temp);
+        schedules.add(temp);
+        schedules.add(temp);
+        //TODO set a flag so this isnt run twice
+    }
+
+    public static void addCourse(UCRCourse course, int schedNum) {
+        if(!schedules.elementAt(schedNum).contains(course)) {
+            Log.d("NOTHING", "Adding");
+            schedules.elementAt(schedNum).add(course);
+        }
+    }
+
+    public static void removeCourse(UCRCourse course, int schedNum) {
+        if(schedules.elementAt(schedNum).contains(course)) {
+            schedules.elementAt(schedNum).remove(course);
+        }
+    }
+
+    public static boolean isEmpty(int schedNum){
+        return schedules.elementAt(schedNum).isEmpty();
+    }
+
+    public static int getSize(int schedNum){
+        return schedules.elementAt(schedNum).size();
+    }
+
+    public static String getCourseNum(int schedNum, int classNum){
+        return schedules.elementAt(schedNum).elementAt(classNum).courseNum;
+    }
+
+    public static String getDays(int schedNum, int classNum){
+        return schedules.elementAt(schedNum).elementAt(classNum).days;
+    }
+
+    public static String getCourseType(int schedNum, int classNum){
+        return schedules.elementAt(schedNum).elementAt(classNum).courseType;
+    }
+
+    public static String getCallNum(int schedNum, int classNum){
+        return schedules.elementAt(schedNum).elementAt(classNum).callNum;
+    }
+
+    public static int getStartHour(int schedNum, int classNum){
+        String time = schedules.elementAt(schedNum).elementAt(classNum).time;
+        int itime = 0;
+        //Log.d("CHAR", "char = " + time.charAt(6));
+        if(time.charAt(6) == 'a'){
+            Log.d("START HOUR", time.substring(0,2));
+            itime = Integer.parseInt(time.substring(0, 2));
+        }
+        else if(time.charAt(6) == 'p'){
+            Log.d("START HOUR", time.substring(0,2));
+            itime =  Integer.parseInt(time.substring(0, 2)) + 12;
+        }
+        return itime;
+    }
+
+    public static int getStartMin(int schedNum, int classNum){
+        String time = schedules.elementAt(schedNum).elementAt(classNum).time;
+        Log.d("START MIN", time.substring(3,5));
+        return Integer.parseInt(time.substring(3, 5));
+    }
+
+    public static int getEndHour(int schedNum, int classNum){
+        String time = schedules.elementAt(schedNum).elementAt(classNum).time;
+        int itime = 0;
+        Log.d("CHAR", time.substring(13,15));
+        if(time.charAt(19) == 'a' || (time.substring(13, 15) == "12") ) {
+            Log.d("END HOUR", time.substring(13,15));
+            itime = Integer.parseInt(time.substring(13, 15));
+        }
+        else if(time.charAt(19) == 'p'){
+            Log.d("END HOUR", time.substring(13,15));
+            itime =  Integer.parseInt(time.substring(13, 15)) + 12;
+        }
+        return itime;
+    }
+
+    public static int getEndMin(int schedNum, int classNum){
+        String time = schedules.elementAt(schedNum).elementAt(classNum).time;
+        Log.d("END MIN", time.substring(16,18));
+        return Integer.parseInt(time.substring(16, 18));
+    }
+
     //type = 0, display with add button
     //type = 1, display with remove button
-    public static void displayCourse(final UCRCourse course, int type, final Context context) {
+    public static void displayCourse(final UCRCourse course, int type, final Context context, final int schedNum) {
         final Dialog dialog = new Dialog(context);
         //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.class_popup);
@@ -62,7 +151,7 @@ public final class UCRSchedules {
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
-                    schedules.get(0).remove(course);
+                    removeCourse(course, schedNum);
                 }
             });
         } else {
@@ -73,7 +162,7 @@ public final class UCRSchedules {
                     // TODO Not sure how you want to store things Peter, but this is
                     // TODO breaking for some reason so it'll need to be fixed if you want to
                     // TODO use vectors like this
-                    //schedules.get(0).add(course);
+                    addCourse(course, schedNum);
                     Intent myIntent = new Intent(context, CalendarActivity1.class);
                     context.startActivity(myIntent);
                 }
