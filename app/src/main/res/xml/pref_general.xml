@@ -11,7 +11,8 @@
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:title="@string/pref_title_display_name"
-        android:dialogTitle="@string/pref_title_change_display_name"/>
+        android:dialogTitle="@string/pref_title_change_display_name"
+        android:icon="@drawable/ic_person_black"/>
 
     <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
          dismiss it. -->
@@ -33,7 +34,8 @@
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:title="@string/pref_title_program_name"
-        android:dialogTitle="@string/dialog_title_program_name"/>
+        android:dialogTitle="@string/dialog_title_program_name"
+        android:icon="@drawable/ic_program_name"/>
 
 
     <ListPreference
@@ -43,7 +45,8 @@
         android:key="academic_levels"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
-        android:title="@string/pref_title_academic_level"/>
+        android:title="@string/pref_title_academic_level"
+        android:icon="@drawable/ic_school_black"/>
 
 
     <ListPreference
@@ -53,6 +56,7 @@
         android:key="quarters"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
-        android:title="@string/dialog_title_quarter" />
+        android:title="@string/dialog_title_quarter"
+        android:icon="@drawable/ic_public_black"/>
 
 </PreferenceScreen>
