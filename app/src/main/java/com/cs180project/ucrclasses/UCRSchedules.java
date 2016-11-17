@@ -172,10 +172,55 @@ public final class UCRSchedules {
             addButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    dialog.dismiss();
-                    addCourse(course, schedNum);
-                    Intent myIntent = new Intent(context, CalendarActivity1.class);
-                    context.startActivity(myIntent);
+                    final Dialog scheduleDialog = new Dialog(context);
+                    scheduleDialog.setContentView(R.layout.schedule_select);
+
+                    Button sched1Button = (Button) scheduleDialog.findViewById(R.id.schedule1Button);
+                    Button sched2Button = (Button) scheduleDialog.findViewById(R.id.schedule2Button);
+                    Button sched3Button = (Button) scheduleDialog.findViewById(R.id.schedule3Button);
+                    Button schedCancelButton = (Button) scheduleDialog.findViewById(R.id.scheduleCancelButton);
+
+                    sched1Button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            scheduleDialog.dismiss();
+                            addCourse(course, 0);
+                            Intent myIntent = new Intent(context, CalendarActivity1.class);
+                            context.startActivity(myIntent);
+                        }
+                    });
+
+                    sched2Button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            scheduleDialog.dismiss();
+                            addCourse(course, 1);
+                            Intent myIntent = new Intent(context, CalendarActivity2.class);
+                            context.startActivity(myIntent);
+                        }
+                    });
+
+                    sched3Button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            scheduleDialog.dismiss();
+                            addCourse(course, 2);
+                            Intent myIntent = new Intent(context, CalendarActivity3.class);
+                            context.startActivity(myIntent);
+                        }
+                    });
+
+                    schedCancelButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            scheduleDialog.dismiss();
+                        }
+                    });
+
+                    scheduleDialog.show();
                 }
             });
         }
