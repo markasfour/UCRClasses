@@ -1,5 +1,6 @@
 package com.cs180project.ucrclasses;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -166,6 +167,19 @@ public final class UCRSchedules {
                 public void onClick(View v) {
                     dialog.dismiss();
                     removeCourse(course, schedNum);
+                    Intent myIntent;
+                    if(schedNum == 0) {
+                        myIntent = new Intent(context, CalendarActivity1.class);
+                    }
+                    else if(schedNum == 1) {
+                        myIntent = new Intent(context, CalendarActivity2.class);
+                    }
+                    else {
+                        myIntent = new Intent(context, CalendarActivity3.class);
+                    }
+                    ((Activity)context).finish();
+                    myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    context.startActivity(myIntent);
                 }
             });
         } else {
