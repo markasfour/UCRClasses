@@ -60,7 +60,7 @@ public class CalendarActivity1 extends BaseCalendarActivity {
 //                    Log.d("END MIN", Integer.toString(UCRSchedules.getEndMin(0, i) - UCRSchedules.getStartMin(0, i)));
 
                     Log.d("NOTHING", UCRSchedules.getCourseNum(0, i) +" "+ UCRSchedules.getCourseType(0, i));
-                    event = new WeekViewEvent(i, UCRSchedules.getCourseNum(0, i) + " " + UCRSchedules.getCourseType(0, i), startTime, endTime);
+                    event = new WeekViewEvent(Integer.parseInt(UCRSchedules.getCallNum(0, i)), UCRSchedules.getCourseNum(0, i) + " " + UCRSchedules.getCourseType(0, i), startTime, endTime);
                     switch (i%4){
                         case 0:
                             event.setColor(getResources().getColor(R.color.event_color_01));
