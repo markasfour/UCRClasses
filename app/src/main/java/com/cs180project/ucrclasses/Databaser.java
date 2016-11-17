@@ -85,5 +85,18 @@ public final class Databaser {
         ref.addListenerForSingleValueEvent(fetcher);
     }
 
+    //Quarter should be in the form "17W", "16F", etc...
+    public UCRCourse getCourse(String callNum, String quarter) {
+        if(!dat.containsKey(quarter)) return null; //Bad quarter
+        for(Map.Entry<String, Map<String, UCRCourse>> classes : dat.get(quarter).entrySet()) { //Subject Loop
+            for(Map.Entry<String, UCRCourse> course : classes.getValue().entrySet()) {
+                if(callNum.equals(course.getKey())) return course.getValue();
+            }
+        }
+        return null; //Bad call num
+    }
 
+    public UCRCourse getCourse(long callNum, String quarter) {
+        return getCourse(Long.toString(callNum), quarter);
+    }
 }
