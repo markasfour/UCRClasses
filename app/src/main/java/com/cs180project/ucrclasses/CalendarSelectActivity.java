@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.alamkanak.weekview.WeekView;
+
 import java.util.Calendar;
 
 /**

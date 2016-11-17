@@ -74,18 +74,11 @@ public class Schedule1Activity extends Fragment{
         tadapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item);
 
         mListView.setAdapter(ladapter);
-        qdropdown.setAdapter(qadapter); qadapter.add("ALL");
+        qdropdown.setAdapter(qadapter); //qadapter.add("ALL"); All is not an option for quarters
         sdropdown.setAdapter(sadapter); sadapter.add("ALL");
         cdropdown.setAdapter(cadapter); cadapter.add("ALL");
         idropdown.setAdapter(iadapter); iadapter.add("ALL");
-
-        tdropdown.setAdapter(tadapter);
-        tadapter.add("ALL"); //Populate the dropdown with all possible options
-        tadapter.add("LEC"); tadapter.add("LAB"); tadapter.add("DIS"); tadapter.add("SEM");
-        tadapter.add("WRK"); tadapter.add("STU"); tadapter.add("THE"); tadapter.add("SCR");
-        tadapter.add("INT"); tadapter.add("IND"); tadapter.add("RES"); tadapter.add("COL");
-        tadapter.add("PRC"); tadapter.add("FLD"); tadapter.add("CON"); tadapter.add("TUT");
-        tadapter.add("CLN"); tadapter.add("ACT"); tadapter.add("LCA"); tadapter.add("WWK");
+        tdropdown.setAdapter(tadapter); tadapter.add("ALL");
 
         SortedSet<String> subjects = new TreeSet<String>();
         //Initialize the quarter and subject dropdowns. This only needs to happen once since they never change
@@ -243,10 +236,12 @@ public class Schedule1Activity extends Fragment{
         cadapter.clear();
         iadapter.clear();
         ladapter.clear();
+        tadapter.clear();
 
 
         SortedSet<String> courses = new TreeSet<String>();
         SortedSet<String> profs = new TreeSet<String>();
+        SortedSet<String> types = new TreeSet<String>();
         for (Map.Entry<String, Map<String, Map<String, UCRCourse>>> quarters : Databaser.dat.entrySet()) { //Quarter Loop
             if(!quarter.equals("ALL") && !quarter.equals(quarters.getKey())) continue; //Check our quarter choice
             for(Map.Entry<String, Map<String, UCRCourse>> classes : quarters.getValue().entrySet()) { //Subject Loop
@@ -257,11 +252,12 @@ public class Schedule1Activity extends Fragment{
                         Log.d("ERROR", "Course with call num " + callNums.getKey() + " has no dash in CourseNum: " + course);
                         continue;
                     }
-                    courses.add(course.substring(0, course.indexOf('-')).trim());
+                    course = course.substring(0, course.indexOf('-')).trim();
                     courses.add(course);
                     if(!courseNum.equals("ALL") && !courseNum.equals(course)) continue; //Check course number choice
                     profs.add(callNums.getValue().instructor);
                     if(!instr.equals("ALL") && !instr.equals(callNums.getValue().instructor)) continue; //Check instructor choice
+                    if(!callNums.getValue().courseType.trim().equals("")) types.add(callNums.getValue().courseType);
                     if(!type.equals("ALL") && !type.equals(callNums.getValue().courseType)) continue; //Check course type choice
                     ladapter.add(callNums.getValue());
                 }
@@ -269,9 +265,10 @@ public class Schedule1Activity extends Fragment{
         }
 
         ladapter.sort();
-        cadapter.add("ALL"); iadapter.add("ALL");
+        cadapter.add("ALL"); iadapter.add("ALL"); tadapter.add("ALL");
         for(String str : courses) cadapter.add(str);
         for(String str : profs) iadapter.add(str);
+        for(String str : types) tadapter.add(str);
         mListView.invalidateViews(); //Force table to refresh
     }
 }

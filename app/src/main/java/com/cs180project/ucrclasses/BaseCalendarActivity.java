@@ -1,6 +1,7 @@
 package com.cs180project.ucrclasses;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -111,9 +112,13 @@ public abstract class BaseCalendarActivity extends AppCompatActivity implements 
             @Override
             public String interpretTime(int hour, int minutes) {
                 String strMinutes = String.format("%02d", minutes);
-                if (hour > 11) {
+                if(hour == 12){
+                    return "12:" + strMinutes + " PM";
+                }
+                else if (hour > 11) {
                     return (hour - 12) + ":" + strMinutes + " PM";
-                } else {
+                }
+                else {
                     if (hour == 0) {
                         return "12:" + strMinutes + " AM";
                     } else {
@@ -130,9 +135,16 @@ public abstract class BaseCalendarActivity extends AppCompatActivity implements 
 
     @Override
     public void onEventClick(WeekViewEvent event, RectF eventRect) {
-        //TODO call UCRSchedules.displayCourse(course, 1, context)
-        //TODO Challenges here are finding the course and the context
-        Toast.makeText(this, "Clicked " + event.getName(), Toast.LENGTH_SHORT).show();
+        String callNum = Long.toString(event.getId());
+        for (int i = 0; i < UCRSchedules.getSize(); i++) {
+            for (int j = 0; j < UCRSchedules.getSize(1); j++) {
+                if(callNum.equals(UCRSchedules.getCallNum(i, j))) {
+                    //TODO Figure out which schedule we're in and replace the 0 with the proper schedule
+                    UCRSchedules.displayCourse(UCRSchedules.getCourse(i, j), 1, BaseCalendarActivity.this, 0);
+                    return;
+                }
+            }
+        }
     }
 
     @Override

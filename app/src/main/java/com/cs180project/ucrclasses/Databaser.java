@@ -42,6 +42,7 @@ public final class Databaser {
 
                             //Yank everything from the db and never have to deal with it again
                             mcourse_nums.put(callNums.getKey(), new UCRCourse(
+                                    quarters.getKey(),
                                     callNums.child("AvailableSeats").getValue().toString(),
                                     callNums.child("MaxEnrollment").getValue().toString(),
                                     callNums.child("NumberonWaitList").getValue().toString(),
@@ -86,5 +87,18 @@ public final class Databaser {
         ref.addListenerForSingleValueEvent(fetcher);
     }
 
+    //Quarter should be in the form "17W", "16F", etc...
+    public UCRCourse getCourse(String callNum, String quarter) {
+        if(!dat.containsKey(quarter)) return null; //Bad quarter
+        for(Map.Entry<String, Map<String, UCRCourse>> classes : dat.get(quarter).entrySet()) { //Subject Loop
+            for(Map.Entry<String, UCRCourse> course : classes.getValue().entrySet()) {
+                if(callNum.equals(course.getKey())) return course.getValue();
+            }
+        }
+        return null; //Bad call num
+    }
 
+    public UCRCourse getCourse(long callNum, String quarter) {
+        return getCourse(Long.toString(callNum), quarter);
+    }
 }

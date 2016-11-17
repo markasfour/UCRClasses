@@ -22,7 +22,7 @@ public class CalendarActivity1 extends BaseCalendarActivity {
 
         if(!UCRSchedules.isEmpty(0)) {
 //            Log.d("NOTHING", "Not Empty");
-//            Log.d("NOTHING", "Schedule Size = " + Integer.toString(UCRSchedules.getSize(0)));
+            Log.d("NOTHING", "Schedule Size = " + Integer.toString(UCRSchedules.getSize(0)));
             for (int i = 0; i < UCRSchedules.getSize(0); i++) {
                 for (int j = 0; j < UCRSchedules.getDays(1, i).length(); j++) {
                     startTime = Calendar.getInstance();
@@ -54,9 +54,27 @@ public class CalendarActivity1 extends BaseCalendarActivity {
                     endTime.add(Calendar.MINUTE, UCRSchedules.getEndMin(0, i) - UCRSchedules.getStartMin(0, i));
                     endTime.set(Calendar.MONTH, newMonth - 1);  //keep the same or will schedule multiple times
 
+//                    Log.d("END HOUR1", Integer.toString((UCRSchedules.getEndHour(0, i))));
+//                    Log.d("END HOUR2", Integer.toString((UCRSchedules.getStartHour(0, i))));
+//                    Log.d("END HOUR", Integer.toString((UCRSchedules.getEndHour(0, i) - UCRSchedules.getStartHour(0, i))));
+//                    Log.d("END MIN", Integer.toString(UCRSchedules.getEndMin(0, i) - UCRSchedules.getStartMin(0, i)));
+
                     Log.d("NOTHING", UCRSchedules.getCourseNum(0, i) +" "+ UCRSchedules.getCourseType(0, i));
-                    event = new WeekViewEvent(i, UCRSchedules.getCourseNum(0, i) + " " + UCRSchedules.getCourseType(0, i), startTime, endTime);
-                    event.setColor(getResources().getColor(R.color.event_color_03));
+                    event = new WeekViewEvent(Integer.parseInt(UCRSchedules.getCallNum(0, i)), UCRSchedules.getCourseNum(0, i) + " " + UCRSchedules.getCourseType(0, i), startTime, endTime);
+                    switch (i%4){
+                        case 0:
+                            event.setColor(getResources().getColor(R.color.event_color_01));
+                            break;
+                        case 1:
+                            event.setColor(getResources().getColor(R.color.event_color_02));
+                            break;
+                        case 2:
+                            event.setColor(getResources().getColor(R.color.event_color_03));
+                            break;
+                        case 3:
+                            event.setColor(getResources().getColor(R.color.event_color_04));
+                            break;
+                    }
                     events.add(event);
                 }
             }
