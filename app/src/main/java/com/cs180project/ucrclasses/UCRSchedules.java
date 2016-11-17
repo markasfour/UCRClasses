@@ -73,13 +73,14 @@ public final class UCRSchedules {
         String time = schedules.elementAt(schedNum).elementAt(classNum).time;
         int itime = 0;
         //Log.d("CHAR", "char = " + time.charAt(6));
-        if(time.charAt(6) == 'a'){
-            Log.d("START HOUR", time.substring(0,2));
+        Log.d("CHAR", "|" + time.substring(0,2) + "|");
+        if(time.charAt(6) == 'A' || time.substring(0, 2).equals("12")){
             itime = Integer.parseInt(time.substring(0, 2));
+            Log.d("START HOUR", Integer.toString(itime));
         }
-        else if(time.charAt(6) == 'p'){
-            Log.d("START HOUR", time.substring(0,2));
+        else if(time.charAt(6) == 'P'){
             itime =  Integer.parseInt(time.substring(0, 2)) + 12;
+            Log.d("START HOUR", Integer.toString(itime));
         }
         return itime;
     }
@@ -93,22 +94,24 @@ public final class UCRSchedules {
     public static int getEndHour(int schedNum, int classNum){
         String time = schedules.elementAt(schedNum).elementAt(classNum).time;
         int itime = 0;
-        Log.d("CHAR", time.substring(13,15));
-        if(time.charAt(19) == 'a' || (time.substring(13, 15) == "12") ) {
-            Log.d("END HOUR", time.substring(13,15));
-            itime = Integer.parseInt(time.substring(13, 15));
+        Log.d("CHAR", Integer.toString(time.length()) + "|" + time + "|");
+//        Log.d("END HOUR", time.substring(11, 13));
+
+        if(time.charAt(17) == 'A' || time.substring(11, 13).equals("12") ) {
+            itime = Integer.parseInt(time.substring(11, 13));
+            Log.d("END HOUR", Integer.toString(itime));
         }
-        else if(time.charAt(19) == 'p'){
-            Log.d("END HOUR", time.substring(13,15));
-            itime =  Integer.parseInt(time.substring(13, 15)) + 12;
+        else if(time.charAt(17) == 'P'){
+            itime =  Integer.parseInt(time.substring(11, 13)) + 12;
+            Log.d("END HOUR", Integer.toString(itime));
         }
         return itime;
     }
 
     public static int getEndMin(int schedNum, int classNum){
         String time = schedules.elementAt(schedNum).elementAt(classNum).time;
-        Log.d("END MIN", time.substring(16,18));
-        return Integer.parseInt(time.substring(16, 18));
+        Log.d("END MIN", time.substring(14,16));
+        return Integer.parseInt(time.substring(14, 16));
     }
 
     //type = 0, display with add button

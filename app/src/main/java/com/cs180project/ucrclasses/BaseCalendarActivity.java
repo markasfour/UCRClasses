@@ -111,9 +111,13 @@ public abstract class BaseCalendarActivity extends AppCompatActivity implements 
             @Override
             public String interpretTime(int hour, int minutes) {
                 String strMinutes = String.format("%02d", minutes);
-                if (hour > 11) {
+                if(hour == 12){
+                    return "12:" + strMinutes + " PM";
+                }
+                else if (hour > 11) {
                     return (hour - 12) + ":" + strMinutes + " PM";
-                } else {
+                }
+                else {
                     if (hour == 0) {
                         return "12:" + strMinutes + " AM";
                     } else {
@@ -132,6 +136,7 @@ public abstract class BaseCalendarActivity extends AppCompatActivity implements 
     public void onEventClick(WeekViewEvent event, RectF eventRect) {
         //TODO call UCRSchedules.displayCourse(course, 1, context)
         //TODO Challenges here are finding the course and the context
+
         Toast.makeText(this, "Clicked " + event.getName(), Toast.LENGTH_SHORT).show();
     }
 

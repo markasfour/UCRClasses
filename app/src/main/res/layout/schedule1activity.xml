@@ -10,7 +10,6 @@
     android:paddingTop="5dp">
 
     <!--The quarter row was acting up since it was the first row, this fixed it-->
-    <TableRow></TableRow>
 
     <TableRow
         android:layout_width="fill_parent"
@@ -139,14 +138,16 @@
 
         <ListView
             android:id="@+id/class_list"
-            android:background="@android:color/darker_gray"
+            android:background="@drawable/class_bar_bg"
             android:layout_marginRight="0dp"
             android:layout_marginEnd="0dp"
             android:layout_marginTop="15dp"
             android:layout_width="0px"
             android:layout_height="match_parent"
             android:layout_weight=".1"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:divider="@drawable/class_list_divider"
+            android:dividerHeight="1dp"/>
 
     </TableRow>
 
