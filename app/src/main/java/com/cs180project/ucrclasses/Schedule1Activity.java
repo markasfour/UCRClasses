@@ -270,5 +270,9 @@ public class Schedule1Activity extends Fragment{
         for(String str : profs) iadapter.add(str);
         for(String str : types) tadapter.add(str);
         mListView.invalidateViews(); //Force table to refresh
+
+        Log.d("!!!!!!MAJOR!!!!!!", SettingsActivity.major);
+        Log.d("!!!!!!LEVEL!!!!!!", SettingsActivity.level);
+        Log.d("!!!!!!TERM!!!!!!", SettingsActivity.term);
     }
 }

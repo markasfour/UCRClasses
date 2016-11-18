@@ -1,7 +1,11 @@
 package com.cs180project.ucrclasses;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -219,6 +223,11 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                                     Toast.LENGTH_SHORT).show();
                             signOut();
                         } else {
+//                            SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+//                            SharedPreferences.Editor editor = sharedPref.edit();
+//                            editor.putBoolean("SIGNEDIN", true);
+//                            editor.commit();
+
                             Intent intent = new Intent(SignInActivity.this, DrawerActivity.class);
                             startActivity(intent);
                         }
@@ -309,6 +318,11 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             Log.d(TAG, "Enter if statement");
             passwordReset();
         }*/
+    }
+
+    @Override
+    public void onBackPressed() {
+        //nothing
     }
 
 }

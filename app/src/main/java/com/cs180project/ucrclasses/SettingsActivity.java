@@ -47,6 +47,10 @@ import java.util.List;
  */
 public class SettingsActivity extends AppCompatPreferenceActivity {
     private static final String TAG = "EmailPassword";
+    public static String major = "init";
+    public static String level = "init";
+    public static String term = "init";
+    public static String temp = "init";
 
     /**
      * A preference value change listener that updates the preference's summary
@@ -58,6 +62,16 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
             String stringValue = value.toString();
+            temp = stringValue;
+            if(temp.equals("Undergraduate") || temp.equals("Graduate")){
+                level = temp;
+            }
+            else if(temp.equals("Fall") || temp.equals("Winter") || temp.equals("Spring") || temp.equals("Summer")){
+                term = temp;
+            }
+            else{
+                Log.d(TAG, "Preference change invalid");
+            }
 
             //Databaser.defaultQuarter = stringValue;
             //Log.d(TAG, "defaultQuarter: " + Databaser.defaultQuarter);
