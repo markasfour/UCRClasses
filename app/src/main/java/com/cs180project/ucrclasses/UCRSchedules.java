@@ -78,48 +78,66 @@ public final class UCRSchedules {
     }
 
     public static int getStartHour(int schedNum, int classNum){
-        String time = schedules.elementAt(schedNum).elementAt(classNum).time;
+        return getStartHour(schedules.elementAt(schedNum).elementAt(classNum));
+    }
+
+    public static int getStartHour(UCRCourse course){
+        String time = course.time;
+        if(!goodTime(time)) return 0;
         int itime = 0;
-        //Log.d("CHAR", "char = " + time.charAt(6));
-        Log.d("CHAR", "|" + time.substring(0,2) + "|");
         if(time.charAt(6) == 'A' || time.substring(0, 2).equals("12")){
             itime = Integer.parseInt(time.substring(0, 2));
-            Log.d("START HOUR", Integer.toString(itime));
         }
         else if(time.charAt(6) == 'P'){
             itime =  Integer.parseInt(time.substring(0, 2)) + 12;
-            Log.d("START HOUR", Integer.toString(itime));
         }
         return itime;
     }
 
     public static int getStartMin(int schedNum, int classNum){
-        String time = schedules.elementAt(schedNum).elementAt(classNum).time;
-        Log.d("START MIN", time.substring(3,5));
+        return getStartMin(schedules.elementAt(schedNum).elementAt(classNum));
+    }
+
+    public static int getStartMin(UCRCourse course) {
+        String time = course.time;
+        if(!goodTime(time)) return 0;
+        //Log.d("Start call num", course.callNum);
+        //Log.d("Start subject", course.subject);
+        //Log.d("START MIN", time);
         return Integer.parseInt(time.substring(3, 5));
     }
 
     public static int getEndHour(int schedNum, int classNum){
-        String time = schedules.elementAt(schedNum).elementAt(classNum).time;
+        return getEndHour(schedules.elementAt(schedNum).elementAt(classNum));
+    }
+
+    public static int getEndHour(UCRCourse course){
+        String time = course.time;
+        if(!goodTime(time)) return 0;
         int itime = 0;
-        Log.d("CHAR", Integer.toString(time.length()) + "|" + time + "|");
-//        Log.d("END HOUR", time.substring(11, 13));
 
         if(time.charAt(17) == 'A' || time.substring(11, 13).equals("12") ) {
             itime = Integer.parseInt(time.substring(11, 13));
-            Log.d("END HOUR", Integer.toString(itime));
         }
         else if(time.charAt(17) == 'P'){
             itime =  Integer.parseInt(time.substring(11, 13)) + 12;
-            Log.d("END HOUR", Integer.toString(itime));
         }
         return itime;
     }
 
     public static int getEndMin(int schedNum, int classNum){
-        String time = schedules.elementAt(schedNum).elementAt(classNum).time;
-        Log.d("END MIN", time.substring(14,16));
+        return getEndMin(schedules.elementAt(schedNum).elementAt(classNum));
+    }
+
+    public static int getEndMin(UCRCourse course){
+        String time = course.time;
+        if(!goodTime(time)) return 0;
         return Integer.parseInt(time.substring(14, 16));
+    }
+
+    public static boolean goodTime(String time) {
+        if(time.length() == 0 || time.charAt(0) < '0' || time.charAt(0) > '9') return false;
+        return true;
     }
 
     //type = 0, display with add button

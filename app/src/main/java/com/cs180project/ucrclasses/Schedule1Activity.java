@@ -23,6 +23,7 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -244,8 +245,29 @@ public class Schedule1Activity extends Fragment{
     }
 
     private boolean isConflicting(UCRCourse course, int sschedule) {
-        if(sschedule == -1) return false;
-        return true;
+        if(sschedule == -1 || course.days.equals("n/a")) return false;
+        int cstart = (UCRSchedules.getStartHour(course) * 60) + UCRSchedules.getStartMin(course);
+        int cend = (UCRSchedules.getEndHour(course) * 60) + UCRSchedules.getEndMin(course);
+
+        for(int x = 0; x < UCRSchedules.getSize(sschedule); x++) {
+            //Check if the days even overlap
+            String sdays = UCRSchedules.getDays(sschedule, x);
+            if(sdays.equals("n/a")) continue;
+            boolean sameDay = false;
+            for(int y = 0; y < sdays.length(); y++) {
+                if(course.days.contains(Character.toString(sdays.charAt(y)))) {
+                    sameDay = true; break;
+                }
+            }
+            if(!sameDay) continue;
+
+            //If days overlap then check if the times do
+            int sstart = (UCRSchedules.getStartHour(sschedule, x) * 60) + UCRSchedules.getStartMin(sschedule, x);
+            int send = (UCRSchedules.getEndHour(sschedule, x) * 60) + UCRSchedules.getEndMin(sschedule, x);
+            if(cstart < send && sstart < cend) return true;
+        }
+
+        return false;
     }
 
     private void filterCourseList() {
@@ -280,7 +302,7 @@ public class Schedule1Activity extends Fragment{
                         continue;
                     }
                     course = course.substring(0, course.indexOf('-')).trim();
-                    //if(isConflicting(callNums.getValue(), schedule)) continue;
+                    if(isConflicting(callNums.getValue(), schedule)) continue;
                     courses.add(course);
                     if(!courseNum.equals("ALL") && !courseNum.equals(course)) continue; //Check course number choice
                     profs.add(callNums.getValue().instructor);
@@ -298,9 +320,5 @@ public class Schedule1Activity extends Fragment{
         for(String str : profs) iadapter.add(str);
         for(String str : types) tadapter.add(str);
         mListView.invalidateViews(); //Force table to refresh
-
-        Log.d("!!!!!!MAJOR!!!!!!", SettingsActivity.major);
-        Log.d("!!!!!!LEVEL!!!!!!", SettingsActivity.level);
-        Log.d("!!!!!!TERM!!!!!!", SettingsActivity.term);
     }
 }
