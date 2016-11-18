@@ -131,9 +131,10 @@ public final class UCRSchedules {
         //dialog.setTitle(((UCRCourse)ladapter.getItem(position)).courseNum);
 
         // set the custom dialog components - text, image and button
+        Button addButton = (Button) dialog.findViewById(R.id.dialogButtonADD);
+
         TextView titleText = (TextView) dialog.findViewById(R.id.popup_title);
         titleText.setText(course.courseNum);
-
 
         TextView callnoText = (TextView) dialog.findViewById(R.id.popup_callno);
         callnoText.setText(course.callNum);
@@ -141,10 +142,11 @@ public final class UCRSchedules {
         TextView typeText = (TextView) dialog.findViewById(R.id.popup_classtype);
         typeText.setText(course.courseType);
 
-
         TextView timesText = (TextView) dialog.findViewById(R.id.popup_times);
-        if(course.days.equals("n/a") || course.time.equals("n/a"))
+        if(course.days.equals("n/a") || course.time.equals("n/a")) {
             timesText.setText("n/a");
+            addButton.setEnabled(false);
+        }
         else
             timesText.setText(course.days  + ": " + course.time);
 
@@ -160,8 +162,6 @@ public final class UCRSchedules {
         TextView descText = (TextView) dialog.findViewById(R.id.popup_description);
         descText.setText(course.catalogDescription);
 
-
-        Button addButton = (Button) dialog.findViewById(R.id.dialogButtonADD);
         if(type == 1) {
             addButton.setText(" Remove ");
             addButton.setOnClickListener(new View.OnClickListener() {

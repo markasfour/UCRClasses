@@ -30,6 +30,7 @@ import java.util.TreeSet;
 public class Schedule1Activity extends Fragment{
     View myView;
     CheckBox checkcheckcheck;
+    Button refresh;
 
     //Setup dropdowns and their adapters
     ListView mListView;
@@ -61,6 +62,7 @@ public class Schedule1Activity extends Fragment{
 
         //initialize checkbox
         checkcheckcheck = (CheckBox) myView.findViewById(R.id.checkcheckheck);
+        refresh = (Button) myView.findViewById(R.id.refresh);
 
         //Setup dropdowns and their adapters
         mListView = (ListView) myView.findViewById(R.id.class_list);
@@ -171,6 +173,13 @@ public class Schedule1Activity extends Fragment{
                 UCRSchedules.displayCourse(((UCRCourse)ladapter.getItem(position)), 0, fcontainer.getContext(), 0);
             }
 
+        });
+
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Databaser.fetchData();
+            }
         });
 
         checkcheckcheck.setOnClickListener(new View.OnClickListener() {
