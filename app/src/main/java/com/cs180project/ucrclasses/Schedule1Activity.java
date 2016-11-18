@@ -92,7 +92,8 @@ public class Schedule1Activity extends Fragment{
         for(String str : subjects) sadapter.add(str); //Make sure the subjects are in alph order
 
         if(!SettingsActivity.term.equals("init")) {
-            qdropdown.setSelection(qadapter.getPosition(SettingsActivity.term));
+            //TODO Get term in the qadapter and set the selection in qdropdown
+            //qdropdown.setSelection(qadapter.getPosition(SettingsActivity.term));
         }
 
         //When they select a quarter...
