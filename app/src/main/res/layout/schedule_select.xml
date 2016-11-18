@@ -11,9 +11,10 @@
         android:background="@drawable/side_nav_bar">
 
         <TextView
+            android:id="@+id/sched_select_title"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="Add To:"
+            android:text="@string/title"
             android:textSize="24dp"
             android:paddingLeft="10dp"
             android:paddingTop="10dp"

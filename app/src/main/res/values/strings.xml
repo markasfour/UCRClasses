@@ -171,4 +171,7 @@
     <!-- PasswordResetActivity Strings -->
     <string name="password_reset_fail">Enter a valid email address</string>
     <string name="password_reset_success">Password reset email sent!</string>
+
+    <!-- ScheduleSelect Strings-->
+    <string name="title">Add To</string>
 </resources>
