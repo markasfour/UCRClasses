@@ -143,7 +143,7 @@ public final class UCRSchedules {
 
 
         TextView timesText = (TextView) dialog.findViewById(R.id.popup_times);
-        if(course.days.equals("") || course.time.equals(""))
+        if(course.days.equals("n/a") || course.time.equals("n/a"))
             timesText.setText("n/a");
         else
             timesText.setText(course.days  + ": " + course.time);

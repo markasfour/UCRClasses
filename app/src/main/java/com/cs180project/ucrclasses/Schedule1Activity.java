@@ -50,7 +50,7 @@ public class Schedule1Activity extends Fragment{
     Spinner tdropdown;
     ArrayAdapter<String> tadapter;
 
-
+    private int schedule = -1;
 
 
     @Override
@@ -97,9 +97,11 @@ public class Schedule1Activity extends Fragment{
             }
         }
         for(String str : subjects) sadapter.add(str); //Make sure the subjects are in alph order
+        filterCourseList();
 
         if(!SettingsActivity.term.equals("init")) {
-            qdropdown.setSelection(qadapter.getPosition(SettingsActivity.term));
+            //TODO Get term in the qadapter and set the selection in qdropdown
+            //qdropdown.setSelection(qadapter.getPosition(SettingsActivity.term));
         }
 
         //When they select a quarter...
@@ -192,6 +194,8 @@ public class Schedule1Activity extends Fragment{
 //                    dialog.dismiss();
                             scheduleDialog.dismiss();
                             Log.d("????POPUP?????", "clicked 1");
+                            schedule = 0;
+                            filterCourseList();
                         }
                     });
 
@@ -201,6 +205,8 @@ public class Schedule1Activity extends Fragment{
 //                    dialog.dismiss();
                             scheduleDialog.dismiss();
                             Log.d("????POPUP?????", "clicked 2");
+                            schedule = 1;
+                            filterCourseList();
                         }
                     });
 
@@ -210,6 +216,8 @@ public class Schedule1Activity extends Fragment{
 //                    dialog.dismiss();
                             scheduleDialog.dismiss();
                             Log.d("????POPUP?????", "clicked 3");
+                            schedule = 2;
+                            filterCourseList();
                         }
                     });
 
@@ -225,13 +233,19 @@ public class Schedule1Activity extends Fragment{
                     scheduleDialog.show();
                 }
                 else{
-                    //TODO To default list
+                    schedule = -1;
+                    filterCourseList();
                 }
             }
         });
 
 
         return myView;
+    }
+
+    private boolean isConflicting(UCRCourse course, int sschedule) {
+        if(sschedule == -1) return false;
+        return true;
     }
 
     private void filterCourseList() {
@@ -266,6 +280,7 @@ public class Schedule1Activity extends Fragment{
                         continue;
                     }
                     course = course.substring(0, course.indexOf('-')).trim();
+                    //if(isConflicting(callNums.getValue(), schedule)) continue;
                     courses.add(course);
                     if(!courseNum.equals("ALL") && !courseNum.equals(course)) continue; //Check course number choice
                     profs.add(callNums.getValue().instructor);
