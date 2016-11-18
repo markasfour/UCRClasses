@@ -316,8 +316,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             ////////////////////////////////////////////////////////////////////////////////////////
             // Added to fix the app hanging on sign in for me
             //  Comment these two lines out if things break for you
-            Intent intent = new Intent(SignInActivity.this, DrawerActivity.class);
-            startActivity(intent);
+            //Intent intent = new Intent(SignInActivity.this, DrawerActivity.class);
+            //startActivity(intent);
             ////////////////////////////////////////////////////////////////////////////////////////
         } else if (i == R.id.sign_out_button) {
             signOut();

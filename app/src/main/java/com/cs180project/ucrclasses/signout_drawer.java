@@ -47,6 +47,7 @@ public class signout_drawer extends Fragment{
 //
 //                Log.d("TEST", "false clicked");
 
+                UCRSchedules.clearall();
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), SignInActivity.class);
                 startActivity(intent);
