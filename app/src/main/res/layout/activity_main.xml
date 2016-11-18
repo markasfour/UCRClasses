@@ -8,7 +8,8 @@
     android:orientation="vertical"
     android:background="@color/colorPrimary"
     android:clickable="true"
-    android:onClick="sign_in">
+    android:onClick="sign_in"
+    android:id="@+id/splash">
 
 
     <FrameLayout

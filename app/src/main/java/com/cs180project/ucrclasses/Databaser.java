@@ -19,12 +19,15 @@ public final class Databaser {
     public static final Map<String, Map<String, Map<String, UCRCourse>>> dat = new HashMap<String, Map<String, Map<String, UCRCourse>>>();
     //public static String defaultQuarter = null;
 
+    public static boolean done = false;
+
     private static ValueEventListener fetcher = new ValueEventListener() {
 
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             fetching = true;
             dat.clear();
+            done = false;
 
             for (DataSnapshot quarters: dataSnapshot.getChildren()) {
                 Map<String, Map<String, UCRCourse>> mclasses = new HashMap<String, Map<String, UCRCourse>>();
@@ -72,6 +75,8 @@ public final class Databaser {
                 dat.put(quarters.getKey(), mclasses);
             }
             fetching = false;
+            Log.d("DONE", "DONE!!!!");
+            done = true;
         }
 
         @Override
