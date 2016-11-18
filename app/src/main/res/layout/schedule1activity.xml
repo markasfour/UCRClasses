@@ -242,7 +242,6 @@
             android:layout_height="match_parent"
             android:id="@+id/refresh"
             android:text="Refresh Classes List"
-            android:icon="@drawable/ic_sync_black_24dp"
             android:drawableLeft="@drawable/ic_sync_black_24dp"/>
 
     </TableRow>
