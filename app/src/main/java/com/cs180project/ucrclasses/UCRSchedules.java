@@ -19,6 +19,7 @@ import java.util.Vector;
 public final class UCRSchedules {
 
     private final static Vector<Vector<UCRCourse>> schedules = new Vector<Vector<UCRCourse>>();
+    public static int activeSched = 0;
 
     private UCRSchedules() { }
 
@@ -232,6 +233,7 @@ public final class UCRSchedules {
                             dialog.dismiss();
                             scheduleDialog.dismiss();
                             addCourse(course, 0);
+                            activeSched = 0;
                             Intent myIntent = new Intent(context, CalendarActivity1.class);
                             context.startActivity(myIntent);
                         }
@@ -243,6 +245,7 @@ public final class UCRSchedules {
                             dialog.dismiss();
                             scheduleDialog.dismiss();
                             addCourse(course, 1);
+                            activeSched = 1;
                             Intent myIntent = new Intent(context, CalendarActivity2.class);
                             context.startActivity(myIntent);
                         }
@@ -254,6 +257,7 @@ public final class UCRSchedules {
                             dialog.dismiss();
                             scheduleDialog.dismiss();
                             addCourse(course, 2);
+                            activeSched = 2;
                             Intent myIntent = new Intent(context, CalendarActivity3.class);
                             context.startActivity(myIntent);
                         }
