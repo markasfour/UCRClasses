@@ -154,6 +154,10 @@ public class Schedule1Activity extends Fragment{
             }
             qdropdown.setSelection(qadapter.getPosition(defaultQuarter));
         }
+        else {
+            defaultQuarter = "17W";
+            qdropdown.setSelection(qadapter.getPosition(defaultQuarter));
+        }
 
 
         //TOGGLE SEARCH QUERY VISIBILITY
