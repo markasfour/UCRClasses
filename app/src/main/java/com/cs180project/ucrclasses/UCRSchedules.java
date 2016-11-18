@@ -47,6 +47,12 @@ public final class UCRSchedules {
         }
     }
 
+    public static void clearall(){
+        for(int i = 0; i < 3; i++){
+            schedules.elementAt(i).clear();
+        }
+    }
+
     public static boolean isEmpty(int schedNum){
         return schedules.elementAt(schedNum).isEmpty();
     }
