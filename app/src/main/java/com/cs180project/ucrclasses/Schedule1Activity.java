@@ -91,6 +91,9 @@ public class Schedule1Activity extends Fragment{
         }
         for(String str : subjects) sadapter.add(str); //Make sure the subjects are in alph order
 
+        if(!SettingsActivity.term.equals("init")) {
+            qdropdown.setSelection(qadapter.getPosition(SettingsActivity.term));
+        }
 
         //When they select a quarter...
         qdropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -156,65 +159,7 @@ public class Schedule1Activity extends Fragment{
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                //TODO Push to the correct schedule
                 UCRSchedules.displayCourse(((UCRCourse)ladapter.getItem(position)), 0, fcontainer.getContext(), 0);
-
-                // unneeded now that we have a function for this!
-                /*final Dialog dialog = new Dialog(fcontainer.getContext());
-                //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.class_popup);
-                //dialog.setTitle(((UCRCourse)ladapter.getItem(position)).courseNum);
-
-                // set the custom dialog components - text, image and button
-                TextView titleText = (TextView) dialog.findViewById(R.id.popup_title);
-                titleText.setText(((UCRCourse)ladapter.getItem(position)).courseNum);
-
-
-                TextView callnoText = (TextView) dialog.findViewById(R.id.popup_callno);
-                callnoText.setText(((UCRCourse)ladapter.getItem(position)).callNum);
-
-                TextView typeText = (TextView) dialog.findViewById(R.id.popup_classtype);
-                typeText.setText(((UCRCourse)ladapter.getItem(position)).courseType);
-
-
-                TextView timesText = (TextView) dialog.findViewById(R.id.popup_times);
-                timesText.setText(((UCRCourse)ladapter.getItem(position)).days + ": " + ((UCRCourse)ladapter.getItem(position)).time);
-
-                TextView instrText = (TextView) dialog.findViewById(R.id.popup_instr);
-                instrText.setText(((UCRCourse)ladapter.getItem(position)).instructor);
-
-                TextView seatsText = (TextView) dialog.findViewById(R.id.popup_seats);
-                seatsText.setText(((UCRCourse)ladapter.getItem(position)).availableSeats + "/" + ((UCRCourse)ladapter.getItem(position)).maxEnrollment);
-
-                TextView waitlistText = (TextView) dialog.findViewById(R.id.popup_waitlist);
-                waitlistText.setText(((UCRCourse)ladapter.getItem(position)).numOnWaitlist + "/" + ((UCRCourse)ladapter.getItem(position)).maxWaitlist);
-
-                TextView descText = (TextView) dialog.findViewById(R.id.popup_description);
-                descText.setText(((UCRCourse)ladapter.getItem(position)).catalogDescription);
-
-
-                Button addButton = (Button) dialog.findViewById(R.id.dialogButtonADD);
-                addButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //TOOD: Connect to Peter's code here!!
-                        dialog.dismiss();
-                        Intent intent = new Intent(getActivity(), CalendarActivity1.class);
-                        startActivity(intent);
-                    }
-                });
-
-                // if button is clicked, close the custom dialog
-                Button closeButton = (Button) dialog.findViewById(R.id.dialogButtonCLOSE);
-                closeButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-
-                dialog.show();*/
             }
 
         });
