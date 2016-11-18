@@ -28,9 +28,12 @@ import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import static com.cs180project.ucrclasses.Databaser.dat;
+
 public class Schedule1Activity extends Fragment{
     View myView;
     CheckBox checkcheckcheck;
+    Button refresh;
 
     //Setup dropdowns and their adapters
     ListView mListView;
@@ -62,6 +65,7 @@ public class Schedule1Activity extends Fragment{
 
         //initialize checkbox
         checkcheckcheck = (CheckBox) myView.findViewById(R.id.checkcheckheck);
+        refresh = (Button) myView.findViewById(R.id.refresh);
 
         //Setup dropdowns and their adapters
         mListView = (ListView) myView.findViewById(R.id.class_list);
@@ -91,7 +95,7 @@ public class Schedule1Activity extends Fragment{
 
         SortedSet<String> subjects = new TreeSet<String>();
         //Initialize the quarter and subject dropdowns. This only needs to happen once since they never change
-        for (Map.Entry<String, Map<String, Map<String, UCRCourse>>> quarters : Databaser.dat.entrySet()) { //Quarter Loop
+        for (Map.Entry<String, Map<String, Map<String, UCRCourse>>> quarters : dat.entrySet()) { //Quarter Loop
             qadapter.add(quarters.getKey());
             for(Map.Entry<String, Map<String, UCRCourse>> classes : quarters.getValue().entrySet()) { //Subject Loop
                 subjects.add(classes.getKey().trim());
@@ -172,6 +176,13 @@ public class Schedule1Activity extends Fragment{
                 UCRSchedules.displayCourse(((UCRCourse)ladapter.getItem(position)), 0, fcontainer.getContext(), 0);
             }
 
+        });
+
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(dat.isEmpty())   Databaser.fetchData();
+            }
         });
 
         checkcheckcheck.setOnClickListener(new View.OnClickListener() {
@@ -291,7 +302,7 @@ public class Schedule1Activity extends Fragment{
         SortedSet<String> courses = new TreeSet<String>();
         SortedSet<String> profs = new TreeSet<String>();
         SortedSet<String> types = new TreeSet<String>();
-        for (Map.Entry<String, Map<String, Map<String, UCRCourse>>> quarters : Databaser.dat.entrySet()) { //Quarter Loop
+        for (Map.Entry<String, Map<String, Map<String, UCRCourse>>> quarters : dat.entrySet()) { //Quarter Loop
             if(!quarter.equals("ALL") && !quarter.equals(quarters.getKey())) continue; //Check our quarter choice
             for(Map.Entry<String, Map<String, UCRCourse>> classes : quarters.getValue().entrySet()) { //Subject Loop
                 if(!subject.equals("ALL") && !subject.equals(classes.getKey().trim())) continue; //Check subject choice
