@@ -171,7 +171,7 @@ public final class UCRSchedules {
         typeText.setText(course.courseType);
 
         TextView timesText = (TextView) dialog.findViewById(R.id.popup_times);
-        if(course.days.equals("n/a") || course.time.equals("n/a")) {
+        if(course.days.equals("n/a") || !UCRSchedules.goodTime(course.time)) {
             timesText.setText("n/a");
             addButton.setEnabled(false);
         }
