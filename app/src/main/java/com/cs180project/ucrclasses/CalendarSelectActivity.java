@@ -34,6 +34,7 @@ public class CalendarSelectActivity extends Fragment{
         sched1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                UCRSchedules.activeSched = 0;
                 Intent intent = new Intent(getActivity(), CalendarActivity1.class);
                 startActivity(intent);
             }
@@ -41,6 +42,7 @@ public class CalendarSelectActivity extends Fragment{
         sched2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                UCRSchedules.activeSched = 1;
                 Intent intent = new Intent(getActivity(), CalendarActivity2.class);
                 startActivity(intent);
             }
@@ -48,6 +50,7 @@ public class CalendarSelectActivity extends Fragment{
         sched3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                UCRSchedules.activeSched = 2;
                 Intent intent = new Intent(getActivity(), CalendarActivity3.class);
                 startActivity(intent);
             }

@@ -6,6 +6,7 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -136,13 +137,10 @@ public abstract class BaseCalendarActivity extends AppCompatActivity implements 
     @Override
     public void onEventClick(WeekViewEvent event, RectF eventRect) {
         String callNum = Long.toString(event.getId());
-        for (int i = 0; i < UCRSchedules.getSize(); i++) {
-            for (int j = 0; j < UCRSchedules.getSize(1); j++) {
-                if(callNum.equals(UCRSchedules.getCallNum(i, j))) {
-                    //TODO Figure out which schedule we're in and replace the 0 with the proper schedule
-                    UCRSchedules.displayCourse(UCRSchedules.getCourse(i, j), 1, BaseCalendarActivity.this, 0);
-                    return;
-                }
+        for (int j = 0; j < UCRSchedules.getSize(UCRSchedules.activeSched); j++) {
+            if(callNum.equals(UCRSchedules.getCallNum(UCRSchedules.activeSched, j))) {
+                UCRSchedules.displayCourse(UCRSchedules.getCourse(UCRSchedules.activeSched, j), 1, BaseCalendarActivity.this, UCRSchedules.activeSched);
+                return;
             }
         }
     }
