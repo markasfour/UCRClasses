@@ -26,6 +26,7 @@ public class CalendarSelectActivity extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.activity_calendar_select, container, false);
+        getActivity().setTitle("Select Schedule");
         sched1 = (Button) myView.findViewById(R.id.Schedule1);
         sched2 = (Button) myView.findViewById(R.id.Schedule2);
         sched3 = (Button) myView.findViewById(R.id.Schedule3);

@@ -31,6 +31,7 @@ public class signout_drawer extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.signout_drawer, container, false);
+        getActivity().setTitle("Sign Out");
         confirm = (Button) myView.findViewById(R.id.button2);
         deny = (Button) myView.findViewById(R.id.button3);
 

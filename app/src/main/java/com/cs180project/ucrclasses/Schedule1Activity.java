@@ -53,6 +53,7 @@ public class Schedule1Activity extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final ViewGroup fcontainer = container;
         myView = inflater.inflate(R.layout.schedule1activity, container, false);
+        getActivity().setTitle("Search Classes");
 
         //Setup dropdowns and their adapters
         mListView = (ListView) myView.findViewById(R.id.class_list);

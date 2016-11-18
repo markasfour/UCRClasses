@@ -11,20 +11,17 @@
             android:id="@+id/nav_calendar1"
             android:icon="@drawable/ic_calendar"
             android:title="@string/view_calendars" />
+        <item
+            android:id="@+id/settings_button"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/account_settings"
+            />
+        <item
+            android:id="@+id/nav_signout_drawer"
+            android:icon="@drawable/ic_exit_to_app"
+            android:title="Signout" />
     </group>
 
-    <item android:title="Account">
-        <menu>
-            <item
-                android:id="@+id/settings_button"
-                android:icon="@drawable/ic_settings"
-                android:title="@string/account_settings"
-                />
-            <item
-                android:id="@+id/nav_signout_drawer"
-                android:icon="@drawable/ic_exit_to_app"
-                android:title="Signout" />
-        </menu>
-    </item>
+    
 
 </menu>

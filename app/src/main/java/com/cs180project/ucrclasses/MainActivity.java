@@ -46,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
 //        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
 //        signedinStatus = sharedPref.getBoolean("SIGNEDIN", false);
 
-        showProgressDialog();
+//        showProgressDialog();
         Databaser.fetchData();
-        while(Databaser.fetching){};
-        hideProgressDialog();
+//        while(Databaser.fetching){};
+//        hideProgressDialog();
         UCRSchedules.scheduleInit();
     }
 
