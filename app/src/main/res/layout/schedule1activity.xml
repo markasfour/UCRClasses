@@ -10,12 +10,21 @@
 
     <!--The quarter row was acting up since it was the first row, this fixed it-->
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search for Classes"
+        android:id="@+id/search"
+        style="@style/Widget.AppCompat.Button.Colored">
+
+    </Button>
     <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:background="@color/grey_100">
+        android:background="@color/grey_100"
+        android:id="@+id/tr1">
 
         <TextView
             android:text="Quarter: "
@@ -40,14 +49,16 @@
         android:layout_height="1dp"
         android:layout_width="match_parent"
         android:background="@drawable/class_bar_bg"
-        android:paddingTop="1dp"/>
+        android:paddingTop="1dp"
+        android:id="@+id/tr2" />
 
     <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:background="@color/grey_100">
+        android:background="@color/grey_100"
+        android:id="@+id/tr3">
 
         <TextView
             android:text="Subject:"
@@ -73,14 +84,16 @@
         android:layout_height="1dp"
         android:layout_width="match_parent"
         android:background="@drawable/class_bar_bg"
-        android:paddingTop="1dp"/>
+        android:paddingTop="1dp"
+        android:id="@+id/tr4" />
 
     <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:background="@color/grey_100">
+        android:background="@color/grey_100"
+        android:id="@+id/tr5">
 
         <TextView
             android:text="Course:"
@@ -105,14 +118,16 @@
         android:layout_height="1dp"
         android:layout_width="match_parent"
         android:background="@drawable/class_bar_bg"
-        android:paddingTop="1dp"/>
+        android:paddingTop="1dp"
+        android:id="@+id/tr6" />
 
     <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:background="@color/grey_100">
+        android:background="@color/grey_100"
+        android:id="@+id/tr7">
 
         <TextView
             android:text="Instructor:"
@@ -138,14 +153,16 @@
         android:layout_height="1dp"
         android:layout_width="match_parent"
         android:background="@drawable/class_bar_bg"
-        android:paddingTop="1dp"/>
+        android:paddingTop="1dp"
+        android:id="@+id/tr8" />
 
     <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:background="@color/grey_100">
+        android:background="@color/grey_100"
+        android:id="@+id/tr9">
 
         <TextView
             android:text="Class Type:"
@@ -171,7 +188,8 @@
         android:layout_height="1dp"
         android:layout_width="match_parent"
         android:background="@drawable/class_bar_bg"
-        android:paddingTop="1dp"/>
+        android:paddingTop="1dp"
+        android:id="@+id/tr10" />
 
 
     <TableRow
@@ -179,7 +197,8 @@
         android:layout_height="match_parent"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:background="@color/grey_100">
+        android:background="@color/grey_100"
+        android:id="@+id/tr11">
 
         <TextView
             android:text="Remove Schedule Conflicts:"
@@ -197,10 +216,30 @@
             android:paddingTop="19dp"
             android:id="@+id/checkcheckheck"/>
 
+    </TableRow>
+
+    <TableRow
+        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        android:background="@drawable/class_bar_bg"
+        android:paddingTop="1dp"
+        android:id="@+id/tr12" />
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:background="@color/grey_100"
+        android:id="@+id/tr13">
+
         <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
             android:id="@+id/refresh"
-            android:text="Refresh"
-            android:layout_gravity="right"/>
+            android:text="Refresh Classes List" />
 
     </TableRow>
 
@@ -208,11 +247,12 @@
         android:layout_height="1dp"
         android:layout_width="match_parent"
         android:background="@drawable/class_bar_bg"
-        android:paddingTop="1dp"/>
+        android:paddingTop="1dp"
+        android:id="@+id/tr14" />
 
     <TableRow
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/side_nav_bar">
 
         <ListView
