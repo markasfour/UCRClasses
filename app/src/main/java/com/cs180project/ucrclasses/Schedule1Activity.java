@@ -17,6 +17,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,23 @@ import static com.cs180project.ucrclasses.Databaser.dat;
 
 public class Schedule1Activity extends Fragment{
     View myView;
+    Button search_toggle;
+    TableRow tr1;
+    TableRow tr2;
+    TableRow tr3;
+    TableRow tr4;
+    TableRow tr5;
+    TableRow tr6;
+    TableRow tr7;
+    TableRow tr8;
+    TableRow tr9;
+    TableRow tr10;
+    TableRow tr11;
+    TableRow tr12;
+    TableRow tr13;
+    TableRow tr14;
+
+
     CheckBox checkcheckcheck;
     Button refresh;
 
@@ -61,6 +79,24 @@ public class Schedule1Activity extends Fragment{
         final ViewGroup fcontainer = container;
         myView = inflater.inflate(R.layout.schedule1activity, container, false);
         getActivity().setTitle("Search Classes");
+
+        //search query toggle
+        search_toggle = (Button) myView.findViewById(R.id.search);
+        //search query table rows
+        tr1 = (TableRow) myView.findViewById(R.id.tr1);
+        tr2 = (TableRow) myView.findViewById(R.id.tr2);
+        tr3 = (TableRow) myView.findViewById(R.id.tr3);
+        tr4 = (TableRow) myView.findViewById(R.id.tr4);
+        tr5 = (TableRow) myView.findViewById(R.id.tr5);
+        tr6 = (TableRow) myView.findViewById(R.id.tr6);
+        tr7 = (TableRow) myView.findViewById(R.id.tr7);
+        tr8 = (TableRow) myView.findViewById(R.id.tr8);
+        tr9 = (TableRow) myView.findViewById(R.id.tr9);
+        tr10 = (TableRow) myView.findViewById(R.id.tr10);
+        tr11 = (TableRow) myView.findViewById(R.id.tr11);
+        tr12 = (TableRow) myView.findViewById(R.id.tr12);
+        tr13 = (TableRow) myView.findViewById(R.id.tr13);
+        tr14 = (TableRow) myView.findViewById(R.id.tr14);
 
         //initialize checkbox
         checkcheckcheck = (CheckBox) myView.findViewById(R.id.checkcheckheck);
@@ -107,6 +143,47 @@ public class Schedule1Activity extends Fragment{
             //TODO Get term in the qadapter and set the selection in qdropdown
             //qdropdown.setSelection(qadapter.getPosition(SettingsActivity.term));
         }
+
+
+        //TOGGLE SEARCH QUERY VISIBILITY
+        search_toggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (tr1.getVisibility() == View.VISIBLE){
+                    tr1.setVisibility(View.GONE);
+                    tr2.setVisibility(View.GONE);
+                    tr3.setVisibility(View.GONE);
+                    tr4.setVisibility(View.GONE);
+                    tr5.setVisibility(View.GONE);
+                    tr6.setVisibility(View.GONE);
+                    tr7.setVisibility(View.GONE);
+                    tr8.setVisibility(View.GONE);
+                    tr9.setVisibility(View.GONE);
+                    tr10.setVisibility(View.GONE);
+                    tr11.setVisibility(View.GONE);
+                    tr12.setVisibility(View.GONE);
+                    tr13.setVisibility(View.GONE);
+                    tr14.setVisibility(View.GONE);
+
+                }
+                else {
+                    tr1.setVisibility(View.VISIBLE);
+                    tr2.setVisibility(View.VISIBLE);
+                    tr3.setVisibility(View.VISIBLE);
+                    tr4.setVisibility(View.VISIBLE);
+                    tr5.setVisibility(View.VISIBLE);
+                    tr6.setVisibility(View.VISIBLE);
+                    tr7.setVisibility(View.VISIBLE);
+                    tr8.setVisibility(View.VISIBLE);
+                    tr9.setVisibility(View.VISIBLE);
+                    tr10.setVisibility(View.VISIBLE);
+                    tr11.setVisibility(View.VISIBLE);
+                    tr12.setVisibility(View.VISIBLE);
+                    tr13.setVisibility(View.VISIBLE);
+                    tr14.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
         //When they select a quarter...
         qdropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
