@@ -273,7 +273,7 @@ public class Schedule1Activity extends Fragment{
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(dat.isEmpty())   Databaser.fetchData();
+                if(dat.isEmpty()) Databaser.fetchData();
             }
         });
 
@@ -373,6 +373,12 @@ public class Schedule1Activity extends Fragment{
         return false;
     }
 
+    private boolean isGradCourse(String courseNum) {
+        if(courseNum.indexOf(' ') == -1) return false;
+        courseNum = courseNum.substring(courseNum.indexOf(' ')).trim();
+        return (courseNum.charAt(0) >= '2' && courseNum.charAt(0) <= '9');
+    }
+
     private void filterCourseList() {
         if(qdropdown.getSelectedItem() == null || sdropdown.getSelectedItem() == null ||
                 cdropdown.getSelectedItem() == null || idropdown.getSelectedItem() == null ||
@@ -406,6 +412,7 @@ public class Schedule1Activity extends Fragment{
                     }
                     course = course.substring(0, course.indexOf('-')).trim();
                     if(isConflicting(callNums.getValue(), schedule)) continue;
+                    if(SettingsActivity.level.equals("Graduate") && !isGradCourse(course)) continue;
                     courses.add(course);
                     if(!courseNum.equals("ALL") && !courseNum.equals(course)) continue; //Check course number choice
                     profs.add(callNums.getValue().instructor);
