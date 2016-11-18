@@ -27,6 +27,8 @@ import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import static com.cs180project.ucrclasses.Databaser.dat;
+
 public class Schedule1Activity extends Fragment{
     View myView;
     CheckBox checkcheckcheck;
@@ -92,7 +94,7 @@ public class Schedule1Activity extends Fragment{
 
         SortedSet<String> subjects = new TreeSet<String>();
         //Initialize the quarter and subject dropdowns. This only needs to happen once since they never change
-        for (Map.Entry<String, Map<String, Map<String, UCRCourse>>> quarters : Databaser.dat.entrySet()) { //Quarter Loop
+        for (Map.Entry<String, Map<String, Map<String, UCRCourse>>> quarters : dat.entrySet()) { //Quarter Loop
             qadapter.add(quarters.getKey());
             for(Map.Entry<String, Map<String, UCRCourse>> classes : quarters.getValue().entrySet()) { //Subject Loop
                 subjects.add(classes.getKey().trim());
@@ -178,7 +180,7 @@ public class Schedule1Activity extends Fragment{
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Databaser.fetchData();
+                if(dat.isEmpty())   Databaser.fetchData();
             }
         });
 
@@ -278,7 +280,7 @@ public class Schedule1Activity extends Fragment{
         SortedSet<String> courses = new TreeSet<String>();
         SortedSet<String> profs = new TreeSet<String>();
         SortedSet<String> types = new TreeSet<String>();
-        for (Map.Entry<String, Map<String, Map<String, UCRCourse>>> quarters : Databaser.dat.entrySet()) { //Quarter Loop
+        for (Map.Entry<String, Map<String, Map<String, UCRCourse>>> quarters : dat.entrySet()) { //Quarter Loop
             if(!quarter.equals("ALL") && !quarter.equals(quarters.getKey())) continue; //Check our quarter choice
             for(Map.Entry<String, Map<String, UCRCourse>> classes : quarters.getValue().entrySet()) { //Subject Loop
                 if(!subject.equals("ALL") && !subject.equals(classes.getKey().trim())) continue; //Check subject choice
