@@ -24,6 +24,7 @@ public class PasswordResetActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Send Password Reset");
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_password_reset);
 

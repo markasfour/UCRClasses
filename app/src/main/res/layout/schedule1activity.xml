@@ -6,8 +6,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:id="@+id/content_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="5dp">
+    android:layout_height="match_parent">
 
     <!--The quarter row was acting up since it was the first row, this fixed it-->
 
@@ -15,7 +14,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:paddingLeft="5dp"
-        android:paddingRight="5dp">
+        android:paddingRight="5dp"
+        android:background="@color/grey_100">
 
         <TextView
             android:text="Quarter: "
@@ -23,7 +23,9 @@
             android:layout_weight=".3"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:id="@+id/textView" />
+            android:id="@+id/textView"
+            android:textStyle="normal|bold"
+            android:textColor="@color/colorPrimary" />
 
 
         <Spinner
@@ -35,10 +37,17 @@
     </TableRow>
 
     <TableRow
+        android:layout_width="match_parent"
+        android:background="@drawable/class_bar_bg"
+        android:layout_height="1dp"
+        android:paddingTop="1dp" />
+
+    <TableRow
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:paddingLeft="5dp"
-        android:paddingRight="5dp">
+        android:paddingRight="5dp"
+        android:background="@color/grey_100">
 
         <TextView
             android:text="Subject:"
@@ -47,7 +56,9 @@
             android:layout_height="match_parent"
             android:id="@+id/textView3"
             android:gravity="top"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="20dp"
+            android:textStyle="normal|bold"
+            android:textColor="@color/colorPrimary" />
 
         <Spinner
             android:layout_width="0dp"
@@ -59,10 +70,17 @@
     </TableRow>
 
     <TableRow
+        android:layout_width="match_parent"
+        android:background="@drawable/class_bar_bg"
+        android:layout_height="1dp"
+        android:paddingTop="1dp" />
+
+    <TableRow
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:paddingLeft="5dp"
-        android:paddingRight="5dp">
+        android:paddingRight="5dp"
+        android:background="@color/grey_100">
 
         <TextView
             android:text="Course:"
@@ -71,7 +89,9 @@
             android:layout_height="match_parent"
             android:id="@+id/textView4"
             android:gravity="top"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:textStyle="normal|bold"
+            android:textColor="@color/colorPrimary" />
 
         <Spinner
             android:layout_width="0dp"
@@ -81,12 +101,18 @@
             android:id="@+id/course_spinner" />
     </TableRow>
 
+    <TableRow
+        android:layout_width="match_parent"
+        android:background="@drawable/class_bar_bg"
+        android:layout_height="1dp"
+        android:paddingTop="1dp" />
 
     <TableRow
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:paddingLeft="5dp"
-        android:paddingRight="5dp">
+        android:paddingRight="5dp"
+        android:background="@color/grey_100">
 
         <TextView
             android:text="Instructor:"
@@ -95,7 +121,9 @@
             android:layout_height="match_parent"
             android:id="@+id/textView5"
             android:gravity="top"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="normal|bold" />
 
         <Spinner
             android:layout_width="0dp"
@@ -107,10 +135,17 @@
     </TableRow>
 
     <TableRow
+        android:layout_width="match_parent"
+        android:background="@drawable/class_bar_bg"
+        android:layout_height="1dp"
+        android:paddingTop="1dp" />
+
+    <TableRow
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:paddingLeft="5dp"
-        android:paddingRight="5dp">
+        android:paddingRight="5dp"
+        android:background="@color/grey_100">
 
         <TextView
             android:text="Class Type:"
@@ -119,7 +154,9 @@
             android:layout_height="match_parent"
             android:id="@+id/textView6"
             android:gravity="top"
-            android:layout_marginTop="19dp" />
+            android:layout_marginTop="19dp"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="normal|bold" />
 
         <Spinner
             android:layout_width="0dp"
@@ -133,8 +170,15 @@
     </TableRow>
 
     <TableRow
+        android:layout_width="match_parent"
+        android:background="@drawable/class_bar_bg"
+        android:layout_height="1dp"
+        android:paddingTop="1dp" />
+
+    <TableRow
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:background="@drawable/side_nav_bar">
 
         <ListView
             android:id="@+id/class_list"

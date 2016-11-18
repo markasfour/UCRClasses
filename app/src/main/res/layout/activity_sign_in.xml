@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_100"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     android:weightSum="4">
 
     <!-- Central-Title Content for Sign-In Activity -->
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
         android:layout_gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <!-- INSERT UCR LOGO HERE -->
 
@@ -47,14 +51,36 @@
             android:layout_height="wrap_content"
             android:id="@+id/password_email_button" /> -->
 
-    </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/smaller_ucr_seal_white"
+            android:id="@+id/imageView5"
+            android:scaleType="fitCenter"
+            android:alpha=".1" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ucr_logo"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/imageView7"
+            android:scaleType="fitCenter" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/common_google_signin_btn_text_light_pressed"
+            android:alpha=".6" />
+    </RelativeLayout>
 
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/grey_300"
+        android:background="@drawable/class_bar_bg"
         android:gravity="center_vertical">
 
         <LinearLayout
@@ -123,13 +149,13 @@
             android:text="@string/reset_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="29dp"
-            android:layout_marginEnd="29dp"
             android:id="@+id/password_email_button"
+            android:textColor="@color/accent"
+            android:layout_marginLeft="34dp"
+            android:layout_marginStart="34dp"
             android:layout_below="@+id/email_password_buttons"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:textColor="@drawable/reset_password_text_hover" />
+            android:layout_toRightOf="@+id/sign_out_button"
+            android:layout_toEndOf="@+id/sign_out_button" />
 
     </RelativeLayout>
 </LinearLayout>
