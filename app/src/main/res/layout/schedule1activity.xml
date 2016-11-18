@@ -25,7 +25,7 @@
             android:gravity="center_vertical"
             android:id="@+id/textView"
             android:textStyle="normal|bold"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/accent" />
 
 
         <Spinner
@@ -37,10 +37,10 @@
     </TableRow>
 
     <TableRow
+        android:layout_height="1dp"
         android:layout_width="match_parent"
         android:background="@drawable/class_bar_bg"
-        android:layout_height="1dp"
-        android:paddingTop="1dp" />
+        android:paddingTop="1dp"/>
 
     <TableRow
         android:layout_width="fill_parent"
@@ -58,7 +58,7 @@
             android:gravity="top"
             android:layout_marginTop="20dp"
             android:textStyle="normal|bold"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/accent" />
 
         <Spinner
             android:layout_width="0dp"
@@ -70,10 +70,10 @@
     </TableRow>
 
     <TableRow
+        android:layout_height="1dp"
         android:layout_width="match_parent"
         android:background="@drawable/class_bar_bg"
-        android:layout_height="1dp"
-        android:paddingTop="1dp" />
+        android:paddingTop="1dp"/>
 
     <TableRow
         android:layout_width="fill_parent"
@@ -91,7 +91,7 @@
             android:gravity="top"
             android:layout_marginTop="16dp"
             android:textStyle="normal|bold"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/accent" />
 
         <Spinner
             android:layout_width="0dp"
@@ -102,10 +102,10 @@
     </TableRow>
 
     <TableRow
+        android:layout_height="1dp"
         android:layout_width="match_parent"
         android:background="@drawable/class_bar_bg"
-        android:layout_height="1dp"
-        android:paddingTop="1dp" />
+        android:paddingTop="1dp"/>
 
     <TableRow
         android:layout_width="fill_parent"
@@ -122,7 +122,7 @@
             android:id="@+id/textView5"
             android:gravity="top"
             android:layout_marginTop="16dp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/accent"
             android:textStyle="normal|bold" />
 
         <Spinner
@@ -135,10 +135,10 @@
     </TableRow>
 
     <TableRow
+        android:layout_height="1dp"
         android:layout_width="match_parent"
         android:background="@drawable/class_bar_bg"
-        android:layout_height="1dp"
-        android:paddingTop="1dp" />
+        android:paddingTop="1dp"/>
 
     <TableRow
         android:layout_width="fill_parent"
@@ -155,8 +155,8 @@
             android:id="@+id/textView6"
             android:gravity="top"
             android:layout_marginTop="19dp"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="normal|bold" />
+            android:textStyle="normal|bold"
+            android:textColor="@color/accent" />
 
         <Spinner
             android:layout_width="0dp"
@@ -170,10 +170,10 @@
     </TableRow>
 
     <TableRow
+        android:layout_height="1dp"
         android:layout_width="match_parent"
         android:background="@drawable/class_bar_bg"
-        android:layout_height="1dp"
-        android:paddingTop="1dp" />
+        android:paddingTop="1dp"/>
 
     <TableRow
         android:layout_width="fill_parent"
