@@ -24,7 +24,7 @@ public class CalendarActivity1 extends BaseCalendarActivity {
 //            Log.d("NOTHING", "Not Empty");
             Log.d("NOTHING", "Schedule Size = " + Integer.toString(UCRSchedules.getSize(0)));
             for (int i = 0; i < UCRSchedules.getSize(0); i++) {
-                for (int j = 0; j < UCRSchedules.getDays(1, i).length(); j++) {
+                for (int j = 0; j < UCRSchedules.getDays(0, i).length(); j++) {
                     startTime = Calendar.getInstance();
                     startTime.set(Calendar.HOUR_OF_DAY, UCRSchedules.getStartHour(0, i));
                     startTime.set(Calendar.MINUTE, UCRSchedules.getStartMin(0, i));

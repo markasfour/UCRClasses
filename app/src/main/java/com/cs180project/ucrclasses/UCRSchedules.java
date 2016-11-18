@@ -26,9 +26,11 @@ public final class UCRSchedules {
     public static void scheduleInit(){
         if(initRun == 0) {
             Vector<UCRCourse> temp = new Vector<UCRCourse>(0);
+            Vector<UCRCourse> temp2 = new Vector<UCRCourse>(0);
+            Vector<UCRCourse> temp3 = new Vector<UCRCourse>(0);
             schedules.add(temp);
-            schedules.add(temp);
-            schedules.add(temp);
+            schedules.add(temp2);
+            schedules.add(temp3);
             initRun = 1;
         }
     }
