@@ -27,6 +27,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.Vector;
 
 import static com.cs180project.ucrclasses.Databaser.dat;
 
@@ -55,6 +56,7 @@ public class Schedule1Activity extends Fragment{
     ArrayAdapter<String> tadapter;
 
     private int schedule = -1;
+    private String defaultQuarter = null;
 
 
     @Override
@@ -105,8 +107,16 @@ public class Schedule1Activity extends Fragment{
         filterCourseList();
 
         if(!SettingsActivity.term.equals("init")) {
-            //TODO Get term in the qadapter and set the selection in qdropdown
-            //qdropdown.setSelection(qadapter.getPosition(SettingsActivity.term));
+            if(SettingsActivity.term.equals("Summer")) {
+                defaultQuarter = "17U";
+            } else if(SettingsActivity.term.equals("Fall")) {
+                defaultQuarter = "16F";
+            } else if(SettingsActivity.term.equals("Winter")) {
+                defaultQuarter = "17W";
+            } else if(SettingsActivity.term.equals("Spring")) {
+                defaultQuarter = "17S";
+            }
+            qdropdown.setSelection(qadapter.getPosition(defaultQuarter));
         }
 
         //When they select a quarter...
