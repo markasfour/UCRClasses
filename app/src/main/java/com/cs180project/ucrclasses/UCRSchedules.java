@@ -186,9 +186,6 @@ public final class UCRSchedules {
         TextView waitlistText = (TextView) dialog.findViewById(R.id.popup_waitlist);
         waitlistText.setText(course.numOnWaitlist + "/" + course.maxWaitlist);
 
-        TextView prereqs = (TextView) dialog.findViewById(R.id.popup_prereqs);
-        prereqs.setText(course.prereqs);
-
         TextView units = (TextView) dialog.findViewById(R.id.popup_units);
         units.setText(course.units);
 
