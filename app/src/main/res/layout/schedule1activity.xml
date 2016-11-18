@@ -182,7 +182,7 @@
         android:background="@color/grey_100">
 
         <TextView
-            android:text="Remove Conflicts:"
+            android:text="Remove Schedule Conflicts:"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView7"
