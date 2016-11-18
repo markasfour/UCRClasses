@@ -20,6 +20,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.SortedSet;
@@ -169,53 +171,65 @@ public class Schedule1Activity extends Fragment{
 
         });
 
-        if(checkcheckcheck.isChecked()){
-            final Dialog scheduleDialog = new Dialog(fcontainer.getContext());
-            scheduleDialog.setContentView(R.layout.schedule_select);
+        checkcheckcheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(checkcheckcheck.isChecked()){
+                    final Dialog scheduleDialog = new Dialog(fcontainer.getContext());
+                    scheduleDialog.setContentView(R.layout.schedule_select);
 
-            Button sched1Button = (Button) scheduleDialog.findViewById(R.id.schedule1Button);
-            Button sched2Button = (Button) scheduleDialog.findViewById(R.id.schedule2Button);
-            Button sched3Button = (Button) scheduleDialog.findViewById(R.id.schedule3Button);
-            Button schedCancelButton = (Button) scheduleDialog.findViewById(R.id.scheduleCancelButton);
+                    TextView sched1Title = (TextView) scheduleDialog.findViewById(R.id.sched_select_title);
+                    sched1Title.setText("Which schedule?");
 
-            sched1Button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                    Button sched1Button = (Button) scheduleDialog.findViewById(R.id.schedule1Button);
+                    Button sched2Button = (Button) scheduleDialog.findViewById(R.id.schedule2Button);
+                    Button sched3Button = (Button) scheduleDialog.findViewById(R.id.schedule3Button);
+                    Button schedCancelButton = (Button) scheduleDialog.findViewById(R.id.scheduleCancelButton);
+
+                    sched1Button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
 //                    dialog.dismiss();
-                    scheduleDialog.dismiss();
-                    Log.d("????POPUP?????", "clicked 1");
-                }
-            });
+                            scheduleDialog.dismiss();
+                            Log.d("????POPUP?????", "clicked 1");
+                        }
+                    });
 
-            sched2Button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                    sched2Button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
 //                    dialog.dismiss();
-                    scheduleDialog.dismiss();
-                    Log.d("????POPUP?????", "clicked 2");
-                }
-            });
+                            scheduleDialog.dismiss();
+                            Log.d("????POPUP?????", "clicked 2");
+                        }
+                    });
 
-            sched3Button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                    sched3Button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
 //                    dialog.dismiss();
-                    scheduleDialog.dismiss();
-                    Log.d("????POPUP?????", "clicked 3");
-                }
-            });
+                            scheduleDialog.dismiss();
+                            Log.d("????POPUP?????", "clicked 3");
+                        }
+                    });
 
-            schedCancelButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    scheduleDialog.dismiss();
-                    checkcheckcheck.toggle();
-                    Log.d("????POPUP?????", "clicked cancel");
-                }
-            });
+                    schedCancelButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            scheduleDialog.dismiss();
+                            checkcheckcheck.toggle();
+                            Log.d("????POPUP?????", "clicked cancel");
+                        }
+                    });
 
-            scheduleDialog.show();
-        }
+                    scheduleDialog.show();
+                }
+                else{
+                    //TODO To default list
+                }
+            }
+        });
+
 
         return myView;
     }
