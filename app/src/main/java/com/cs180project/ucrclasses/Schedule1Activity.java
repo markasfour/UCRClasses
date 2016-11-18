@@ -165,6 +165,7 @@ public class Schedule1Activity extends Fragment{
             @Override
             public void onClick(View view) {
                 if (tr1.getVisibility() == View.VISIBLE){
+                    search_toggle.setText("Show Search");
                     tr1.setVisibility(View.GONE);
                     tr2.setVisibility(View.GONE);
                     tr3.setVisibility(View.GONE);
@@ -177,11 +178,12 @@ public class Schedule1Activity extends Fragment{
                     tr10.setVisibility(View.GONE);
                     tr11.setVisibility(View.GONE);
                     tr12.setVisibility(View.GONE);
-                    tr13.setVisibility(View.GONE);
+                    //tr13.setVisibility(View.GONE);
                     tr14.setVisibility(View.GONE);
                     search_toggle.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_search, 0, android.R.drawable.arrow_down_float, 0);
                 }
                 else {
+                    search_toggle.setText("Collapse");
                     tr1.setVisibility(View.VISIBLE);
                     tr2.setVisibility(View.VISIBLE);
                     tr3.setVisibility(View.VISIBLE);

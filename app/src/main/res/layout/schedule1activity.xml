@@ -10,16 +10,8 @@
 
     <!--The quarter row was acting up since it was the first row, this fixed it-->
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Search for Classes"
-        android:id="@+id/search"
-        android:drawableLeft="@drawable/ic_search"
-        android:drawableRight="@android:drawable/arrow_up_float"
-        style="@style/Widget.AppCompat.Button.Colored">
 
-    </Button>
+
     <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -238,11 +230,21 @@
 
         <Button
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight=".5"
             android:layout_height="match_parent"
             android:id="@+id/refresh"
-            android:text="Refresh Classes List"
+            android:text="Refresh"
             android:drawableLeft="@drawable/ic_sync_black_24dp"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:layout_height="wrap_content"
+            android:text="Collapse"
+            android:id="@+id/search"
+            android:drawableLeft="@android:drawable/arrow_up_float"
+            style="@style/Widget.AppCompat.Button.Colored">
+        </Button>
 
     </TableRow>
 
