@@ -175,7 +175,7 @@ public class Schedule1Activity extends Fragment{
                     tr12.setVisibility(View.GONE);
                     tr13.setVisibility(View.GONE);
                     tr14.setVisibility(View.GONE);
-
+                    search_toggle.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_search, 0, android.R.drawable.arrow_down_float, 0);
                 }
                 else {
                     tr1.setVisibility(View.VISIBLE);
@@ -192,6 +192,7 @@ public class Schedule1Activity extends Fragment{
                     tr12.setVisibility(View.VISIBLE);
                     tr13.setVisibility(View.VISIBLE);
                     tr14.setVisibility(View.VISIBLE);
+                    search_toggle.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_search, 0, android.R.drawable.arrow_up_float, 0);
                 }
             }
         });
