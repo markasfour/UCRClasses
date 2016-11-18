@@ -29,6 +29,29 @@
             android:layout_weight=".4"
             android:layout_marginLeft="8dp"
             android:textSize="16sp"
+            android:text="Title: "
+            android:textStyle="bold"
+            android:gravity="right"/>
+
+        <TextView
+            android:id="@+id/popup_classTitle"
+            android:layout_width="0dp"
+            android:layout_weight=".6"
+            android:layout_marginLeft="2dp"
+            android:textSize="16sp"
+            android:text="YourMom069"/>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight=".4"
+            android:layout_marginLeft="8dp"
+            android:textSize="16sp"
             android:text="Call Number: "
             android:textStyle="bold"
             android:gravity="right"/>
@@ -157,6 +180,53 @@
             android:text="999/999"/>
 
     </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight=".4"
+            android:layout_marginLeft="8dp"
+            android:textSize="16sp"
+            android:text="Prerequisites: "
+            android:textStyle="bold"
+            android:gravity="right"/>
+
+        <TextView
+            android:id="@+id/popup_prereqs"
+            android:layout_width="0dp"
+            android:layout_weight=".6"
+            android:layout_marginLeft="2dp"
+            android:textSize="16sp"
+            android:text="YourMom069"/>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight=".4"
+            android:layout_marginLeft="8dp"
+            android:textSize="16sp"
+            android:text="Units: "
+            android:textStyle="bold"
+            android:gravity="right"/>
+
+        <TextView
+            android:id="@+id/popup_units"
+            android:layout_width="0dp"
+            android:layout_weight=".6"
+            android:layout_marginLeft="2dp"
+            android:textSize="16sp"
+            android:text="69"/>
+
+    </TableRow>
+
 
 
     <TableRow>

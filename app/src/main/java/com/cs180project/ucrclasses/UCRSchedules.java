@@ -157,6 +157,9 @@ public final class UCRSchedules {
         // set the custom dialog components - text, image and button
         Button addButton = (Button) dialog.findViewById(R.id.dialogButtonADD);
 
+        TextView courseTitleText = (TextView) dialog.findViewById(R.id.popup_classTitle);
+        courseTitleText.setText(course.courseTitle);
+
         TextView titleText = (TextView) dialog.findViewById(R.id.popup_title);
         titleText.setText(course.courseNum);
 
@@ -182,6 +185,12 @@ public final class UCRSchedules {
 
         TextView waitlistText = (TextView) dialog.findViewById(R.id.popup_waitlist);
         waitlistText.setText(course.numOnWaitlist + "/" + course.maxWaitlist);
+
+        TextView prereqs = (TextView) dialog.findViewById(R.id.popup_prereqs);
+        prereqs.setText(course.prereqs);
+
+        TextView units = (TextView) dialog.findViewById(R.id.popup_units);
+        units.setText(course.units);
 
         TextView descText = (TextView) dialog.findViewById(R.id.popup_description);
         descText.setText(course.catalogDescription);

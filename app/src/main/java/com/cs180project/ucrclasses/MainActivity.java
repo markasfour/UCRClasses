@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
             while (!Databaser.done) {
                 try {
                     Thread.sleep(1000);
-                    Log.d("THREAD", "THREAD");
 
                 } catch (InterruptedException e) {
                     Thread.interrupted();
