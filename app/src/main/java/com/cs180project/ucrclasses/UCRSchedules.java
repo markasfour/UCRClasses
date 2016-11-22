@@ -171,12 +171,11 @@ public final class UCRSchedules {
         typeText.setText(course.courseType);
 
         TextView timesText = (TextView) dialog.findViewById(R.id.popup_times);
-        if(course.days.equals("n/a") || !UCRSchedules.goodTime(course.time)) {
+        if (course.days.equals("n/a") || !UCRSchedules.goodTime(course.time)) {
             timesText.setText("n/a");
             addButton.setEnabled(false);
-        }
-        else
-            timesText.setText(course.days  + ": " + course.time);
+        } else
+            timesText.setText(course.days + ": " + course.time);
 
         TextView instrText = (TextView) dialog.findViewById(R.id.popup_instr);
         instrText.setText(course.instructor);
@@ -189,6 +188,12 @@ public final class UCRSchedules {
 
         TextView units = (TextView) dialog.findViewById(R.id.popup_units);
         units.setText(course.units);
+
+        TextView finalText = (TextView) dialog.findViewById(R.id.popup_final);
+        if (course.finalExamTime.equals("n/a"))
+            finalText.setText("n/a");
+        else
+            finalText.setText(course.finalExamDate + "\n" + course.finalExamTime);
 
         TextView descText = (TextView) dialog.findViewById(R.id.popup_description);
         descText.setText(course.catalogDescription);

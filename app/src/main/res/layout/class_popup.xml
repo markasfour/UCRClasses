@@ -204,7 +204,28 @@
 
     </TableRow>
 
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight=".4"
+            android:layout_marginLeft="8dp"
+            android:textSize="16sp"
+            android:text="Final Exam: "
+            android:textStyle="bold"
+            android:gravity="right"/>
+
+        <TextView
+            android:id="@+id/popup_final"
+            android:layout_width="0dp"
+            android:layout_weight=".6"
+            android:layout_marginLeft="2dp"
+            android:textSize="16sp"
+            android:text="T 8:00am - 11:00am"/>
+
+    </TableRow>
 
     <TableRow>
         <View
