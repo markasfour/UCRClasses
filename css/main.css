@@ -1,6 +1,11 @@
+html {
+    min-height: 100%;
+    position: relative;
+}
+
 body {
     background-color: #2D6CC0;
-    height: 100%;
+    height: 100vh;
     margin: 0;
     padding: 0;
     overflow-x:hidden;
@@ -10,31 +15,34 @@ body {
     background-color: #FFFFFF;
     background-image: linear-gradient(to right, rgba(200, 200, 200, 1), rgba(255, 255, 255, .5), rgba(200, 200, 200, 1));
     text-align: center;
-    height: 20%;
 }
 
 #sign_in_page {
     text-align: center;
+    height: 100%;
 }
 
 #sign_in_panel {
     width: 33%;
     margin: auto;
-    background-color: #FFFFFF;
-    background-image: linear-gradient(to right, rgba(200, 200, 200, 1), rgba(255, 255, 255, .5), rgba(200, 200, 200, 1));
+    background-image: linear-gradient(to right, rgba(200, 200, 200, .75), rgba(255, 255, 255, .75), rgba(200, 200, 200, .75));
     border-radius: 5px;
+    vertical-align: middle;
 }
 
 #search_page {
 	transition: margin-left .5s;
+    height: 100%;
 }
 
 #calendar_page {
 	transition: margin-left .5s;
+    height: 100%;
 }
 
 #settings_page {
 	transition: margin-left .5s;
+    height: 100%;
 }
 
 .sidenav {

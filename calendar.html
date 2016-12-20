@@ -6,26 +6,31 @@
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/materialize.css"/>
         <link rel="stylesheet" type="text/css" href="css/main.css"/>
-        <!--Let browser know website is optimized for mobile-->
-        <!--<meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
+        <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
 
     <body>
-        <!--SIDE NAV-->
+		<!--SIDE NAV-->
 		<div id="mySidenav" class="sidenav">
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-			<a href="search.html">Search</a>
-			<a href="calendar.html">Calendars</a>
-			<a href="settings.html">Settings</a>
-			<a href="index.html">Sign Out</a>
-		</div>
+            <hr>
+            <a href="search.html"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
+            <hr>
+            <a href="calendar.html"><i class="fa fa-calendar" aria-hidden="true"></i> Calendars</a>
+            <hr>
+            <a href="settings.html"><i class="fa fa-cogs" aria-hidden="true"></i> Settings</a>
+            <hr>
+            <a href="index.html"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</a>
+		    <hr>
+        </div>
 
         <!--PAGE CONTENTS-->
         <div id="calendar_page">
 
 			<!--HEADER-->
 			<div id="header">
-				<h1 text-align="center" style="margin: 0">UCR CLASSES SCHEDULER</h1> 
+				<h1 text-align="center" style="margin: 0">UCR CLASSES</h1> 
 			</div>
 
 	        <!--SIDE NAV OPEN-->
@@ -37,16 +42,18 @@
 			function openNav() {
 				document.getElementById("mySidenav").style.width = "250px";
 				document.getElementById("calendar_page").style.marginLeft = "250px";
-				//document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+				document.getElementById("calendar_page").style.backgroundColor = "rgba(0,0,0,0.6)";
+                document.getElementById("header").style.backgroundColor = "rgba(0,0,0,0.6)";
 			}
 
 			function closeNav() {
 				document.getElementById("mySidenav").style.width = "0";
 				document.getElementById("calendar_page").style.marginLeft= "0";
-				//document.body.style.backgroundColor = "white";
+				document.getElementById("calendar_page").style.backgroundColor = "#2D6CC0";
+                document.getElementById("header").style.backgroundColor = "rgba(255,255,255,1)";
 			}
-		</script>        
-        
+		</script>
+
         <!--FIREBASE-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
