@@ -22,11 +22,11 @@
         var email = document.getElementById('email').value;
         var password = document.getElementById('password').value;
         if (email.length < 4) {
-          alert('Please enter an email address.');
+          Materialize.toast('Please enter an email address', 5000, 'rounded');
           return;
         }
         if (password.length < 4) {
-          alert('Please enter a password.');
+          Materialize.toast('Please enter a password', 5000, 'rounded');
           return;
         }
         // Sign in with email and pass.
@@ -37,9 +37,9 @@
           var errorMessage = error.message;
           // [START_EXCLUDE]
           if (errorCode === 'auth/wrong-password') {
-            alert('Wrong password.');
+            Materialize.toast('Incorrect password', 5000, 'rounded');  
           } else {
-            alert(errorMessage);
+            Materialize.toast(error.message, 5000, 'rounded');
           }
           console.log(error);
           // [END_EXCLUDE]
@@ -54,11 +54,11 @@
       var email = document.getElementById('email').value;
       var password = document.getElementById('password').value;
       if (email.length < 4) {
-        alert('Please enter an email address.');
+        Materialize.toast('Please enter an email address', 5000, 'rounded');
         return;
       }
       if (password.length < 4) {
-        alert('Please enter a password.');
+        Materialize.toast('Please enter a password', 5000, 'rounded');
         return;
       }
       // Sign in with email and pass.
@@ -69,9 +69,9 @@
         var errorMessage = error.message;
         // [START_EXCLUDE]
         if (errorCode == 'auth/weak-password') {
-          alert('The password is too weak.');
+          Materialize.toast('The password is too weak', 5000, 'rounded');
         } else {
-          alert(errorMessage);
+          Materialize.toast(error.message, 5000, 'rounded');
         }
         console.log(error);
         // [END_EXCLUDE]
@@ -86,7 +86,7 @@
       firebase.auth().currentUser.sendEmailVerification().then(function() {
         // Email Verification sent!
         // [START_EXCLUDE]
-        alert('Please check and verify your email, then please refresh the page.');
+        Materialize.toast('Verification email sent', 10000, 'rounded');
         // [END_EXCLUDE]
       });
       // [END sendemailverification]
@@ -97,7 +97,7 @@
       firebase.auth().sendPasswordResetEmail(email).then(function() {
         // Password Reset Email Sent!
         // [START_EXCLUDE]
-        alert('Password Reset Email Sent!');
+        Materialize.toast('Password reset email sent', 10000, 'rounded');
         // [END_EXCLUDE]
       }).catch(function(error) {
         // Handle Errors here.
@@ -105,9 +105,9 @@
         var errorMessage = error.message;
         // [START_EXCLUDE]
         if (errorCode == 'auth/invalid-email') {
-          alert(errorMessage);
+          Materialize.toast(error.message, 5000, 'rounded');
         } else if (errorCode == 'auth/user-not-found') {
-          alert(errorMessage);
+          Materialize.toast(error.message, 5000, 'rounded');
         }
         console.log(error);
         // [END_EXCLUDE]
@@ -165,27 +165,39 @@
 
     <body>
         <div id="sign_in_page">
-            <div id="header">
-                <h1 text-align="center" style="margin: 0">UCR CLASSES SCHEDULER</h1> 
-            </div>
+            
             <div id="sign_in_panel">
-                <table class="centered">
+                <div id="header" style="border-radius: 5px 5px 0 0; border-bottom: 2px solid #FFFFFF;">
+                    <h1 text-align="center" style="margin: 0; padding: 10px;">UCR CLASSES</h1> 
+                </div>
+                
+                <table>
                     <tr>
-                        <td><button class="waves-effect waves-light amber darken-1 btn" id="quickstart-sign-in" name="signin">Sign In</td>
-                        <td><a class="waves-effect waves-light amber darken-1 btn" id="quickstart-sign-up" name="signup">Create Account</a></td>
+                        <td style="padding: 15px 20px;"><b style="text-color: #2D6CC0;">Email: </b></td>
+                        <td><input class="mdl-textfield__input" style="display:inline;width:auto;margin:0;padding:0 10px;background-color:#FFF;border-radius:5px;" type="text" id="email" name="email" placeholder="youremail@ucr.edu"/></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 15px 20px 0;"><b>Password: </b></td>
+                        <td style="padding: 15px 5px 0;"><input class="mdl-textfield__input" style="display:inline;width:auto;margin:0;padding:0 10px;background-color:#FFF;border-radius:5px;" type="password" id="password" name="password" placeholder="Password"/></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td style="padding: 0 10px 15px;"><a style="cursor: pointer;" id="quickstart-password-reset" name="verify-email"><i>Forgot your password?</i></a></td>
                     </tr>
                 </table>
+
+                <div id="sign_in_panel_bottom">
+                    <button class="waves-effect waves-light amber darken-1 btn" id="quickstart-sign-in" name="signin">Sign In</button>
+                    &nbsp;&nbsp;&nbsp;
+                    <a class="waves-effect waves-light amber darken-1 btn" id="quickstart-sign-up" name="signup">Sign Up</a>
+                    <br/><br/>
+                    <a style="cursor: pointer;" id="quickstart-verify-email" name="verify-email"><i>Resend Email Verification</i></a>
+                    <p id="verified"></p>
+                </div>
+
             </div>
 
-            <input class="mdl-textfield__input" style="display:inline;width:auto;" type="text" id="email" name="email" placeholder="Email"/>
-            &nbsp;&nbsp;&nbsp;
-            <input class="mdl-textfield__input" style="display:inline;width:auto;" type="password" id="password" name="password" placeholder="Password"/>
-            <br/><br/>
-            <button class="mdl-button mdl-js-button mdl-button--raised" id="quickstart-verify-email" name="verify-email">Send Email Verification</button>
-            &nbsp;&nbsp;&nbsp;
-            <button class="mdl-button mdl-js-button mdl-button--raised" id="quickstart-password-reset" name="verify-email">Send Password Reset Email</button>
-            <p id="verified">null</p>
-
+            
         </div>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>

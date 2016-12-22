@@ -23,11 +23,23 @@ body {
 }
 
 #sign_in_panel {
-    width: 33%;
     margin: auto;
     background-image: linear-gradient(to right, rgba(200, 200, 200, .75), rgba(255, 255, 255, .75), rgba(200, 200, 200, .75));
     border-radius: 5px;
-    vertical-align: middle;
+    box-shadow: 1px 1px 5px #222222;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#sign_in_panel_bottom {
+    background-color: #FFFFFF;
+    background-image: linear-gradient(to right, rgba(200, 200, 200, 1), rgba(255, 255, 255, .5), rgba(200, 200, 200, 1)); 
+    border-top: 2px solid #FFFFFF; 
+    height: 100%; 
+    border-radius: 0 0 5px 5px; 
+    padding: 15px 0 0;
 }
 
 #search_page {
