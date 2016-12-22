@@ -21,7 +21,7 @@
             <hr>
             <a href="settings.html"><i class="fa fa-cogs" aria-hidden="true"></i> Settings</a>
             <hr>
-            <a href="index.html"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</a>
+            <a href="index.html" id="signOutButton"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</a>
 		    <hr>
         </div>
 
@@ -52,6 +52,14 @@
 				document.getElementById("search_page").style.backgroundColor = "#2D6CC0";
                 document.getElementById("header").style.backgroundColor = "rgba(255,255,255,1)";
 			}
+
+            function signOut() {
+                firebase.auth().signOut();
+            }
+
+            window.onload = function() {
+                document.getElementById('signOutButton').addEventListener('click', signOut, false);
+            };
 		</script>
 
         <!--FIREBASE-->
